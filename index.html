@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Suleman Saqib | Portfolio</title>
+    <meta name="description" content="Premium Developer Portfolio">
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="loader">
+        <div class="loader-inner">
+            <div class="loader-ring"></div><span>Loading</span>
+        </div>
+    </div>
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+    <div id="scroll-progress"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">S<span>S</span></a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certificates &amp; Licences</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section id="hero" class="section hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-greeting">Hello, I'm</p>
+                <h1 class="hero-name">Suleman Saqib</h1>
+                <div class="hero-role"><span class="typing" id="typing-text"></span><span class="cursor-blink">|</span>
+                </div>
+                <p class="hero-desc">Crafting digital experiences that blend aesthetics with functionality. Passionate
+                    about creating beautiful, performant, and user-centric web applications.</p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn btn-primary"><span>View Projects</span><i
+                            class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn btn-outline"><span>Contact Me</span><i
+                            class="fas fa-envelope"></i></a>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://github.com/Sulemansaqib243342" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/sulemansaqib" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-img-wrapper">
+                    <div class="hero-img-glow"></div>
+                    <img src="assets/images/Profile.jpeg" alt="Suleman Saqib" class="profile-img">
+                </div>
+                <div class="floating-card fc-1"><i class="fab fa-react"></i> React</div>
+                <div class="floating-card fc-2"><i class="fab fa-node-js"></i> Node.js</div>
+                <div class="floating-card fc-3"><i class="fas fa-paint-brush"></i> UI/UX</div>
+            </div>
+        </div>
+        <div class="scroll-indicator"><span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header" data-reveal><span class="section-tag">Who I Am</span>
+                <h2 class="section-title">About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-left" data-reveal>
+                    <div class="about-img-card glass-card">
+                        <img src="assets/images/Profile.jpeg" alt="Suleman Saqib" class="profile-img">
+                        <div class="about-badge"><i class="fas fa-check-circle"></i> Available for work</div>
+                    </div>
+                </div>
+                <div class="about-right" data-reveal>
+                    <p>I'm a Bachelor of Science in Information Technology student at <strong>Air University
+                            Islamabad</strong>, currently in my 4th semester. I am a <strong>Cyber Security Enthusiast</strong> and <strong>Full Stack Developer</strong> who uses <strong>VS Code</strong> to craft clean, efficient code.</p>
+                    <p>While I enjoy the efficiency of <strong>Vibe Coding</strong>, my core expertise lies in <strong>WordPress</strong> development, database management (Oracle/MongoDB), and network security using <strong>Kali Linux</strong>.</p>
+                    <div class="about-info-grid">
+                        <div class="info-item"><span class="info-label">Name</span><span class="info-value">Suleman
+                                Saqib</span></div>
+                        <div class="info-item"><span class="info-label">Email</span><span
+                                class="info-value">sulemansaqib34917@gmail.com</span></div>
+                        <div class="info-item"><span class="info-label">Location</span><span
+                                class="info-value">Islamabad, Pakistan</span></div>
+                        <div class="info-item"><span class="info-label">Education</span><span class="info-value">BSIT
+                                (4th Sem) @ Air Univ</span></div>
+                    </div>
+                    <div class="coursework" style="margin-bottom: 30px;">
+                        <h4 style="font-size: 14px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">Relevant Coursework</h4>
+                        <div class="project-tags">
+                            <span>Programming Fundamentals</span>
+                            <span>OOPs</span>
+                            <span>Data Structures</span>
+                            <span>Information Security</span>
+                            <span>Web Technologies</span>
+                            <span>DLD</span>
+                            <span>Computer Networks</span>
+                            <span>Software Engineering</span>
+                            <span>Operating Systems</span>
+                            <span>Database Management</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary"><span>Let's Talk</span><i
+                            class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header" data-reveal><span class="section-tag">My Expertise</span>
+                <h2 class="section-title">Skills &amp; Technologies</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-categories" data-reveal>
+                <div class="skill-category">
+                    <h3>Programming &amp; Web Development</h3>
+                    <div class="skills-grid-mini">
+                        <div class="skill-card glass-card" data-skill="85">
+                            <div class="skill-icon"><i class="fas fa-code"></i></div>
+                            <h4>C++ (DSA & OOP)</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                            <span class="skill-pct">85%</span>
+                        </div>
+                        <div class="skill-card glass-card" data-skill="95">
+                            <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                            <h4>Web (HTML/CSS)</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+                            <span class="skill-pct">95%</span>
+                        </div>
+                        <div class="skill-card glass-card" data-skill="90">
+                            <div class="skill-icon"><i class="fab fa-wordpress"></i></div>
+                            <h4>WordPress</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+                            <span class="skill-pct">90%</span>
+                        </div>
+                        <div class="skill-card glass-card" data-skill="85">
+                            <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+                            <h4>Node.js</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                            <span class="skill-pct">85%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Databases &amp; Data Management</h3>
+                    <div class="skills-grid-mini">
+                        <div class="skill-card glass-card" data-skill="80">
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <h4>SQL &amp; DBMS</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+                            <span class="skill-pct">80%</span>
+                        </div>
+                        <div class="skill-card glass-card" data-skill="82">
+                            <div class="skill-icon"><i class="fas fa-leaf"></i></div>
+                            <h4>MongoDB</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+                            <span class="skill-pct">82%</span>
+                        </div>
+                        <div class="skill-card glass-card" data-skill="78">
+                            <div class="skill-icon"><i class="fas fa-server"></i></div>
+                            <h4>Oracle 19c</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+                            <span class="skill-pct">78%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Digital Strategy &amp; Tools</h3>
+                    <div class="skills-grid-mini">
+                        <div class="skill-card glass-card" data-skill="82">
+                            <div class="skill-icon"><i class="fas fa-terminal"></i></div>
+                            <h4>Kali Linux</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+                            <span class="skill-pct">82%</span>
+                        </div>
+                        <div class="skill-card glass-card" data-skill="85">
+                            <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                            <h4>Nmap & Wireshark</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                            <span class="skill-pct">85%</span>
+                        </div>
+                        <div class="skill-card glass-card" data-skill="75">
+                            <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
+                            <h4>Cyber Security</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+                            <span class="skill-pct">75%</span>
+                        </div>
+                        <div class="skill-card glass-card" data-skill="88">
+                            <div class="skill-icon"><i class="fas fa-search"></i></div>
+                            <h4>SEO Expert</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+                            <span class="skill-pct">88%</span>
+                        </div>
+                        <div class="skill-card glass-card" data-skill="92">
+                            <div class="skill-icon"><i class="fas fa-file-word"></i></div>
+                            <h4>MS Office</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
+                            <span class="skill-pct">92%</span>
+                        </div>
+                        <div class="skill-card glass-card" data-skill="85">
+                            <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+                            <h4>Canva &amp; Design</h4>
+                            <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                            <span class="skill-pct">85%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header" data-reveal><span class="section-tag">What I Do</span>
+                <h2 class="section-title">My Services</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="services-grid" data-reveal>
+                <div class="service-card glass-card">
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
+                    <h4>Web Development</h4>
+                    <p>Building robust, scalable web applications using modern frameworks and best practices.</p>
+                </div>
+                <div class="service-card glass-card">
+                    <div class="service-icon"><i class="fas fa-palette"></i></div>
+                    <h4>Frontend Design</h4>
+                    <p>Creating stunning, pixel-perfect interfaces with smooth animations and interactions.</p>
+                </div>
+                <div class="service-card glass-card">
+                    <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h4>Responsive Sites</h4>
+                    <p>Crafting websites that look and work beautifully on every device and screen size.</p>
+                </div>
+                <div class="service-card glass-card">
+                    <div class="service-icon"><i class="fas fa-bezier-curve"></i></div>
+                    <h4>UI/UX Design</h4>
+                    <p>Designing intuitive user experiences backed by research and modern design principles.</p>
+                </div>
+                <div class="service-card glass-card">
+                    <div class="service-icon"><i class="fas fa-rocket"></i></div>
+                    <h4>Landing Pages</h4>
+                    <p>High-converting landing pages with compelling visuals and optimized performance.</p>
+                </div>
+                <div class="service-card glass-card">
+                    <div class="service-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <h4>Optimization</h4>
+                    <p>Performance tuning, SEO optimization, and accessibility improvements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header" data-reveal><span class="section-tag">My Work</span>
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-grid" data-reveal>
+                <div class="project-card glass-card">
+                    <div class="project-img">
+                        <div class="project-img-placeholder" style="--hue:180"><i class="fas fa-network-wired"></i></div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/Sulemansaqib243342/Network-sniffing" target="_blank" class="btn-sm">GitHub <i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/posts/sulemansaqib_network-sniffing-project-packet-analysis-activity-7453478729537810432--mQn" target="_blank" class="btn-sm">LinkedIn <i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h4>Network Sniffer</h4>
+                        <p>A network analysis tool designed to capture and inspect data packets for security monitoring and traffic analysis.</p>
+                        <div class="project-tags"><span>Python</span><span>Networking</span><span>Security</span></div>
+                    </div>
+                </div>
+                <div class="project-card glass-card">
+                    <div class="project-img">
+                        <div class="project-img-placeholder" style="--hue:260"><i class="fas fa-keyboard"></i></div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/Sulemansaqib243342/Key-logging" target="_blank" class="btn-sm">GitHub <i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/posts/sulemansaqib_keylogging-project-cybersecurity-system-activity-7453476974221533184-JyWh" target="_blank" class="btn-sm">LinkedIn <i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h4>Keylogger System</h4>
+                        <p>Security research project implementing keystroke monitoring to study input security and data capture methods.</p>
+                        <div class="project-tags"><span>Python</span><span>Cyber Security</span><span>Research</span></div>
+                    </div>
+                </div>
+                <div class="project-card glass-card">
+                    <div class="project-img">
+                        <div class="project-img-placeholder" style="--hue:320"><i class="fas fa-ice-cream"></i>
+                        </div>
+                        <div class="project-overlay"><a href="https://github.com/Sulemansaqib243342/Ice-Cream-Parlor-Fundamentals-of-Programming-" target="_blank" class="btn-sm">GitHub <i
+                                    class="fab fa-github"></i></a></div>
+                    </div>
+                    <div class="project-info">
+                        <h4>Ice Cream Parlor Management</h4>
+                        <p>A complete management system built to handle orders and inventory, focusing on programming logic and C++ fundamentals.</p>
+                        <div class="project-tags"><span>C++</span><span>OOP</span><span>Logic</span></div>
+                    </div>
+                </div>
+                <div class="project-card glass-card">
+                    <div class="project-img">
+                        <div class="project-img-placeholder" style="--hue:140"><i class="fas fa-briefcase"></i></div>
+                        <div class="project-overlay"><a href="#" class="btn-sm">Live Demo <i
+                                    class="fas fa-external-link-alt"></i></a><a href="#" class="btn-sm">GitHub <i
+                                    class="fab fa-github"></i></a></div>
+                    </div>
+                    <div class="project-info">
+                        <h4>Portfolio Website</h4>
+                        <p>Award-winning portfolio with cinematic animations and premium design.</p>
+                        <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card">
+                    <div class="project-img">
+                        <div class="project-img-placeholder" style="--hue:40"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="project-overlay"><a href="#" class="btn-sm">Live Demo <i
+                                    class="fas fa-external-link-alt"></i></a><a href="#" class="btn-sm">GitHub <i
+                                    class="fab fa-github"></i></a></div>
+                    </div>
+                    <div class="project-info">
+                        <h4>Event Manager</h4>
+                        <p>Complete event management platform with ticketing and real-time updates.</p>
+                        <div class="project-tags"><span>React</span><span>Node.js</span><span>Socket.io</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="section-header" data-reveal><span class="section-tag">My Journey</span>
+                <h2 class="section-title">Experience Timeline</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline" data-reveal>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card"><span class="timeline-date">20 April - 20 May 2026</span>
+                        <h4>Cyber Security Intern @ CodeAlpha</h4>
+                        <p>Engaged in a professional internship focusing on vulnerability assessment, network security, and threat mitigation strategies.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card"><span class="timeline-date">2024 - Present</span>
+                        <h4>BSIT - 4th Semester @ Air University</h4>
+                        <p>Focusing on advanced programming, data structures, and web technologies at Air University Islamabad.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card"><span class="timeline-date">2023 - 2024</span>
+                        <h4>FSc @ FIC Shahbaz, Jacobabad</h4>
+                        <p>Completed my intermediate education with a pre-engineering focus, building a strong foundation in science and mathematics.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card"><span class="timeline-date">2021 - 2022</span>
+                        <h4>Matric @ FIC Mushaf, Sargodha</h4>
+                        <p>Completed my secondary school education with high honors, discovering my initial passion for technology and computing.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card"><span class="timeline-date">2025+</span>
+                        <h4>Future Aspirations</h4>
+                        <p>Aiming to specialize in Full-Stack development and contribute to impactful open-source
+                            projects.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="section">
+        <div class="container">
+            <div class="section-header" data-reveal><span class="section-tag">Achievements</span>
+                <h2 class="section-title">Certificates &amp; Licences</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="services-grid" data-reveal>
+                <div class="service-card glass-card certification-card" onclick="openCertModal('Certificates and Licences/Web Webinar.pdf')">
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
+                    <h4>Website Development</h4>
+                    <p>Digifacility (2025)</p>
+                    <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+                </div>
+                <div class="service-card glass-card certification-card" onclick="openCertModal('Certificates and Licences/WORDPRESS Digiskill.pdf')">
+                    <div class="service-icon"><i class="fab fa-wordpress"></i></div>
+                    <h4>Wordpress Certification</h4>
+                    <p>Digiskills (2025)</p>
+                    <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+                </div>
+                <div class="service-card glass-card certification-card" onclick="openCertModal('Certificates and Licences/SEO Digiskill.pdf')">
+                    <div class="service-icon"><i class="fas fa-search"></i></div>
+                    <h4>SEO Specialist</h4>
+                    <p>Digiskills (2025)</p>
+                    <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+                </div>
+                <div class="service-card glass-card certification-card" onclick="openCertModal('Certificates and Licences/Freelancing Digiskill.pdf')">
+                    <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h4>Freelancing</h4>
+                    <p>Digiskills (2025)</p>
+                    <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+                </div>
+                <div class="service-card glass-card certification-card" onclick="openCertModal('Certificates and Licences/Gemini for google Workspace Simplelearn.pdf')">
+                    <div class="service-icon"><i class="fab fa-google"></i></div>
+                    <h4>Gemini for Workspace</h4>
+                    <p>Simplilearn (2025)</p>
+                    <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+                </div>
+                <div class="service-card glass-card certification-card" onclick="openCertModal('Certificates and Licences/Canva.pdf')">
+                    <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                    <h4>Canva Creative</h4>
+                    <p>LWE (2025)</p>
+                    <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+                </div>
+                <div class="service-card glass-card certification-card" onclick="openCertModal('Certificates and Licences/ChatGPT.pdf')">
+                    <div class="service-icon"><i class="fas fa-robot"></i></div>
+                    <h4>ChatGPT (AI)</h4>
+                    <p>LWE (2025)</p>
+                    <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+                </div>
+                <div class="service-card glass-card certification-card" onclick="openCertModal('Certificates and Licences/MicroSoft Office.pdf')">
+                    <div class="service-icon"><i class="fas fa-file-word"></i></div>
+                    <h4>Microsoft Office</h4>
+                    <p>LWE (2024)</p>
+                    <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="section">
+        <div class="container">
+            <div class="stats-grid" data-reveal>
+                <div class="stat-card glass-card">
+                    <div class="stat-number" data-count="50">0</div><span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-number" data-count="35">0</div><span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-number" data-count="20">0</div><span class="stat-label">Technologies</span>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-number" data-count="5">0</div><span class="stat-label">Years Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="section">
+        <div class="container">
+            <div class="section-header" data-reveal><span class="section-tag">Feedback</span>
+                <h2 class="section-title">Client Testimonials</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="testimonials-grid" data-reveal>
+                <div class="testimonial-card glass-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Alex delivered an exceptional website that exceeded all expectations. The attention to detail is
+                        remarkable."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
+                        <div><strong>Sarah Chen</strong><span>CEO, TechStart</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Incredible work! The UI/UX design was exactly what we needed. Highly professional and
+                        responsive."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
+                        <div><strong>Marcus Rivera</strong><span>CTO, DesignHub</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"One of the best developers I've worked with. Clean code, stunning design, and delivered on
+                        time."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
+                        <div><strong>Emily Zhang</strong><span>PM, CloudSync</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header" data-reveal><span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Contact Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-grid" data-reveal>
+                <div class="contact-info">
+                    <h3>Let's work together</h3>
+                    <p>Have a project in mind? Let's create something amazing together.</p>
+                    <div class="contact-items">
+                        <div class="contact-item glass-card"><i class="fas fa-envelope"></i>
+                            <div><strong>Email</strong><span>sulemansaqib34917@gmail.com</span></div>
+                        </div>
+                        <div class="contact-item glass-card"><i class="fas fa-phone"></i>
+                            <div><strong>Phone</strong><span>+92 329 3109487</span></div>
+                        </div>
+                        <div class="contact-item glass-card"><i class="fas fa-map-marker-alt"></i>
+                            <div><strong>Location</strong><span>Islamabad, Pakistan</span></div>
+                        </div>
+                    </div>
+                    <div class="contact-socials">
+                        <a href="https://github.com/Sulemansaqib243342" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/sulemansaqib" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form glass-card" id="contact-form">
+                    <div class="form-group"><label for="name">Name</label><input type="text" id="name"
+                            placeholder="Your Name" required></div>
+                    <div class="form-group"><label for="email">Email</label><input type="email" id="email"
+                            placeholder="your@email.com" required></div>
+                    <div class="form-group"><label for="message">Message</label><textarea id="message" rows="5"
+                            placeholder="Tell me about your project..." required></textarea></div>
+                    <button type="submit" class="btn btn-primary btn-full"><span>Send Message</span><i
+                            class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="footer-gradient"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand"><a href="#" class="logo">S<span>S</span></a>
+                    <p>Crafting digital experiences with passion and precision.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4><a href="#about">About</a><a href="#projects">Projects</a><a
+                        href="#services">Services</a><a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/Sulemansaqib243342" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/sulemansaqib" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Suleman Saqib. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Certificate Modal -->
+    <div id="certModal" class="cert-modal" onclick="closeCertModal()">
+        <span class="close-modal">&times;</span>
+        <iframe class="modal-content" id="modalFrame" style="height: 80vh; border: none;"></iframe>
+        <div id="caption"></div>
+    </div>
+
+    <button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
