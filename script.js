@@ -33,18 +33,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ============================================================
-    // 3. SCROLL PROGRESS BAR  (tracks main-content scroll)
+    // 3. NAVBAR scroll effect + active link tracking
     // ============================================================
+    const navbar = document.getElementById('navbar');
+    const navLinksAll = document.querySelectorAll('.nav-links a');
     const scrollProgress = document.getElementById('scroll-progress');
-    const mainContent = document.getElementById('main-content');
     const backToTop = document.getElementById('back-to-top');
+    const mainContent = document.getElementById('main-content');
 
     mainContent.addEventListener('scroll', () => {
         const scrolled = mainContent.scrollTop;
         const total = mainContent.scrollHeight - mainContent.clientHeight;
         scrollProgress.style.width = `${(scrolled / total) * 100}%`;
 
-        // Back to top button
+        if (scrolled > 40) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+
         if (scrolled > 400) backToTop.classList.add('visible');
         else backToTop.classList.remove('visible');
     });
@@ -53,8 +57,60 @@ document.addEventListener('DOMContentLoaded', () => {
         mainContent.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // Active nav link based on visible section
+    const sections = document.querySelectorAll('.main-content section[id]');
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinksAll.forEach(a => a.classList.remove('active'));
+                const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+                if (active) active.classList.add('active');
+            }
+        });
+    }, {
+        root: mainContent,
+        threshold: 0.3,
+        rootMargin: '-10% 0px -60% 0px'
+    });
+    sections.forEach(s => navObserver.observe(s));
+
     // ============================================================
-    // 4. TYPING ANIMATION
+    // 4. MOBILE MENU TOGGLE
+    // ============================================================
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinksList = document.getElementById('nav-links');
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinksList.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinksList.classList.remove('active');
+            });
+        });
+    }
+
+    // ============================================================
+    // 5. SMOOTH SCROLL FOR ALL ANCHOR LINKS
+    // ============================================================
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href && href.length > 1) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+
+    // ============================================================
+    // 6. TYPING ANIMATION
     // ============================================================
     const typingEl = document.getElementById('typing-text');
     const roles = [
@@ -75,8 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         typeSpeed = isDeleting ? 50 : 100;
 
         if (!isDeleting && charIdx === current.length) {
-            isDeleting = true;
-            typeSpeed = 2200;
+            isDeleting = true; typeSpeed = 2200;
         } else if (isDeleting && charIdx === 0) {
             isDeleting = false;
             roleIdx = (roleIdx + 1) % roles.length;
@@ -87,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     type();
 
     // ============================================================
-    // 5. PARTICLE BACKGROUND
+    // 7. PARTICLE BACKGROUND
     // ============================================================
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
@@ -135,22 +190,18 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
 
     // ============================================================
-    // 6. SCROLL REVEAL & SKILL BAR ANIMATIONS
-    //    (observes inside the scrollable main-content column)
+    // 8. SCROLL REVEAL & SKILL BAR ANIMATIONS
     // ============================================================
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
-
             entry.target.classList.add('revealed');
 
-            // Animate skill bars
             if (entry.target.classList.contains('skill-card')) {
                 const fill = entry.target.querySelector('.skill-fill');
                 if (fill) fill.style.width = entry.target.dataset.skill + '%';
             }
 
-            // Animate stat counters
             const num = entry.target.querySelector('.stat-number');
             if (num && !num.dataset.animated) {
                 num.dataset.animated = '1';
@@ -160,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, {
         threshold: 0.15,
         rootMargin: '0px 0px -40px 0px',
-        root: mainContent   // observe within scrollable container
+        root: mainContent
     });
 
     document.querySelectorAll('[data-reveal], .skill-card, .stat-card').forEach(el => {
@@ -176,45 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
             else el.textContent = Math.floor(current);
         }, 16);
     }
-
-    // ============================================================
-    // 7. ACTIVE NAV LINK TRACKING (sidebar)
-    //    Uses IntersectionObserver on sections inside main-content
-    // ============================================================
-    const sections = document.querySelectorAll('.main-content section[id]');
-    const navLinks = document.querySelectorAll('.sidebar-nav a');
-
-    const navObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(a => a.classList.remove('active'));
-                const active = document.querySelector(`.sidebar-nav a[href="#${entry.target.id}"]`);
-                if (active) active.classList.add('active');
-            }
-        });
-    }, {
-        root: mainContent,
-        threshold: 0.3,
-        rootMargin: '-10% 0px -60% 0px'
-    });
-
-    sections.forEach(s => navObserver.observe(s));
-
-    // ============================================================
-    // 8. SMOOTH SCROLL FOR SIDEBAR LINKS
-    // ============================================================
-    document.querySelectorAll('.sidebar-nav a, .sidebar-cta-outline, footer a[href^="#"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
-        });
-    });
 
     // ============================================================
     // 9. CERTIFICATE MODAL

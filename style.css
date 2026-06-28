@@ -88,6 +88,57 @@ img { display: block; max-width: 100%; }
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
 }
 
+/* ===== TOP NAVBAR ===== */
+nav#navbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 2000; padding: 16px 0;
+  transition: all .35s;
+}
+nav#navbar.scrolled {
+  background: rgba(8,8,15,0.92);
+  backdrop-filter: blur(24px);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--glass-border);
+}
+.nav-container {
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 30px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px; font-weight: 800;
+  color: var(--text); text-decoration: none; letter-spacing: -1px;
+}
+.logo span { color: var(--accent); }
+.nav-links {
+  display: flex; list-style: none; gap: 24px;
+}
+.nav-links a {
+  color: var(--text2); text-decoration: none;
+  font-size: 13px; font-weight: 500;
+  transition: color .3s; position: relative;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--accent); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 2px; background: var(--gradient);
+  border-radius: 2px; transition: width .3s;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
+.menu-toggle {
+  display: none; background: none; border: none;
+  cursor: pointer; flex-direction: column; gap: 5px; padding: 5px;
+}
+.menu-toggle span {
+  width: 24px; height: 2px; background: var(--text); transition: .3s;
+}
+.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
 /* ===== LAYOUT WRAPPER ===== */
 .portfolio-layout {
   display: grid;
@@ -96,6 +147,7 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
   position: relative;
   z-index: 1;
+  padding-top: 62px; /* navbar height */
 }
 
 /* ===== SIDEBAR ===== */
@@ -945,20 +997,43 @@ footer {
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 12px; }
+}
+
 @media (max-width: 1100px) {
   .portfolio-layout {
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 280px 1fr;
   }
-  :root { --sidebar-width: 300px; }
+  :root { --sidebar-width: 280px; }
   .section { padding: 70px 40px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 900px) {
+  /* Mobile nav */
+  .nav-links {
+    position: fixed; top: 0; right: -100%;
+    width: 70%; height: 100vh;
+    background: var(--bg2);
+    flex-direction: column; justify-content: center;
+    align-items: center; gap: 28px;
+    transition: right .35s;
+    padding: 40px;
+    z-index: 1999;
+    border-left: 1px solid var(--glass-border);
+  }
+  .nav-links.active { right: 0; }
+  .nav-links a { font-size: 16px; }
+  .menu-toggle { display: flex; }
+
+  /* Layout */
   .portfolio-layout {
     grid-template-columns: 1fr;
     height: auto;
     overflow: visible;
+    padding-top: 58px;
   }
   .main-content {
     height: auto;
@@ -967,15 +1042,11 @@ footer {
   .sidebar {
     position: relative; height: auto;
     border-right: none; border-bottom: 1px solid var(--glass-border);
-    flex-direction: row; flex-wrap: wrap;
-    padding: 30px 24px;
-    gap: 20px;
+    padding: 0 0 24px 0;
   }
-  .sidebar-top { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 20px; }
-  .sidebar-avatar { width: 90px; height: 90px; margin-bottom: 0; }
-  .sidebar-name { text-align: left; font-size: 18px; margin-bottom: 4px; }
-  .sidebar-role { text-align: left; margin-bottom: 0; }
-  .sidebar-nav { display: none; }
+  .sidebar-top { align-items: center; }
+  .sidebar-avatar { width: 100%; border-radius: 0; }
+  .sidebar-inner { padding: 20px 20px 0; }
   .sidebar-copy { display: none; }
   .section { padding: 60px 30px; }
   .about-grid { grid-template-columns: 1fr; }
@@ -988,7 +1059,7 @@ footer {
 
 @media (max-width: 640px) {
   .section { padding: 50px 20px; }
-  .hero { padding: 50px 20px; min-height: auto; padding-top: 60px; }
+  .hero { padding: 50px 20px; min-height: auto; }
   .services-grid, .projects-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2,1fr); }
   .certs-grid { grid-template-columns: repeat(2, 1fr); }
@@ -999,4 +1070,5 @@ footer {
   .footer-inner { flex-direction: column; text-align: center; }
   .footer-links { justify-content: center; }
   .contact-grid { grid-template-columns: 1fr; }
+  .nav-container { padding: 0 16px; }
 }
