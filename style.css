@@ -106,7 +106,7 @@ img { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 30px;
+  padding: 0 0 30px 0;
   border-right: 1px solid var(--glass-border);
   background: rgba(8,8,15,0.6);
   backdrop-filter: blur(30px);
@@ -123,6 +123,16 @@ img { display: block; max-width: 100%; }
   flex: 1;
 }
 
+/* Inner padded block below the photo */
+.sidebar-inner {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
 /* Logo */
 .sidebar-logo {
   font-family: 'Space Grotesk', sans-serif;
@@ -133,32 +143,28 @@ img { display: block; max-width: 100%; }
 }
 .sidebar-logo span { color: var(--accent); }
 
-/* Profile Image */
+/* Profile Image — large square card like reference site */
 .sidebar-avatar {
   position: relative;
-  width: 150px; height: 150px;
+  width: 100%;
   margin-bottom: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,229,255,0.08);
 }
-.avatar-ring {
-  position: absolute; inset: -4px;
-  border-radius: 50%;
-  background: var(--gradient);
-  animation: rotate 8s linear infinite;
-  z-index: 0;
-}
-.avatar-ring::after {
-  content: '';
-  position: absolute; inset: 3px;
-  border-radius: 50%;
-  background: var(--bg);
-}
+.avatar-ring { display: none; }
 .sidebar-avatar img {
-  position: relative; z-index: 1;
-  width: 100%; height: 100%;
-  border-radius: 50%;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  border: 3px solid var(--bg);
+  object-position: top center;
+  display: block;
+  border-radius: 0;
+  border: none;
+  transition: transform 0.5s ease;
 }
+.sidebar-avatar:hover img { transform: scale(1.04); }
 @keyframes rotate { to { transform: rotate(360deg); } }
 
 /* Status badge */
@@ -600,31 +606,35 @@ img { display: block; max-width: 100%; }
   gap: 18px;
 }
 .skill-card {
-  padding: 26px 20px; text-align: center;
+  padding: 22px 16px; text-align: center;
   position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
 }
 .skill-card::before {
   content: ''; position: absolute; inset: 0;
   background: var(--gradient); opacity: 0;
   transition: opacity var(--transition);
 }
-.skill-card:hover::before { opacity: 0.04; }
+.skill-card:hover::before { opacity: 0.05; }
 .skill-icon {
-  font-size: 32px; color: var(--accent);
-  margin-bottom: 12px;
+  width: 52px; height: 52px; border-radius: 14px;
+  background: rgba(0,229,255,0.08);
+  border: 1px solid rgba(0,229,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: var(--accent);
+  transition: all var(--transition);
+  flex-shrink: 0;
 }
-.skill-card h4 { margin-bottom: 14px; font-size: 14px; font-weight: 600; }
-.skill-bar {
-  width: 100%; height: 3px;
-  background: var(--bg3); border-radius: 3px;
-  overflow: hidden; margin-bottom: 6px;
+.skill-card:hover .skill-icon {
+  background: var(--gradient); color: var(--bg);
+  border-color: transparent;
+  transform: scale(1.1);
 }
-.skill-fill {
-  height: 100%; background: var(--gradient);
-  border-radius: 3px; width: 0;
-  transition: width 1.5s cubic-bezier(0.4,0,0.2,1);
-}
-.skill-pct { color: var(--accent); font-size: 12px; font-weight: 700; }
+.skill-card h4 { font-size: 13px; font-weight: 600; margin: 0; line-height: 1.3; }
+/* Hide bars and percentages */
+.skill-bar, .skill-fill, .skill-pct { display: none; }
 
 /* ===== SERVICES ===== */
 .services-grid {
@@ -730,6 +740,19 @@ img { display: block; max-width: 100%; }
 }
 .timeline-content h4 { font-size: 16px; margin-bottom: 8px; }
 .timeline-content p { color: var(--text2); font-size: 13px; line-height: 1.8; }
+
+/* Timeline achievement badges */
+.timeline-badges {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 14px;
+}
+.tl-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 50px;
+  background: rgba(0,229,255,0.07);
+  border: 1px solid rgba(0,229,255,0.2);
+  color: var(--accent); font-size: 11px; font-weight: 600;
+}
 
 /* ===== CERTIFICATIONS ===== */
 .certs-grid {
