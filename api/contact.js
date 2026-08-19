@@ -10,7 +10,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const OWNER_EMAIL = process.env.ADMIN_EMAIL || 'sulemansaqib34917@gmail.com';
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({ adapter: process.env.POSTGRES_URL });
 
 export default async function handler(req, res) {
   // ── CORS headers (allow requests from the portfolio domain) ──

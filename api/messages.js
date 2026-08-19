@@ -5,7 +5,7 @@
 
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({ adapter: process.env.POSTGRES_URL });
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
