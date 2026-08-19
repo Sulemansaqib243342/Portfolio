@@ -539,21 +539,69 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ============================================================
-  // 12. CONTACT FORM — Submission feedback (no backend)
+  // 12. CONTACT FORM — Real backend via /api/contact
   // ============================================================
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', e => {
+    contactForm.addEventListener('submit', async e => {
       e.preventDefault();
-      const btn      = contactForm.querySelector('button[type="submit"]');
-      const original = btn.innerHTML;
-      btn.innerHTML  = '<span>Message Sent!</span><i class="fas fa-check"></i>';
-      btn.style.background = 'linear-gradient(135deg, #4ade80, #16a34a)';
-      contactForm.reset();
-      setTimeout(() => {
-        btn.innerHTML       = original;
-        btn.style.background = '';
-      }, 3200);
+
+      const btn          = contactForm.querySelector('button[type="submit"]');
+      const originalHTML = btn.innerHTML;
+      const nameVal    = contactForm.querySelector('#name')?.value?.trim();
+      const emailVal   = contactForm.querySelector('#email')?.value?.trim();
+      const messageVal = contactForm.querySelector('#message')?.value?.trim();
+
+      // ── Loading state ──
+      btn.disabled  = true;
+      btn.innerHTML = '<span>Sending\u2026</span><i class="fas fa-spinner fa-spin"></i>';
+      btn.style.opacity = '0.75';
+
+      const oldStatus = contactForm.querySelector('.form-status');
+      if (oldStatus) oldStatus.remove();
+
+      try {
+        const res  = await fetch('/api/contact', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ name: nameVal, email: emailVal, message: messageVal }),
+        });
+        const data = await res.json();
+
+        if (res.ok && data.ok) {
+          // ── Success ──
+          btn.innerHTML        = '<span>Message Sent!</span><i class="fas fa-check"></i>';
+          btn.style.background = 'linear-gradient(135deg, #4ade80, #16a34a)';
+          btn.style.opacity    = '1';
+          contactForm.reset();
+          setTimeout(() => {
+            btn.innerHTML        = originalHTML;
+            btn.style.background = '';
+            btn.disabled         = false;
+          }, 4000);
+        } else {
+          throw new Error(data.error || 'Something went wrong. Please try again.');
+        }
+
+      } catch (err) {
+        // ── Network or API failure ──
+        btn.innerHTML     = originalHTML;
+        btn.style.opacity = '1';
+        btn.disabled      = false;
+
+        const statusEl = document.createElement('p');
+        statusEl.className = 'form-status';
+        statusEl.style.cssText = [
+          'margin-top:12px', 'padding:12px 16px',
+          'background:rgba(248,113,113,0.08)',
+          'border:1px solid rgba(248,113,113,0.25)',
+          'border-radius:10px', 'color:#f87171',
+          'font-size:13px', 'line-height:1.6',
+        ].join(';');
+        statusEl.textContent = err.message;
+        contactForm.appendChild(statusEl);
+        setTimeout(() => statusEl.remove(), 6000);
+      }
     });
   }
 

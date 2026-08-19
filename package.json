@@ -1,0 +1,9 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Suleman Saqib — Portfolio with contact form backend",
+  "dependencies": {
+    "@vercel/postgres": "^0.10.0",
+    "resend": "^4.0.0"
+  }
+}
