@@ -3,7 +3,9 @@
 // Protected by ADMIN_SECRET environment variable.
 // Usage: GET /api/messages?key=YOUR_ADMIN_SECRET
 
-import { sql } from '@vercel/postgres';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,17 +22,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const result = await sql`
-      SELECT id, name, email, message, ip, created_at
-      FROM messages
-      ORDER BY created_at DESC
-      LIMIT 200;
-    `;
+    const allMessages = await prisma.messages.findMany({
+      orderBy: { created_at: 'desc' },
+      take: 200,
+    });
 
     return res.status(200).json({
       ok:    true,
-      count: result.rowCount,
-      messages: result.rows,
+      count: allMessages.length,
+      messages: allMessages,
     });
   } catch (err) {
     console.error('Messages fetch error:', err);

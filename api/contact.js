@@ -5,11 +5,12 @@
 // - Sends email notification to owner via Resend
 // - Returns JSON response
 
-import { sql } from '@vercel/postgres';
+import { PrismaClient } from '@prisma/client';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const OWNER_EMAIL = process.env.ADMIN_EMAIL || 'sulemansaqib34917@gmail.com';
+const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   // ── CORS headers (allow requests from the portfolio domain) ──
@@ -47,15 +48,18 @@ export default async function handler(req, res) {
   const safeMessage = message.trim().slice(0, 5000);
   const ip          = (req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '').split(',')[0].trim();
 
-  // ── Save to PostgreSQL ──
+  // ── Save to PostgreSQL via Prisma ──
   let savedId;
   try {
-    const result = await sql`
-      INSERT INTO messages (name, email, message, ip)
-      VALUES (${safeName}, ${safeEmail}, ${safeMessage}, ${ip})
-      RETURNING id, created_at;
-    `;
-    savedId = result.rows[0]?.id;
+    const newMessage = await prisma.messages.create({
+      data: {
+        name: safeName,
+        email: safeEmail,
+        message: safeMessage,
+        ip: ip,
+      }
+    });
+    savedId = newMessage.id;
   } catch (dbErr) {
     console.error('DB insert error:', dbErr);
     return res.status(500).json({ error: 'Failed to save your message. Please try again.' });

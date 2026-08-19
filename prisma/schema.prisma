@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL") // Uses the Vercel Postgres environment variable
+}
+
+model messages {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(200)
+  email      String   @db.VarChar(300)
+  message    String
+  ip         String?  @db.VarChar(60)
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+}
