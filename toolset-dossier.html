@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toolset Dossier — Suleman Saqib</title>
+  <meta name="description" content="26 cybersecurity tools organised by attack-lifecycle phase — Recon, Scanning, Exploitation, Credential Access, C2, Detection.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230A0908'/><text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='52' font-weight='bold' fill='%23D4AF37'>SS</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg:      #0A0908;
+      --bg2:     #100F0D;
+      --bg3:     #181614;
+      --text:    #E8DFD8;
+      --text2:   #9A8A7A;
+      --gold:    #D4AF37;
+      --bronze:  #8C6D4F;
+      --cream:   #EAD8C7;
+      --glass:   rgba(255,255,255,0.035);
+      --border:  rgba(212,175,55,0.12);
+      --radius:  14px;
+      --tr:      0.3s cubic-bezier(0.4,0,0.2,1);
+      --font-d:  'Bebas Neue', sans-serif;
+      --font-l:  'Montserrat', sans-serif;
+      --font-b:  'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-b);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    ::selection { background: var(--gold); color: var(--bg); }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: var(--bronze); border-radius: 3px; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,9,8,0.94);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-d);
+      font-size: 22px; letter-spacing: 2px;
+      color: var(--text); text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-back {
+      font-family: var(--font-l);
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text2); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      transition: color var(--tr);
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── Hero banner ── */
+    .dossier-hero {
+      padding: 64px 40px 48px;
+      border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(ellipse 50% 60% at 80% 50%, rgba(212,175,55,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 40% at 10% 60%, rgba(140,109,79,0.06) 0%, transparent 70%);
+    }
+    .dossier-hero .tag {
+      font-family: var(--font-l);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold);
+      padding: 4px 14px; border-radius: 50px;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.18);
+      display: inline-block; margin-bottom: 20px;
+    }
+    .dossier-hero h1 {
+      font-family: var(--font-d);
+      font-size: clamp(42px, 6vw, 80px);
+      letter-spacing: 4px; line-height: 0.95;
+      background: linear-gradient(180deg, #FFF 0%, #D4AF37 55%, #8C6D4F 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 18px;
+    }
+    .dossier-hero p {
+      font-size: 15px; color: var(--text2);
+      max-width: 600px; line-height: 1.9;
+    }
+    .dossier-hero .stats-row {
+      display: flex; gap: 36px; margin-top: 32px; flex-wrap: wrap;
+    }
+    .dossier-hero .stat { text-align: left; }
+    .dossier-hero .stat-n {
+      font-family: var(--font-d);
+      font-size: 36px; letter-spacing: 2px; line-height: 1;
+      color: var(--gold);
+    }
+    .dossier-hero .stat-l {
+      font-family: var(--font-l);
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text2); margin-top: 4px;
+    }
+
+    /* ── Phase nav tabs ── */
+    .phase-nav {
+      display: flex; gap: 0;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      padding: 0 40px;
+      scrollbar-width: none;
+    }
+    .phase-nav::-webkit-scrollbar { display: none; }
+    .phase-tab {
+      font-family: var(--font-l);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text2); text-decoration: none;
+      padding: 18px 22px;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color var(--tr), border-color var(--tr);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .phase-tab:hover,
+    .phase-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+    .phase-tab i { font-size: 12px; }
+
+    /* ── Main grid ── */
+    .dossier-main {
+      padding: 48px 40px 80px;
+      max-width: 1400px; margin: 0 auto;
+    }
+
+    /* ── Phase section ── */
+    .phase-section {
+      margin-bottom: 64px;
+      scroll-margin-top: 100px;
+    }
+    .phase-header {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .phase-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--bg); flex-shrink: 0;
+    }
+    .phase-header h2 {
+      font-family: var(--font-d);
+      font-size: 28px; letter-spacing: 3px;
+      background: linear-gradient(90deg, #D4AF37, #8C6D4F);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .phase-badge {
+      font-family: var(--font-l);
+      font-size: 9px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text2); margin-left: auto;
+    }
+
+    /* ── Tool cards grid ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .tool-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      transition: all var(--tr);
+      position: relative; overflow: hidden;
+    }
+    .tool-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(212,175,55,0.05), transparent);
+      opacity: 0; transition: opacity var(--tr);
+    }
+    .tool-card:hover::before { opacity: 1; }
+    .tool-card:hover {
+      border-color: rgba(212,175,55,0.30);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 30px rgba(212,175,55,0.08);
+      transform: translateY(-2px);
+    }
+
+    .tool-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+    }
+    .tool-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
+    }
+    .tool-name {
+      font-family: var(--font-l);
+      font-size: 14px; font-weight: 600;
+      color: var(--text); letter-spacing: .3px;
+    }
+    .tool-type {
+      font-family: var(--font-l);
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text2); margin-top: 2px;
+    }
+
+    .tool-desc {
+      font-size: 12px; color: var(--text2);
+      line-height: 1.75; margin-bottom: 12px;
+    }
+
+    .tool-tags {
+      display: flex; gap: 5px; flex-wrap: wrap;
+    }
+    .tool-tag {
+      font-family: var(--font-l);
+      font-size: 9px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 50px;
+    }
+
+    /* Phase colour themes */
+    .phase--recon       { --pc: #D4AF37; --pc-bg: rgba(212,175,55,0.10); }
+    .phase--scanning    { --pc: #60A5FA; --pc-bg: rgba(96,165,250,0.10); }
+    .phase--exploit     { --pc: #F87171; --pc-bg: rgba(248,113,113,0.10); }
+    .phase--credential  { --pc: #A78BFA; --pc-bg: rgba(167,139,250,0.10); }
+    .phase--c2          { --pc: #34D399; --pc-bg: rgba(52,211,153,0.10); }
+    .phase--detection   { --pc: #FB923C; --pc-bg: rgba(251,146,60,0.10); }
+
+    .phase-icon   { background: var(--pc-bg); color: var(--pc); border: 1px solid color-mix(in srgb, var(--pc) 25%, transparent); }
+    .tool-icon    { background: var(--pc-bg); color: var(--pc); }
+    .tool-tag     { background: var(--pc-bg); color: var(--pc); border: 1px solid color-mix(in srgb, var(--pc) 20%, transparent); }
+
+    /* ── Footer ── */
+    .dossier-footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+    }
+    .dossier-footer p {
+      font-family: var(--font-l);
+      font-size: 10px; letter-spacing: 1px; color: var(--text2);
+    }
+    .back-btn {
+      font-family: var(--font-l);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--bg); text-decoration: none;
+      padding: 10px 22px; border-radius: 50px;
+      background: linear-gradient(135deg, #F5E6C8, #D4AF37, #8C6D4F);
+      transition: opacity .3s, transform .3s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .back-btn:hover { opacity: .85; transform: translateY(-2px); }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      nav, .dossier-hero, .dossier-main, .dossier-footer { padding-left: 18px; padding-right: 18px; }
+      .phase-nav { padding: 0 18px; }
+      .tools-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav>
+    <a href="index.html" class="nav-logo">S<span>S</span></a>
+    <a href="index.html#projects" class="nav-back"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <header class="dossier-hero">
+    <span class="tag">Project · Cybersecurity</span>
+    <h1>Toolset<br>Dossier</h1>
+    <p>A personal reference dashboard cataloguing 26 cybersecurity tools, organised by
+      attack-lifecycle phase — from initial reconnaissance all the way through to detection
+      and defence. Built from hands-on usage during internships and lab work.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-n">26</div><div class="stat-l">Tools Catalogued</div></div>
+      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Lifecycle Phases</div></div>
+      <div class="stat"><div class="stat-n">4+</div><div class="stat-l">Internships Used In</div></div>
+    </div>
+  </header>
+
+  <!-- ── Phase Nav Tabs ── -->
+  <nav class="phase-nav" aria-label="Attack lifecycle phases">
+    <a href="#recon"      class="phase-tab active"><i class="fas fa-search"></i> Recon</a>
+    <a href="#scanning"   class="phase-tab"><i class="fas fa-radar"></i> Scanning</a>
+    <a href="#exploit"    class="phase-tab"><i class="fas fa-bug"></i> Exploitation</a>
+    <a href="#credential" class="phase-tab"><i class="fas fa-key"></i> Credential Access</a>
+    <a href="#c2"         class="phase-tab"><i class="fas fa-satellite-dish"></i> C2</a>
+    <a href="#detection"  class="phase-tab"><i class="fas fa-shield-alt"></i> Detection</a>
+  </nav>
+
+  <!-- ── Main Content ── -->
+  <main class="dossier-main">
+
+    <!-- ════════════════════════════════════════
+         PHASE 1 — RECONNAISSANCE
+    ════════════════════════════════════════ -->
+    <section class="phase-section phase--recon" id="recon">
+      <div class="phase-header">
+        <div class="phase-icon"><i class="fas fa-search"></i></div>
+        <div>
+          <h2>Reconnaissance</h2>
+          <p style="font-size:12px;color:var(--text2);margin-top:3px;">Passive &amp; Active Information Gathering</p>
+        </div>
+        <span class="phase-badge">6 Tools</span>
+      </div>
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-globe"></i></div>
+            <div>
+              <div class="tool-name">WHOIS / nslookup / dig</div>
+              <div class="tool-type">DNS &amp; Domain Recon</div>
+            </div>
+          </div>
+          <p class="tool-desc">Standard DNS tools for querying domain registration data, name servers, MX records, and IP mappings. The first step in passive recon for any web target.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Passive</span>
+            <span class="tool-tag">CLI</span>
+            <span class="tool-tag">Built-in</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-user-secret"></i></div>
+            <div>
+              <div class="tool-name">theHarvester</div>
+              <div class="tool-type">OSINT Email &amp; Domain</div>
+            </div>
+          </div>
+          <p class="tool-desc">Aggregates emails, subdomains, IPs, and URLs from public sources — Google, Bing, LinkedIn, Shodan. Invaluable for building a target's digital footprint.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">OSINT</span>
+            <span class="tool-tag">Passive</span>
+            <span class="tool-tag">Python</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-project-diagram"></i></div>
+            <div>
+              <div class="tool-name">Amass</div>
+              <div class="tool-type">Subdomain Enumeration</div>
+            </div>
+          </div>
+          <p class="tool-desc">OWASP Amass performs deep subdomain enumeration using DNS brute-forcing, scraping, and API sources. Best-in-class for attack surface mapping.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Active</span>
+            <span class="tool-tag">Passive</span>
+            <span class="tool-tag">Go</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-satellite"></i></div>
+            <div>
+              <div class="tool-name">Shodan</div>
+              <div class="tool-type">Internet-wide Scanner</div>
+            </div>
+          </div>
+          <p class="tool-desc">Search engine for internet-connected devices. Reveals open ports, banners, exposed services, and vulnerable devices without touching the target.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Passive</span>
+            <span class="tool-tag">Web</span>
+            <span class="tool-tag">API</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-history"></i></div>
+            <div>
+              <div class="tool-name">Waybackurls</div>
+              <div class="tool-type">Historical URL Mining</div>
+            </div>
+          </div>
+          <p class="tool-desc">Fetches all URLs captured by the Wayback Machine for a given domain. Great for discovering hidden endpoints, old admin panels, and forgotten parameters.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Passive</span>
+            <span class="tool-tag">CLI</span>
+            <span class="tool-tag">Go</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-network-wired"></i></div>
+            <div>
+              <div class="tool-name">Wireshark / TCPDump</div>
+              <div class="tool-type">Packet Capture &amp; Analysis</div>
+            </div>
+          </div>
+          <p class="tool-desc">Capture and analyse raw network packets. Used for passive traffic analysis during internship recon phases and live network monitoring.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Passive</span>
+            <span class="tool-tag">Network</span>
+            <span class="tool-tag">PCAP</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         PHASE 2 — SCANNING & ENUMERATION
+    ════════════════════════════════════════ -->
+    <section class="phase-section phase--scanning" id="scanning">
+      <div class="phase-header">
+        <div class="phase-icon"><i class="fas fa-crosshairs"></i></div>
+        <div>
+          <h2>Scanning &amp; Enumeration</h2>
+          <p style="font-size:12px;color:var(--text2);margin-top:3px;">Vulnerability Discovery &amp; Service Fingerprinting</p>
+        </div>
+        <span class="phase-badge">5 Tools</span>
+      </div>
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-map"></i></div>
+            <div>
+              <div class="tool-name">Nmap</div>
+              <div class="tool-type">Port &amp; Service Scanner</div>
+            </div>
+          </div>
+          <p class="tool-desc">The de facto standard for port scanning and service fingerprinting. Used with scripts (NSE) for OS detection, version scanning, and vulnerability checks.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Active</span>
+            <span class="tool-tag">CLI</span>
+            <span class="tool-tag">NSE</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-spider"></i></div>
+            <div>
+              <div class="tool-name">Nikto</div>
+              <div class="tool-type">Web Server Scanner</div>
+            </div>
+          </div>
+          <p class="tool-desc">Open-source web server scanner that detects dangerous files, outdated software, and common misconfigurations across thousands of checks.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Active</span>
+            <span class="tool-tag">Web</span>
+            <span class="tool-tag">Perl</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-bolt"></i></div>
+            <div>
+              <div class="tool-name">Nuclei</div>
+              <div class="tool-type">Template-based Scanner</div>
+            </div>
+          </div>
+          <p class="tool-desc">Fast, template-driven vulnerability scanner from ProjectDiscovery. Runs thousands of community-maintained templates for CVEs, misconfigs, and exposures.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Active</span>
+            <span class="tool-tag">Templates</span>
+            <span class="tool-tag">Go</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-shield-virus"></i></div>
+            <div>
+              <div class="tool-name">OWASP ZAP</div>
+              <div class="tool-type">Web App Scanner</div>
+            </div>
+          </div>
+          <p class="tool-desc">OWASP Zed Attack Proxy — automated and manual web app security testing. Intercepts traffic as a proxy, runs active scans, and detects OWASP Top 10 issues.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Active</span>
+            <span class="tool-tag">Proxy</span>
+            <span class="tool-tag">OWASP</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-fish"></i></div>
+            <div>
+              <div class="tool-name">Skipfish</div>
+              <div class="tool-type">Web Recon Scanner</div>
+            </div>
+          </div>
+          <p class="tool-desc">High-speed, active web application recon tool by Google. Crawls and fuzzes web apps to build an annotated site map and surface potential vulnerabilities.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Active</span>
+            <span class="tool-tag">Web</span>
+            <span class="tool-tag">C</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         PHASE 3 — EXPLOITATION
+    ════════════════════════════════════════ -->
+    <section class="phase-section phase--exploit" id="exploit">
+      <div class="phase-header">
+        <div class="phase-icon"><i class="fas fa-bug"></i></div>
+        <div>
+          <h2>Exploitation</h2>
+          <p style="font-size:12px;color:var(--text2);margin-top:3px;">Vulnerability Exploitation &amp; Web App Attacks</p>
+        </div>
+        <span class="phase-badge">4 Tools</span>
+      </div>
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-spider"></i></div>
+            <div>
+              <div class="tool-name">Burp Suite Pro</div>
+              <div class="tool-type">Web App Exploitation Platform</div>
+            </div>
+          </div>
+          <p class="tool-desc">Industry-standard web security testing toolkit. Used for intercepting/modifying requests, manual exploitation, SQL injection, XSS testing, and automated scanning via Burp Scanner.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Manual</span>
+            <span class="tool-tag">Proxy</span>
+            <span class="tool-tag">Java</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-database"></i></div>
+            <div>
+              <div class="tool-name">SQL Injection (Manual)</div>
+              <div class="tool-type">Database Exploitation</div>
+            </div>
+          </div>
+          <p class="tool-desc">Manual SQL injection — UNION-based, error-based, boolean blind, and time-based blind techniques. Practised against vulnerable login forms and search parameters during Security Experts internship.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Manual</span>
+            <span class="tool-tag">Web</span>
+            <span class="tool-tag">OWASP A3</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-terminal"></i></div>
+            <div>
+              <div class="tool-name">Alfa-Shell</div>
+              <div class="tool-type">Web Shell</div>
+            </div>
+          </div>
+          <p class="tool-desc">PHP-based web shell used in security research for post-exploitation — file browsing, command execution, and persistence after gaining initial foothold on web servers.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Post-Exploit</span>
+            <span class="tool-tag">PHP</span>
+            <span class="tool-tag">Web Shell</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-wifi"></i></div>
+            <div>
+              <div class="tool-name">Evil Twin (Custom)</div>
+              <div class="tool-type">Wireless Attack Simulation</div>
+            </div>
+          </div>
+          <p class="tool-desc">Self-built Evil Twin attack simulation using Python + Flask — creates a rogue access point with a captive portal to demonstrate wireless credential harvesting for security awareness.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Wireless</span>
+            <span class="tool-tag">Python</span>
+            <span class="tool-tag">Self-Built</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         PHASE 4 — CREDENTIAL ACCESS
+    ════════════════════════════════════════ -->
+    <section class="phase-section phase--credential" id="credential">
+      <div class="phase-header">
+        <div class="phase-icon"><i class="fas fa-key"></i></div>
+        <div>
+          <h2>Credential Access</h2>
+          <p style="font-size:12px;color:var(--text2);margin-top:3px;">Password Cracking &amp; Hash Analysis</p>
+        </div>
+        <span class="phase-badge">3 Tools</span>
+      </div>
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-hammer"></i></div>
+            <div>
+              <div class="tool-name">John the Ripper</div>
+              <div class="tool-type">Password Cracker</div>
+            </div>
+          </div>
+          <p class="tool-desc">Versatile offline password cracker supporting hundreds of hash types. Used for cracking captured hashes with dictionary and brute-force attacks during internship lab exercises.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Offline</span>
+            <span class="tool-tag">Dictionary</span>
+            <span class="tool-tag">C</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-gpu"></i></div>
+            <div>
+              <div class="tool-name">Hashcat</div>
+              <div class="tool-type">GPU-accelerated Cracker</div>
+            </div>
+          </div>
+          <p class="tool-desc">World's fastest password recovery tool leveraging GPU acceleration. Supports 300+ hash types and multiple attack modes — dictionary, combinator, mask, hybrid.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">GPU</span>
+            <span class="tool-tag">Offline</span>
+            <span class="tool-tag">C</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-server"></i></div>
+            <div>
+              <div class="tool-name">Active Directory Lab</div>
+              <div class="tool-type">AD Credential Techniques</div>
+            </div>
+          </div>
+          <p class="tool-desc">Built a full AD lab (Domain Controller + GPO + domain-joined Windows client) at Security Experts. Practised Kerberoasting, Pass-the-Hash, and LDAP enumeration techniques.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Windows</span>
+            <span class="tool-tag">AD</span>
+            <span class="tool-tag">Lab</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         PHASE 5 — COMMAND & CONTROL
+    ════════════════════════════════════════ -->
+    <section class="phase-section phase--c2" id="c2">
+      <div class="phase-header">
+        <div class="phase-icon"><i class="fas fa-satellite-dish"></i></div>
+        <div>
+          <h2>Command &amp; Control</h2>
+          <p style="font-size:12px;color:var(--text2);margin-top:3px;">C2 Frameworks &amp; Post-Exploitation</p>
+        </div>
+        <span class="phase-badge">3 Tools</span>
+      </div>
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-snake"></i></div>
+            <div>
+              <div class="tool-name">Sliver</div>
+              <div class="tool-type">Open-source C2 Framework</div>
+            </div>
+          </div>
+          <p class="tool-desc">Modern, open-source C2 framework by BishopFox. Deployed and configured during Security Experts internship — generated implants, established sessions, and ran post-exploitation tasks.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">C2</span>
+            <span class="tool-tag">Go</span>
+            <span class="tool-tag">Cross-platform</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-dragon"></i></div>
+            <div>
+              <div class="tool-name">Mythic</div>
+              <div class="tool-type">Collaborative C2 Platform</div>
+            </div>
+          </div>
+          <p class="tool-desc">Pluggable C2 framework with a web UI and agent marketplace. Deployed Mythic with a live Windows callback — created agents, tasked them, and managed sessions from the dashboard.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">C2</span>
+            <span class="tool-tag">Docker</span>
+            <span class="tool-tag">Python</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fab fa-python"></i></div>
+            <div>
+              <div class="tool-name">Network Sniffer (Custom)</div>
+              <div class="tool-type">Traffic Capture Tool</div>
+            </div>
+          </div>
+          <p class="tool-desc">Self-built Python + Scapy tool from CodeAlpha internship. Captures and analyses live TCP traffic, logging packet details for C2 traffic identification and analysis.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Python</span>
+            <span class="tool-tag">Scapy</span>
+            <span class="tool-tag">Self-Built</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         PHASE 6 — DETECTION & DEFENCE
+    ════════════════════════════════════════ -->
+    <section class="phase-section phase--detection" id="detection">
+      <div class="phase-header">
+        <div class="phase-icon"><i class="fas fa-shield-alt"></i></div>
+        <div>
+          <h2>Detection &amp; Defence</h2>
+          <p style="font-size:12px;color:var(--text2);margin-top:3px;">SIEM, IDS/IPS, Firewall &amp; Monitoring</p>
+        </div>
+        <span class="phase-badge">5 Tools</span>
+      </div>
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-eye"></i></div>
+            <div>
+              <div class="tool-name">Wazuh SIEM</div>
+              <div class="tool-type">Security Information &amp; Event Management</div>
+            </div>
+          </div>
+          <p class="tool-desc">Deployed full Wazuh stack (Manager + Indexer + Dashboard) on a 3-VM VMware lab at Cyberster. Built custom detection rules, FIM, and triaged 586+ alerts mapped to MITRE ATT&amp;CK.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">SIEM</span>
+            <span class="tool-tag">Blue Team</span>
+            <span class="tool-tag">Open-source</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-bolt"></i></div>
+            <div>
+              <div class="tool-name">Suricata IDS/IPS</div>
+              <div class="tool-type">Network Intrusion Detection/Prevention</div>
+            </div>
+          </div>
+          <p class="tool-desc">Wrote custom Suricata detection rules and configured Active Response — automatically converting IDS alerts into IPS blocks. Integrated with Wazuh for correlated alerting.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">IDS/IPS</span>
+            <span class="tool-tag">Rules</span>
+            <span class="tool-tag">Blue Team</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-fire-alt"></i></div>
+            <div>
+              <div class="tool-name">pfSense</div>
+              <div class="tool-type">Firewall / Router</div>
+            </div>
+          </div>
+          <p class="tool-desc">Deployed pfSense as a network firewall, integrated with VirusTotal for reputation-based blocking. Configured rules for traffic segmentation and threat-based packet filtering.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Firewall</span>
+            <span class="tool-tag">FreeBSD</span>
+            <span class="tool-tag">Blue Team</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-virus-slash"></i></div>
+            <div>
+              <div class="tool-name">VirusTotal</div>
+              <div class="tool-type">Threat Intelligence Platform</div>
+            </div>
+          </div>
+          <p class="tool-desc">Used VirusTotal API integration with pfSense for real-time IP/domain reputation lookups — automatically blocking connections to known malicious infrastructure.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Threat Intel</span>
+            <span class="tool-tag">API</span>
+            <span class="tool-tag">Passive</span>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon"><i class="fas fa-compass"></i></div>
+            <div>
+              <div class="tool-name">MITRE ATT&amp;CK</div>
+              <div class="tool-type">Threat Framework</div>
+            </div>
+          </div>
+          <p class="tool-desc">Used as the primary framework for mapping and classifying alerts in the Wazuh SIEM deployment at Cyberster. Every triaged alert was tagged to its ATT&amp;CK tactic and technique.</p>
+          <div class="tool-tags">
+            <span class="tool-tag">Framework</span>
+            <span class="tool-tag">Blue Team</span>
+            <span class="tool-tag">Classification</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="dossier-footer">
+    <p>&copy; 2026 Suleman Saqib — Toolset Dossier v1.0</p>
+    <a href="index.html#projects" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+  </footer>
+
+  <script>
+    // Highlight active phase tab on scroll
+    const tabs = document.querySelectorAll('.phase-tab');
+    const phaseSections = document.querySelectorAll('.phase-section');
+
+    const phaseObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tabs.forEach(t => t.classList.remove('active'));
+          const active = document.querySelector(`.phase-tab[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-10% 0px -55% 0px' });
+
+    phaseSections.forEach(s => phaseObs.observe(s));
+
+    // Smooth scroll for phase tabs
+    tabs.forEach(tab => {
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(tab.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>

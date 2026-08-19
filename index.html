@@ -2,750 +2,836 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Suleman Saqib | BSIT · Cybersecurity · Full Stack Developer</title>
-    <meta name="description" content="Portfolio of Suleman Saqib — Cybersecurity Enthusiast, Full Stack Developer and BSIT student at Air University Islamabad. Explore projects, skills, and certifications.">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suleman Saqib | Cybersecurity · Full Stack Development</title>
+  <meta name="description" content="Portfolio of Suleman Saqib — Pen Tester, Blue Teamer, Full Stack Developer, and BSIT student at Air University Islamabad.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Suleman Saqib — Cybersecurity · Full Stack">
+  <meta property="og:description" content="Pen Tester, Blue Teamer & Full Stack Developer based in Islamabad, Pakistan.">
+  <meta property="og:url" content="https://Sulemansaqib243342.github.io/Portfolio/">
+  <meta property="og:type" content="website">
+
+  <!-- Inline SVG favicon (SS monogram) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230A0908'/><text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='52' font-weight='bold' fill='%23D4AF37'>SS</text></svg>">
+
+  <!-- Fonts: Bebas Neue (display) + Montserrat (labels/nav) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Three.js (UMD — available as THREE global) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.min.js"></script>
+
+  <!-- Lenis smooth scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
 </head>
 
 <body>
-    <!-- Loading Screen -->
-    <div id="loader">
-        <div class="loader-inner">
-            <div class="loader-ring"></div>
-            <span>Loading</span>
-        </div>
+
+  <!-- ===== LOADING SCREEN ===== -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-ring"></div>
+      <span>Loading</span>
     </div>
+  </div>
 
-    <!-- Custom Cursor -->
-    <div id="cursor"></div>
-    <div id="cursor-follower"></div>
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
 
-    <!-- Scroll Progress -->
-    <div id="scroll-progress"></div>
+  <!-- ===== SCROLL PROGRESS ===== -->
+  <div id="scroll-progress"></div>
 
-    <!-- Particle Canvas -->
-    <canvas id="particles-canvas"></canvas>
+  <!-- ===== TOP NAVBAR ===== -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="logo">S<span>S</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certifications">Certs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
-    <!-- ===== TOP NAVBAR ===== -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#hero" class="logo">S<span>S</span></a>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#certifications">Certificates</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+  <!-- ===== MAIN LAYOUT ===== -->
+  <div class="portfolio-layout">
+
+    <!-- ===== LEFT SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar" role="complementary" aria-label="Profile sidebar">
+      <div class="sidebar-top">
+
+        <!-- Avatar -->
+        <div class="sidebar-avatar">
+          <img src="assets/images/Profile.jpeg" alt="Suleman Saqib — Cybersecurity &amp; Full Stack Developer">
         </div>
-    </nav>
 
-    <!-- ===== MAIN LAYOUT ===== -->
-    <div class="portfolio-layout">
+        <!-- Inner padded section -->
+        <div class="sidebar-inner">
 
-        <!-- ===== LEFT SIDEBAR ===== -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-top">
+          <!-- Status badge -->
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            Available for work
+          </div>
 
-                <!-- Avatar - edge-to-edge square card like reference site -->
-                <div class="sidebar-avatar">
-                    <img src="assets/images/Profile.jpeg" alt="Suleman Saqib — Cybersecurity & Full Stack Developer">
-                </div>
+          <!-- Name & Role -->
+          <h1 class="sidebar-name">Suleman Saqib</h1>
+          <p class="sidebar-role">Pen Tester · Blue Teamer · Full Stack Dev</p>
 
-                <!-- Inner padded section below the photo -->
-                <div class="sidebar-inner">
+          <div class="sidebar-divider"></div>
 
-                    <!-- Status -->
-                    <div class="status-badge">
-                        <span class="status-dot"></span>
-                        Available for work
-                    </div>
-
-                    <!-- Name & Role -->
-                    <h1 class="sidebar-name">Suleman Saqib</h1>
-                    <p class="sidebar-role">Cybersecurity Enthusiast &amp; Full Stack Developer</p>
-
-                    <div class="sidebar-divider"></div>
-
-                    <!-- Contact Info -->
-                    <div class="sidebar-contact">
-                        <a href="mailto:sulemansaqib34917@gmail.com" class="contact-row">
-                            <i class="fas fa-envelope"></i>
-                            <span class="contact-row-value">sulemansaqib34917@gmail.com</span>
-                        </a>
-                        <div class="contact-row">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span class="contact-row-value">Islamabad, Pakistan</span>
-                        </div>
-                    </div>
-
-                    <!-- Socials -->
-                    <div class="sidebar-socials">
-                        <a href="https://github.com/Sulemansaqib243342" target="_blank" class="social-btn" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/sulemansaqib" target="_blank" class="social-btn" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-
-                    <!-- CTAs -->
-                    <a href="mailto:sulemansaqib34917@gmail.com" class="sidebar-cta">
-                        <i class="fas fa-paper-plane"></i> Hire Me!
-                    </a>
-                    <a href="#projects" class="sidebar-cta-outline">
-                        <i class="fas fa-eye"></i> View My Work
-                    </a>
-
-                </div><!-- /sidebar-inner -->
-
+          <!-- Contact Info -->
+          <div class="sidebar-contact">
+            <a href="mailto:sulemansaqib34917@gmail.com" class="contact-row">
+              <i class="fas fa-envelope"></i>
+              <span class="contact-row-value">sulemansaqib34917@gmail.com</span>
+            </a>
+            <div class="contact-row">
+              <i class="fas fa-map-marker-alt"></i>
+              <span class="contact-row-value">Islamabad, Pakistan</span>
             </div>
+            <div class="contact-row">
+              <i class="fas fa-phone"></i>
+              <span class="contact-row-value">+92 329 3109487</span>
+            </div>
+          </div>
 
+          <!-- Social Links -->
+          <div class="sidebar-socials">
+            <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/sulemansaqib" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
 
-            <!-- Copyright -->
-            <p class="sidebar-copy">&copy; 2026 Suleman Saqib. All rights reserved.</p>
-        </aside>
+          <!-- CTAs -->
+          <a href="mailto:sulemansaqib34917@gmail.com" class="sidebar-cta">
+            <i class="fas fa-paper-plane"></i> Hire Me!
+          </a>
+          <a href="#projects" class="sidebar-cta-outline">
+            <i class="fas fa-eye"></i> View My Work
+          </a>
 
-        <!-- ===== RIGHT MAIN CONTENT ===== -->
-        <main class="main-content" id="main-content">
+        </div><!-- /sidebar-inner -->
+      </div>
 
-            <!-- ======= HERO SECTION ======= -->
-            <section id="hero" class="section hero">
-                <div class="hero-inner">
-                    <p class="hero-greeting">Hello, I'm</p>
-                    <h2 class="hero-name">Suleman Saqib</h2>
-                    <div class="hero-role">
-                        <span class="typing" id="typing-text"></span><span class="cursor-blink">|</span>
-                    </div>
-                    <p class="hero-desc">
-                        BSIT student at <strong>Air University Islamabad</strong>, crafting digital experiences that blend
-                        cybersecurity expertise with full-stack development. Passionate about building clean,
-                        efficient, and impactful software.
-                    </p>
-                    <div class="hero-btns">
-                        <a href="#projects" class="btn btn-primary"><span>View Projects</span><i class="fas fa-arrow-right"></i></a>
-                        <a href="#contact" class="btn btn-outline"><span>Contact Me</span><i class="fas fa-envelope"></i></a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="hero-stat-item">
-                            <div class="hero-stat-num">7+</div>
-                            <div class="hero-stat-label">Projects Built</div>
-                        </div>
-                        <div class="hero-stat-item">
-                            <div class="hero-stat-num">8+</div>
-                            <div class="hero-stat-label">Certifications</div>
-                        </div>
-                        <div class="hero-stat-item">
-                            <div class="hero-stat-num">1</div>
-                            <div class="hero-stat-label">Internship Done</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="scroll-indicator">
-                    <span>Scroll</span>
-                    <div class="scroll-line"></div>
-                </div>
-            </section>
+      <p class="sidebar-copy">&copy; 2026 Suleman Saqib. All rights reserved.</p>
+    </aside>
 
-            <!-- ======= ABOUT SECTION ======= -->
-            <section id="about" class="section">
-                <div class="section-header" data-reveal>
-                    <span class="section-tag">Who I Am</span>
-                    <h2 class="section-title">About Me</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="about-grid" data-reveal>
-                    <div class="about-img-wrap">
-                        <div class="about-img-card glass-card">
-                            <img src="assets/images/Profile.jpeg" alt="Suleman Saqib" class="profile-img">
-                        </div>
-                        <div class="about-badge"><i class="fas fa-check-circle"></i> Available for work</div>
-                    </div>
-                    <div class="about-text">
-                        <p>I'm a <strong>Bachelor of Science in Information Technology</strong> student at
-                            <strong>Air University Islamabad</strong>, currently in my 4th semester. I am a
-                            <strong>Cyber Security Enthusiast</strong> and <strong>Full Stack Developer</strong>
-                            who uses <strong>VS Code</strong> to craft clean, efficient code.</p>
-                        <p>While I enjoy the efficiency of <strong>Vibe Coding</strong>, my core expertise lies in
-                            <strong>WordPress</strong> development, database management (Oracle/MongoDB), and
-                            network security using <strong>Kali Linux</strong>.</p>
-                        <div class="about-info-grid">
-                            <div class="info-item">
-                                <span class="info-label">Name</span>
-                                <span class="info-value">Suleman Saqib</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Email</span>
-                                <span class="info-value" style="font-size:12px">sulemansaqib34917@gmail.com</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Location</span>
-                                <span class="info-value">Islamabad, Pakistan</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Education</span>
-                                <span class="info-value">BSIT (4th Sem) @ Air Uni</span>
-                            </div>
-                        </div>
-                        <p class="coursework-title">Relevant Coursework</p>
-                        <div class="project-tags">
-                            <span>Programming Fundamentals</span>
-                            <span>OOPs</span>
-                            <span>Data Structures</span>
-                            <span>Information Security</span>
-                            <span>Web Technologies</span>
-                            <span>DLD</span>
-                            <span>Computer Networks</span>
-                            <span>Software Engineering</span>
-                            <span>Operating Systems</span>
-                            <span>Database Management</span>
-                        </div>
-                        <a href="#contact" class="btn btn-primary"><span>Let's Talk</span><i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </section>
+    <!-- ===== RIGHT MAIN CONTENT ===== -->
+    <main class="main-content" id="main-content">
 
-            <!-- ======= SKILLS SECTION ======= -->
-            <section id="skills" class="section">
-                <div class="section-header" data-reveal>
-                    <span class="section-tag">My Expertise</span>
-                    <h2 class="section-title">Skills &amp; Technologies</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="skills-categories" data-reveal>
+      <!-- ======================================================
+           HERO
+      ====================================================== -->
+      <section id="hero" class="section hero">
 
-                    <div class="skill-category">
-                        <h3>Programming &amp; Web Development</h3>
-                        <div class="skills-grid-mini">
-                            <div class="skill-card glass-card" data-skill="85">
-                                <div class="skill-icon"><i class="fas fa-code"></i></div>
-                                <h4>C++ (DSA &amp; OOP)</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                                <span class="skill-pct">85%</span>
-                            </div>
-                            <div class="skill-card glass-card" data-skill="95">
-                                <div class="skill-icon"><i class="fab fa-html5"></i></div>
-                                <h4>Web (HTML/CSS)</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
-                                <span class="skill-pct">95%</span>
-                            </div>
-                            <div class="skill-card glass-card" data-skill="90">
-                                <div class="skill-icon"><i class="fab fa-wordpress"></i></div>
-                                <h4>WordPress</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
-                                <span class="skill-pct">90%</span>
-                            </div>
-                            <div class="skill-card glass-card" data-skill="85">
-                                <div class="skill-icon"><i class="fab fa-node-js"></i></div>
-                                <h4>Node.js</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                                <span class="skill-pct">85%</span>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Three.js canvas (lazy-initialised in script.js) -->
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
-                    <div class="skill-category">
-                        <h3>Databases &amp; Data Management</h3>
-                        <div class="skills-grid-mini">
-                            <div class="skill-card glass-card" data-skill="80">
-                                <div class="skill-icon"><i class="fas fa-database"></i></div>
-                                <h4>SQL &amp; DBMS</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
-                                <span class="skill-pct">80%</span>
-                            </div>
-                            <div class="skill-card glass-card" data-skill="82">
-                                <div class="skill-icon"><i class="fas fa-leaf"></i></div>
-                                <h4>MongoDB</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
-                                <span class="skill-pct">82%</span>
-                            </div>
-                            <div class="skill-card glass-card" data-skill="78">
-                                <div class="skill-icon"><i class="fas fa-server"></i></div>
-                                <h4>Oracle 19c</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
-                                <span class="skill-pct">78%</span>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Static fallback: shown on mobile / prefers-reduced-motion -->
+        <div class="hero-static-bg" aria-hidden="true"></div>
 
-                    <div class="skill-category">
-                        <h3>Cybersecurity &amp; Digital Tools</h3>
-                        <div class="skills-grid-mini">
-                            <div class="skill-card glass-card" data-skill="82">
-                                <div class="skill-icon"><i class="fas fa-terminal"></i></div>
-                                <h4>Kali Linux</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
-                                <span class="skill-pct">82%</span>
-                            </div>
-                            <div class="skill-card glass-card" data-skill="85">
-                                <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
-                                <h4>Nmap &amp; Wireshark</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                                <span class="skill-pct">85%</span>
-                            </div>
-                            <div class="skill-card glass-card" data-skill="75">
-                                <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
-                                <h4>Cyber Security</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
-                                <span class="skill-pct">75%</span>
-                            </div>
-                            <div class="skill-card glass-card" data-skill="88">
-                                <div class="skill-icon"><i class="fas fa-search"></i></div>
-                                <h4>SEO Expert</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
-                                <span class="skill-pct">88%</span>
-                            </div>
-                            <div class="skill-card glass-card" data-skill="92">
-                                <div class="skill-icon"><i class="fas fa-file-word"></i></div>
-                                <h4>MS Office</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="92"></div></div>
-                                <span class="skill-pct">92%</span>
-                            </div>
-                            <div class="skill-card glass-card" data-skill="85">
-                                <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
-                                <h4>Canva &amp; Design</h4>
-                                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                                <span class="skill-pct">85%</span>
-                            </div>
-                        </div>
-                    </div>
+        <div class="hero-inner">
+          <p class="hero-greeting">Hello, I'm</p>
+          <h2 class="hero-name">Suleman<br>Saqib</h2>
+          <div class="hero-role">
+            <span class="typing" id="typing-text"></span><span class="cursor-blink">|</span>
+          </div>
+          <p class="hero-desc">
+            BSIT student at <strong>Air University Islamabad</strong>, building a dual-track career across
+            <strong>cybersecurity</strong> (offensive + defensive) and <strong>full stack development</strong>.
+            Real tooling. Real lab environments. Not just tutorials.
+          </p>
+          <div class="hero-btns">
+            <a href="#projects" class="btn btn-primary">
+              <span>Explore My Work</span><i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="assets/Suleman_Saqib_CV.docx" download class="btn btn-outline">
+              <span>Download Resume</span><i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat-item">
+              <div class="hero-stat-num">5+</div>
+              <div class="hero-stat-label">Projects Built</div>
+            </div>
+            <div class="hero-stat-item">
+              <div class="hero-stat-num">15+</div>
+              <div class="hero-stat-label">Certifications</div>
+            </div>
+            <div class="hero-stat-item">
+              <div class="hero-stat-num">4</div>
+              <div class="hero-stat-label">Internships</div>
+            </div>
+          </div>
+        </div>
 
-                </div>
-            </section>
+        <div class="scroll-indicator" aria-hidden="true">
+          <span>Scroll</span>
+          <div class="scroll-line"></div>
+        </div>
+      </section>
 
-            <!-- ======= SERVICES SECTION ======= -->
-            <section id="services" class="section">
-                <div class="section-header" data-reveal>
-                    <span class="section-tag">What I Do</span>
-                    <h2 class="section-title">My Services</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="services-grid" data-reveal>
-                    <div class="service-card glass-card">
-                        <div class="service-icon"><i class="fas fa-code"></i></div>
-                        <h4>Web Development</h4>
-                        <p>Building robust, scalable web applications using modern frameworks and best practices.</p>
-                    </div>
-                    <div class="service-card glass-card">
-                        <div class="service-icon"><i class="fas fa-palette"></i></div>
-                        <h4>Frontend Design</h4>
-                        <p>Creating stunning, pixel-perfect interfaces with smooth animations and interactions.</p>
-                    </div>
-                    <div class="service-card glass-card">
-                        <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
-                        <h4>Responsive Sites</h4>
-                        <p>Crafting websites that look and work beautifully on every device and screen size.</p>
-                    </div>
-                    <div class="service-card glass-card">
-                        <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
-                        <h4>Network Security</h4>
-                        <p>Vulnerability assessment, packet analysis, and threat mitigation with Kali Linux tools.</p>
-                    </div>
-                    <div class="service-card glass-card">
-                        <div class="service-icon"><i class="fab fa-wordpress"></i></div>
-                        <h4>WordPress Dev</h4>
-                        <p>Custom WordPress themes, plugins, and high-performance business websites.</p>
-                    </div>
-                    <div class="service-card glass-card">
-                        <div class="service-icon"><i class="fas fa-search"></i></div>
-                        <h4>SEO Optimization</h4>
-                        <p>Performance tuning, SEO optimization, and accessibility improvements for better rankings.</p>
-                    </div>
-                </div>
-            </section>
+      <!-- ======================================================
+           ABOUT
+      ====================================================== -->
+      <section id="about" class="section">
+        <div class="section-header" data-reveal>
+          <span class="section-tag">Who I Am</span>
+          <h2 class="section-title">About Me</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-grid" data-reveal>
+          <div class="about-img-wrap">
+            <div class="about-img-card glass-card">
+              <img src="assets/images/Profile.jpeg" alt="Suleman Saqib" class="profile-img" loading="lazy">
+            </div>
+            <div class="about-badge"><i class="fas fa-check-circle"></i> Available for work</div>
+          </div>
+          <div class="about-text">
+            <p>I'm a <strong>Bachelor of Science in Information Technology</strong> student at
+              <strong>Air University Islamabad</strong> (2024–2028), building a dual-track career across
+              <strong>cybersecurity</strong> (offensive + defensive) and <strong>full stack web development</strong>.</p>
+            <p>Currently juggling multiple hands-on internships while building real tooling and lab
+              environments — from deploying Wazuh SIEM and writing custom Suricata rules, to running
+              Sliver/Mythic C2 frameworks and scanning live web apps with <strong>Burp Suite Pro</strong>.
+              On the dev side, I'm shipping 3D interactive sites with <strong>Three.js</strong> and
+              <strong>React Three Fiber</strong>.</p>
+            <div class="about-info-grid">
+              <div class="info-item">
+                <span class="info-label">Name</span>
+                <span class="info-value">Suleman Saqib</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Email</span>
+                <span class="info-value" style="font-size:12px">sulemansaqib34917@gmail.com</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Location</span>
+                <span class="info-value">Islamabad, Pakistan</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Education</span>
+                <span class="info-value">BSIT (2024–2028) @ Air Uni</span>
+              </div>
+            </div>
+            <p class="coursework-title">Relevant Coursework</p>
+            <div class="tag-cloud">
+              <span>Programming Fundamentals</span>
+              <span>OOPs</span>
+              <span>Data Structures</span>
+              <span>Information Security</span>
+              <span>Web Technologies</span>
+              <span>DLD</span>
+              <span>Computer Networks</span>
+              <span>Software Engineering</span>
+              <span>Operating Systems</span>
+              <span>Database Management</span>
+            </div>
+            <a href="#contact" class="btn btn-primary"><span>Let's Talk</span><i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </section>
 
-            <!-- ======= PROJECTS SECTION ======= -->
-            <section id="projects" class="section">
-                <div class="section-header" data-reveal>
-                    <span class="section-tag">My Work</span>
-                    <h2 class="section-title">Featured Projects</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="projects-grid" data-reveal>
+      <!-- ======================================================
+           SKILLS
+      ====================================================== -->
+      <section id="skills" class="section">
+        <div class="section-header" data-reveal>
+          <span class="section-tag">My Expertise</span>
+          <h2 class="section-title">Skills &amp; Tools</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="skills-two-col" data-reveal>
 
-                    <!-- Network Sniffer -->
-                    <div class="project-card glass-card">
-                        <div class="project-img">
-                            <div class="project-img-placeholder" style="--hue:180">
-                                <i class="fas fa-network-wired"></i>
-                            </div>
-                            <div class="project-overlay">
-                                <a href="https://github.com/Sulemansaqib243342/Network_Sniffing" target="_blank" class="btn-sm">GitHub <i class="fab fa-github"></i></a>
-                                <a href="https://www.linkedin.com/posts/sulemansaqib_network-sniffing-project-packet-analysis-activity-7453478729537810432--mQn" target="_blank" class="btn-sm">LinkedIn <i class="fab fa-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h4>Network Sniffer</h4>
-                            <p>A network analysis tool designed to capture and inspect data packets for security monitoring and traffic analysis.</p>
-                            <div class="project-tags"><span>Python</span><span>Networking</span><span>Security</span></div>
-                        </div>
-                    </div>
+          <div class="skill-column">
+            <h3 class="skill-col-title">
+              <i class="fas fa-shield-alt"></i> Cybersecurity
+            </h3>
+            <div class="tag-cloud tag-cloud--sec">
+              <span>WHOIS</span><span>nslookup</span><span>dig</span>
+              <span>theHarvester</span><span>Amass</span><span>Shodan</span>
+              <span>Waybackurls</span><span>Nikto</span><span>Nuclei</span>
+              <span>OWASP ZAP</span><span>Skipfish</span><span>Burp Suite Pro</span>
+              <span>SQL Injection</span><span>John the Ripper</span><span>Hashcat</span>
+              <span>Sliver C2</span><span>Mythic C2</span><span>Alfa-Shell</span>
+              <span>Wazuh SIEM</span><span>Suricata IDS/IPS</span><span>pfSense</span>
+              <span>VirusTotal</span><span>Wireshark</span><span>TCPDump</span>
+              <span>Active Directory</span><span>Docker</span><span>Kali Linux</span>
+            </div>
+          </div>
 
-                    <!-- Keylogger -->
-                    <div class="project-card glass-card">
-                        <div class="project-img">
-                            <div class="project-img-placeholder" style="--hue:260">
-                                <i class="fas fa-keyboard"></i>
-                            </div>
-                            <div class="project-overlay">
-                                <a href="https://github.com/Sulemansaqib243342/Key_logging" target="_blank" class="btn-sm">GitHub <i class="fab fa-github"></i></a>
-                                <a href="https://www.linkedin.com/posts/sulemansaqib_keylogging-project-cybersecurity-system-activity-7453476974221533184-JyWh" target="_blank" class="btn-sm">LinkedIn <i class="fab fa-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h4>Keylogger System</h4>
-                            <p>Security research project implementing keystroke monitoring to study input security and data capture methods.</p>
-                            <div class="project-tags"><span>Python</span><span>Cyber Security</span><span>Research</span></div>
-                        </div>
-                    </div>
+          <div class="skill-column">
+            <h3 class="skill-col-title">
+              <i class="fas fa-code"></i> Development
+            </h3>
+            <div class="tag-cloud tag-cloud--dev">
+              <span>C++</span><span>Python</span><span>HTML / CSS</span>
+              <span>JavaScript</span><span>Next.js</span><span>Three.js</span>
+              <span>React Three Fiber</span><span>GSAP</span><span>Lenis</span>
+              <span>Node.js</span><span>Flask</span><span>Scapy</span>
+              <span>SQL &amp; DBMS</span><span>MongoDB</span><span>WordPress</span>
+            </div>
+          </div>
 
-                    <!-- SulemanShell -->
-                    <div class="project-card glass-card">
-                        <div class="project-img">
-                            <div class="project-img-placeholder" style="--hue:200">
-                                <i class="fas fa-terminal"></i>
-                            </div>
-                            <div class="project-overlay">
-                                <a href="https://github.com/Sulemansaqib243342/Mini_Command_Shell-SulemanShell-" target="_blank" class="btn-sm">GitHub <i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h4>SulemanShell</h4>
-                            <p>A custom Unix-like command line shell built in C++17, showcasing core OS concepts: processes, IPC, synchronization, and deadlocks.</p>
-                            <div class="project-tags"><span>C++</span><span>OS Concepts</span><span>IPC</span><span>Threads</span></div>
-                        </div>
-                    </div>
+        </div>
+      </section>
 
-                    <!-- Hospital Management -->
-                    <div class="project-card glass-card">
-                        <div class="project-img">
-                            <div class="project-img-placeholder" style="--hue:0">
-                                <i class="fas fa-hospital"></i>
-                            </div>
-                            <div class="project-overlay">
-                                <a href="https://github.com/Sulemansaqib243342/Hospital_Management_System" target="_blank" class="btn-sm">GitHub <i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h4>Hospital Management System</h4>
-                            <p>Full-stack dashboard for SS Pharmaceuticals managing registrations, scheduling, prescriptions, billing, and pharmacy stock.</p>
-                            <div class="project-tags"><span>React</span><span>Node.js</span><span>Oracle 19c</span><span>PL/SQL</span></div>
-                        </div>
-                    </div>
+      <!-- ======================================================
+           SERVICES
+      ====================================================== -->
+      <section id="services" class="section">
+        <div class="section-header" data-reveal>
+          <span class="section-tag">What I Do</span>
+          <h2 class="section-title">My Services</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="services-grid" data-reveal>
+          <div class="service-card glass-card">
+            <div class="service-icon"><i class="fas fa-bug"></i></div>
+            <h4>Penetration Testing</h4>
+            <p>Web app scanning, exploitation, C2 deployment, SQL injection, and hash cracking with industry-grade tooling.</p>
+          </div>
+          <div class="service-card glass-card">
+            <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4>Blue Team / SIEM</h4>
+            <p>Wazuh SIEM deployment, Suricata IDS/IPS, Active Response, pfSense firewall, and MITRE ATT&amp;CK mapping.</p>
+          </div>
+          <div class="service-card glass-card">
+            <div class="service-icon"><i class="fas fa-code"></i></div>
+            <h4>Web Development</h4>
+            <p>Full-stack web applications — from 3D interactive frontends to REST API backends and database design.</p>
+          </div>
+          <div class="service-card glass-card">
+            <div class="service-icon"><i class="fas fa-cube"></i></div>
+            <h4>3D / Interactive UI</h4>
+            <p>Scroll-driven 3D scenes with Three.js, React Three Fiber, GSAP, and Lenis for premium digital experiences.</p>
+          </div>
+          <div class="service-card glass-card">
+            <div class="service-icon"><i class="fab fa-wordpress"></i></div>
+            <h4>WordPress Dev</h4>
+            <p>Custom themes, plugins, and high-performance business websites with SEO optimisation built in.</p>
+          </div>
+          <div class="service-card glass-card">
+            <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+            <h4>Network Analysis</h4>
+            <p>Packet capture, protocol inspection, and traffic monitoring using Wireshark, TCPDump, and Scapy.</p>
+          </div>
+        </div>
+      </section>
 
-                    <!-- Event Manager -->
-                    <div class="project-card glass-card">
-                        <div class="project-img">
-                            <div class="project-img-placeholder" style="--hue:40">
-                                <i class="fas fa-calendar-alt"></i>
-                            </div>
-                            <div class="project-overlay">
-                                <a href="https://github.com/Sulemansaqib243342/Event-Management-System" target="_blank" class="btn-sm">GitHub <i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h4>Event Manager</h4>
-                            <p>Complete event management platform with ticketing, real-time updates, and attendee management features.</p>
-                            <div class="project-tags"><span>React</span><span>Node.js</span><span>Socket.io</span></div>
-                        </div>
-                    </div>
+      <!-- ======================================================
+           PROJECTS — Scroll-Stack Cards
+      ====================================================== -->
+      <section id="projects" class="section">
+        <div class="section-header" data-reveal>
+          <span class="section-tag">My Work</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="projects-stack" id="projects-stack">
 
-                    <!-- Ice Cream Parlor -->
-                    <div class="project-card glass-card">
-                        <div class="project-img">
-                            <div class="project-img-placeholder" style="--hue:320">
-                                <i class="fas fa-ice-cream"></i>
-                            </div>
-                            <div class="project-overlay">
-                                <a href="https://github.com/Sulemansaqib243342/Ice_Cream_Parlor_Fundamentals_of_Programming" target="_blank" class="btn-sm">GitHub <i class="fab fa-github"></i></a>
-                                <a href="https://www.linkedin.com/posts/sulemansaqib_excited-to-share-my-latest-programming-activity-7458968105243979777-h_MB" target="_blank" class="btn-sm">LinkedIn <i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h4>Ice Cream Parlor</h4>
-                            <p>A complete management system to handle orders and inventory, focusing on programming logic and C++ fundamentals.</p>
-                            <div class="project-tags"><span>C++</span><span>OOP</span><span>Logic</span></div>
-                        </div>
-                    </div>
+          <!-- 1. Nova Robotics -->
+          <div class="project-card glass-card">
+            <div class="project-img">
+              <div class="project-img-placeholder" style="--hue:45">
+                <i class="fas fa-cube"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://3dtechnicalgrowth.netlify.app/" target="_blank" rel="noopener" class="btn-sm">
+                  Live Demo <i class="fas fa-external-link-alt"></i>
+                </a>
+                <a href="https://github.com/Sulemansaqib243342/3D-Practice-Site" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-number">01</span>
+              <h4>Nova Robotics — 3D Interactive Site</h4>
+              <p>Interactive 3D robot scene with scroll-driven animation and immersive UI. Built with Next.js, Three.js, React Three Fiber, GSAP, and Lenis for a cinematic web experience.</p>
+              <div class="project-tags">
+                <span>Next.js</span><span>Three.js</span><span>React Three Fiber</span><span>GSAP</span><span>Lenis</span>
+              </div>
+            </div>
+          </div>
 
-                    <!-- Portfolio -->
-                    <div class="project-card glass-card">
-                        <div class="project-img">
-                            <div class="project-img-placeholder" style="--hue:140">
-                                <i class="fas fa-briefcase"></i>
-                            </div>
-                            <div class="project-overlay">
-                                <a href="https://Sulemansaqib243342.github.io/Portfolio/" target="_blank" class="btn-sm">Live Demo <i class="fas fa-external-link-alt"></i></a>
-                                <a href="https://github.com/Sulemansaqib243342/Portfolio" target="_blank" class="btn-sm">GitHub <i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h4>Portfolio Website</h4>
-                            <p>Premium portfolio with split-screen layout, cinematic animations, glassmorphism design, and cybersecurity neon theme.</p>
-                            <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-                        </div>
-                    </div>
+          <!-- 2. Toolset Dossier -->
+          <div class="project-card glass-card">
+            <div class="project-img">
+              <div class="project-img-placeholder" style="--hue:180">
+                <i class="fas fa-tools"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="toolset-dossier.html" class="btn-sm">
+                  View Dossier <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-number">02</span>
+              <h4>Toolset Dossier</h4>
+              <p>Self-built HTML dashboard cataloguing 26 cybersecurity tools organised by attack-lifecycle phase — recon → scanning → exploitation → credential access → C2 → detection.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Cybersecurity</span>
+              </div>
+            </div>
+          </div>
 
-                </div>
-            </section>
+          <!-- 3. Network Sniffing Tool -->
+          <div class="project-card glass-card">
+            <div class="project-img">
+              <div class="project-img-placeholder" style="--hue:200">
+                <i class="fas fa-network-wired"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/Sulemansaqib243342/Network_Sniffing" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/posts/sulemansaqib_network-sniffing-project-packet-analysis-activity-7453478729537810432--mQn" target="_blank" rel="noopener" class="btn-sm">
+                  LinkedIn <i class="fab fa-linkedin"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-number">03</span>
+              <h4>Network Sniffing Tool</h4>
+              <p>Python + Scapy packet capture and live TCP traffic analysis tool built during the CodeAlpha internship for security monitoring and protocol inspection.</p>
+              <div class="project-tags">
+                <span>Python</span><span>Scapy</span><span>Networking</span><span>Security</span>
+              </div>
+            </div>
+          </div>
 
-            <!-- ======= WORK EXPERIENCE SECTION ======= -->
-            <section id="experience" class="section">
-                <div class="section-header" data-reveal>
-                    <span class="section-tag">Work Experience</span>
-                    <h2 class="section-title">Internships &amp; Roles</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="timeline" data-reveal>
+          <!-- 4. Evil Twin Simulation -->
+          <div class="project-card glass-card">
+            <div class="project-img">
+              <div class="project-img-placeholder" style="--hue:260">
+                <i class="fas fa-wifi"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-number">04</span>
+              <h4>Evil Twin Simulation</h4>
+              <p>Rogue access point with captive portal simulation for security awareness training, demonstrating Evil Twin attack vectors using Python and Flask.</p>
+              <div class="project-tags">
+                <span>Python</span><span>Flask</span><span>Networking</span><span>Security Research</span>
+              </div>
+            </div>
+          </div>
 
-                    <!-- Cyberster -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content glass-card">
-                            <span class="timeline-date">Jun 2026 &ndash; Present</span>
-                            <h4>Cybersecurity Intern @ Cyberster</h4>
-                            <p>Deployed and configured <strong>Wazuh SIEM</strong> (Manager + Indexer + Dashboard) on a 3-VM VMware lab. Performed alert triage on <strong>586+ security events</strong> using the MITRE ATT&amp;CK framework. Analyzed network protocols (ARP, DNS, HTTP, SSH, SMB) for suspicious behavior patterns, deployed Wazuh agents on Kali Linux and Windows 10 endpoints, and verified full end-to-end SIEM detection pipeline.</p>
-                        </div>
-                    </div>
+          <!-- 5. Event Management System -->
+          <div class="project-card glass-card">
+            <div class="project-img">
+              <div class="project-img-placeholder" style="--hue:40">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/Sulemansaqib243342/Event-Management-System" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-number">05</span>
+              <h4>Event Management System</h4>
+              <p>Full web application built during Qwetrum Technologies internship, featuring ticketing, real-time updates, and attendee management.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span>
+              </div>
+            </div>
+          </div>
 
-                    <!-- Security Experts Ltd -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content glass-card">
-                            <span class="timeline-date">Jul 2026 &ndash; Incoming</span>
-                            <h4>Security Intern @ Security Experts Ltd</h4>
-                            <p>Starting a new security operations role focusing on real-world threat analysis and incident response.</p>
-                        </div>
-                    </div>
+        </div><!-- /projects-stack -->
+      </section>
 
-                    <!-- CodeAlpha -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content glass-card">
-                            <span class="timeline-date">Mar 2026 &ndash; Apr 2026</span>
-                            <h4>Cybersecurity Intern @ CodeAlpha</h4>
-                            <p>Built a <strong>Network Sniffing Tool</strong> using Python and Scapy to capture and analyze live TCP traffic. Developed an <strong>Evil Twin attack simulation</strong> (rogue captive portal) using Flask for security awareness. Gained hands-on experience in network monitoring, packet analysis, and system security concepts.</p>
-                            <div class="timeline-badges">
-                                <span class="tl-badge"><i class="fas fa-certificate"></i> Certificate of Completion</span>
-                                <span class="tl-badge"><i class="fas fa-file-alt"></i> Letter of Recommendation</span>
-                            </div>
-                        </div>
-                    </div>
+      <!-- ======================================================
+           EXPERIENCE
+      ====================================================== -->
+      <section id="experience" class="section">
+        <div class="section-header" data-reveal>
+          <span class="section-tag">Work Experience</span>
+          <h2 class="section-title">Internships &amp; Roles</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline" data-reveal>
 
-                </div>
-            </section>
+          <!-- Security Experts — Red Team -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-date">Jul 2026 – Present</span>
+              <h4>Pen Tester Intern @ Security Experts Pvt. Ltd.</h4>
+              <p>Reconnaissance using WHOIS, nslookup, dig, theHarvester, Amass, and Shodan.
+                Vulnerability scanning with Nikto, Nuclei, OWASP ZAP, Skipfish, and
+                <strong>Burp Suite Pro</strong>. C2 framework deployment (Sliver, Mythic with live
+                Windows callback, Alfa-Shell). SQL injection exploitation, offline hash cracking
+                (John the Ripper, Hashcat), and <strong>Active Directory</strong> lab setup
+                (Domain Controller, GPO, domain-joined client).</p>
+            </div>
+          </div>
 
-            <!-- ======= EDUCATION SECTION ======= -->
-            <section id="education" class="section">
-                <div class="section-header" data-reveal>
-                    <span class="section-tag">Academic Background</span>
-                    <h2 class="section-title">Education</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="timeline" data-reveal>
+          <!-- Cyberster — Blue Team -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-date">Jun 2026 – Present</span>
+              <h4>Blue Team Intern @ Cyberster</h4>
+              <p>Deployed <strong>Wazuh SIEM</strong> (Manager + Indexer + Dashboard) on a 3-VM
+                VMware lab. File Integrity Monitoring and custom detection rules.
+                <strong>Suricata IDS</strong> with custom network rules and Active Response
+                (automated IDS→IPS blocking). <strong>pfSense firewall</strong> integrated with
+                VirusTotal for reputation-based blocking. MITRE ATT&amp;CK mapping across 586+
+                triaged alerts.</p>
+              <div class="timeline-badges">
+                <span class="tl-badge"><i class="fas fa-certificate"></i> Certificate of Completion</span>
+                <span class="tl-badge"><i class="fas fa-file-alt"></i> Letter of Recommendation</span>
+              </div>
+            </div>
+          </div>
 
-                    <!-- Air University -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot" style="background: var(--accent2); box-shadow: 0 0 20px rgba(124,58,237,0.6);"></div>
-                        <div class="timeline-content glass-card">
-                            <span class="timeline-date">2024 &ndash; Present</span>
-                            <h4>BSIT &ndash; 4th Semester @ Air University Islamabad</h4>
-                            <p>Focusing on advanced programming, data structures, web technologies, and information security at Air University Islamabad. CGPA on track with consistent academic performance.</p>
-                        </div>
-                    </div>
+          <!-- Morphe Labs — AI/ML -->
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--dev"></div>
+            <div class="timeline-content glass-card timeline-content--dev">
+              <span class="timeline-date timeline-date--dev">Jul – Aug 2026</span>
+              <h4>AI/ML Intern @ Morphe Labs</h4>
+              <p>n8n workflow automation and <strong>ElevenLabs</strong> voice agent integration
+                for AI-powered pipeline automation.</p>
+            </div>
+          </div>
 
-                    <!-- FSc -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot" style="background: var(--accent2); box-shadow: 0 0 20px rgba(124,58,237,0.6);"></div>
-                        <div class="timeline-content glass-card">
-                            <span class="timeline-date">2023 &ndash; 2024</span>
-                            <h4>FSc (Pre-Engineering) @ FIC Shahbaz, Jacobabad</h4>
-                            <p>Completed intermediate education with a pre-engineering focus, building a strong foundation in science and mathematics.</p>
-                        </div>
-                    </div>
+          <!-- Qwetrum — Web Dev -->
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--dev"></div>
+            <div class="timeline-content glass-card timeline-content--dev">
+              <span class="timeline-date timeline-date--dev">Jun 2026 · Remote</span>
+              <h4>Web Development Intern @ Qwetrum Technologies</h4>
+              <p>Built an <strong>Event Management System</strong> and a portfolio website during
+                a remote internship engagement.</p>
+            </div>
+          </div>
 
-                    <!-- Matric -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot" style="background: var(--accent2); box-shadow: 0 0 20px rgba(124,58,237,0.6);"></div>
-                        <div class="timeline-content glass-card">
-                            <span class="timeline-date">2021 &ndash; 2022</span>
-                            <h4>Matric (Science) @ FIC Mushaf, Sargodha</h4>
-                            <p>Completed secondary school education with high honors, discovering my initial passion for technology and computing.</p>
-                        </div>
-                    </div>
+          <!-- CodeAlpha — Security -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-date">Mar 2026 – Apr 2026</span>
+              <h4>Cybersecurity Intern @ CodeAlpha</h4>
+              <p>Built a <strong>Network Sniffing Tool</strong> using Python and Scapy to capture
+                and analyse live TCP traffic. Developed an <strong>Evil Twin attack simulation</strong>
+                (rogue captive portal) using Flask for security awareness training.</p>
+              <div class="timeline-badges">
+                <span class="tl-badge"><i class="fas fa-certificate"></i> Certificate of Completion</span>
+                <span class="tl-badge"><i class="fas fa-file-alt"></i> Letter of Recommendation</span>
+              </div>
+            </div>
+          </div>
 
-                </div>
-            </section>
+        </div>
+      </section>
 
-            <!-- ======= CERTIFICATIONS SECTION ======= -->
-            <section id="certifications" class="section">
-                <div class="section-header" data-reveal>
-                    <span class="section-tag">Achievements</span>
-                    <h2 class="section-title">Certificates &amp; Licences</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="certs-grid" data-reveal>
-                    <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Web Webinar.pdf')">
-                        <div class="cert-icon"><i class="fas fa-code"></i></div>
-                        <h4>Website Development</h4>
-                        <p>Digifacility (2025)</p>
-                        <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
-                    </div>
-                    <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/WORDPRESS Digiskill.pdf')">
-                        <div class="cert-icon"><i class="fab fa-wordpress"></i></div>
-                        <h4>WordPress Certification</h4>
-                        <p>Digiskills (2025)</p>
-                        <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
-                    </div>
-                    <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/SEO Digiskill.pdf')">
-                        <div class="cert-icon"><i class="fas fa-search"></i></div>
-                        <h4>SEO Specialist</h4>
-                        <p>Digiskills (2025)</p>
-                        <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
-                    </div>
-                    <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Freelancing Digiskill.pdf')">
-                        <div class="cert-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h4>Freelancing</h4>
-                        <p>Digiskills (2025)</p>
-                        <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
-                    </div>
-                    <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Gemini for google Workspace Simplelearn.pdf')">
-                        <div class="cert-icon"><i class="fab fa-google"></i></div>
-                        <h4>Gemini for Workspace</h4>
-                        <p>Simplilearn (2025)</p>
-                        <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
-                    </div>
-                    <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Canva.pdf')">
-                        <div class="cert-icon"><i class="fas fa-paint-brush"></i></div>
-                        <h4>Canva Creative</h4>
-                        <p>LWE (2025)</p>
-                        <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
-                    </div>
-                    <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/ChatGPT.pdf')">
-                        <div class="cert-icon"><i class="fas fa-robot"></i></div>
-                        <h4>ChatGPT (AI)</h4>
-                        <p>LWE (2025)</p>
-                        <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
-                    </div>
-                    <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/MicroSoft Office.pdf')">
-                        <div class="cert-icon"><i class="fas fa-file-word"></i></div>
-                        <h4>Microsoft Office</h4>
-                        <p>LWE (2024)</p>
-                        <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
-                    </div>
-                </div>
-            </section>
+      <!-- ======================================================
+           EDUCATION
+      ====================================================== -->
+      <section id="education" class="section">
+        <div class="section-header" data-reveal>
+          <span class="section-tag">Academic Background</span>
+          <h2 class="section-title">Education</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="timeline" data-reveal>
 
-            <!-- ======= STATS SECTION ======= -->
-            <section id="stats" class="section">
-                <div class="stats-grid" data-reveal>
-                    <div class="stat-card glass-card">
-                        <div class="stat-number" data-count="7">0</div>
-                        <span class="stat-label">Projects Built</span>
-                    </div>
-                    <div class="stat-card glass-card">
-                        <div class="stat-number" data-count="8">0</div>
-                        <span class="stat-label">Certifications</span>
-                    </div>
-                    <div class="stat-card glass-card">
-                        <div class="stat-number" data-count="20">0</div>
-                        <span class="stat-label">Technologies</span>
-                    </div>
-                    <div class="stat-card glass-card">
-                        <div class="stat-number" data-count="1">0</div>
-                        <span class="stat-label">Internship Done</span>
-                    </div>
-                </div>
-            </section>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--edu"></div>
+            <div class="timeline-content glass-card timeline-content--edu">
+              <span class="timeline-date timeline-date--edu">2024 – 2028 (Expected)</span>
+              <h4>BSIT — Air University Islamabad</h4>
+              <p>Bachelor of Science in Information Technology, currently in 4th semester. Dual-track
+                focus on cybersecurity (offensive + defensive) and full stack web development, with
+                active industry internships running in parallel.</p>
+            </div>
+          </div>
 
-            <!-- ======= CONTACT SECTION ======= -->
-            <section id="contact" class="section">
-                <div class="section-header" data-reveal>
-                    <span class="section-tag">Get In Touch</span>
-                    <h2 class="section-title">Contact Me</h2>
-                    <div class="section-line"></div>
-                </div>
-                <div class="contact-grid" data-reveal>
-                    <div class="contact-info">
-                        <h3>Let's work together</h3>
-                        <p>Have a project in mind? Let's create something amazing together. I'm always open to discussing new opportunities.</p>
-                        <div class="contact-items">
-                            <div class="contact-item glass-card">
-                                <i class="fas fa-envelope"></i>
-                                <div><strong>Email</strong><span>sulemansaqib34917@gmail.com</span></div>
-                            </div>
-                            <div class="contact-item glass-card">
-                                <i class="fas fa-phone"></i>
-                                <div><strong>Phone</strong><span>+92 329 3109487</span></div>
-                            </div>
-                            <div class="contact-item glass-card">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div><strong>Location</strong><span>Islamabad, Pakistan</span></div>
-                            </div>
-                        </div>
-                        <div class="contact-socials">
-                            <a href="https://github.com/Sulemansaqib243342" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/sulemansaqib" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <form class="contact-form glass-card" id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="your@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <span>Send Message</span><i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-            </section>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--edu"></div>
+            <div class="timeline-content glass-card timeline-content--edu">
+              <span class="timeline-date timeline-date--edu">2023 – 2024</span>
+              <h4>FSc (Pre-Engineering) — FIC Shahbaz, Jacobabad</h4>
+              <p>Intermediate education with pre-engineering focus, building a strong foundation in
+                science and mathematics.</p>
+            </div>
+          </div>
 
-            <!-- ======= FOOTER ======= -->
-            <footer>
-                <div class="footer-inner">
-                    <a href="#hero" class="footer-logo">S<span>S</span></a>
-                    <p class="footer-copy">&copy; 2026 Suleman Saqib. All rights reserved.</p>
-                    <div class="footer-links">
-                        <a href="#about">About</a>
-                        <a href="#projects">Projects</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                </div>
-            </footer>
+          <div class="timeline-item">
+            <div class="timeline-dot timeline-dot--edu"></div>
+            <div class="timeline-content glass-card timeline-content--edu">
+              <span class="timeline-date timeline-date--edu">2021 – 2022</span>
+              <h4>Matric (Science) — FIC Mushaf, Sargodha</h4>
+              <p>Secondary school education with high honours — where my passion for technology
+                and computing began.</p>
+            </div>
+          </div>
 
-        </main>
-        <!-- END MAIN CONTENT -->
+        </div>
+      </section>
 
-    </div>
-    <!-- END PORTFOLIO LAYOUT -->
+      <!-- ======================================================
+           CERTIFICATIONS
+      ====================================================== -->
+      <section id="certifications" class="section">
+        <div class="section-header" data-reveal>
+          <span class="section-tag">Achievements</span>
+          <h2 class="section-title">Certificates &amp; Events</h2>
+          <div class="section-line"></div>
+        </div>
 
-    <!-- Certificate Modal -->
-    <div id="certModal" class="cert-modal" onclick="closeCertModal()">
-        <span class="close-modal">&times;</span>
-        <iframe class="modal-content" id="modalFrame" style="height:80vh;border:none;"></iframe>
-        <div id="caption"></div>
-    </div>
+        <h3 class="subsection-title" data-reveal>Certifications</h3>
+        <div class="certs-grid" data-reveal>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Web Webinar.pdf')">
+            <div class="cert-icon"><i class="fas fa-code"></i></div>
+            <h4>Website Development</h4>
+            <p>Digifacility (2025)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/WORDPRESS Digiskill.pdf')">
+            <div class="cert-icon"><i class="fab fa-wordpress"></i></div>
+            <h4>WordPress</h4>
+            <p>Digiskills (2025)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/SEO Digiskill.pdf')">
+            <div class="cert-icon"><i class="fas fa-search"></i></div>
+            <h4>SEO Specialist</h4>
+            <p>Digiskills (2025)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Freelancing Digiskill.pdf')">
+            <div class="cert-icon"><i class="fas fa-laptop-code"></i></div>
+            <h4>Freelancing</h4>
+            <p>Digiskills (2025)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Gemini for google Workspace Simplelearn.pdf')">
+            <div class="cert-icon"><i class="fab fa-google"></i></div>
+            <h4>Gemini for Workspace</h4>
+            <p>Simplilearn (2025)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Canva.pdf')">
+            <div class="cert-icon"><i class="fas fa-paint-brush"></i></div>
+            <h4>Canva Creative</h4>
+            <p>LWE (2025)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/ChatGPT.pdf')">
+            <div class="cert-icon"><i class="fas fa-robot"></i></div>
+            <h4>ChatGPT (AI)</h4>
+            <p>LWE (2025)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/MicroSoft Office.pdf')">
+            <div class="cert-icon"><i class="fas fa-file-word"></i></div>
+            <h4>Microsoft Office</h4>
+            <p>LWE (2024)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Suleman Saqib Internship Certificate Codealpha.pdf')">
+            <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4>Internship Certificate</h4>
+            <p>CodeAlpha (2026)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Suleman Saqib Codealpha LOR.pdf')">
+            <div class="cert-icon"><i class="fas fa-file-alt"></i></div>
+            <h4>Letter of Recommendation</h4>
+            <p>CodeAlpha (2026)</p>
+            <span class="view-cert">View Letter <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Suleman_Saqib_Qwetrum_Technologies_Internship_Certificate.pdf')">
+            <div class="cert-icon"><i class="fas fa-laptop-code"></i></div>
+            <h4>Internship Certificate</h4>
+            <p>Qwetrum Technologies (2026)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/VAPT_Cyberster_Suleman Saqib.pdf')">
+            <div class="cert-icon"><i class="fas fa-bug"></i></div>
+            <h4>VAPT Workshop</h4>
+            <p>Tech Hierarchy × Cyberster (2026)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+        </div>
 
-    <!-- Back to Top -->
-    <button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+        <h3 class="subsection-title" data-reveal>Events &amp; Workshops</h3>
+        <div class="events-grid" data-reveal>
+          <div class="event-badge glass-card">
+            <i class="fas fa-network-wired"></i>
+            <div>
+              <strong>Intro to Network Analysis</strong>
+              <span>Centri · Wireshark, TCPDump, PCAP · Aug 2026</span>
+            </div>
+          </div>
+          <div class="event-badge glass-card">
+            <i class="fas fa-rocket"></i>
+            <div>
+              <strong>Elevate 2026</strong>
+              <span>Cyber Security &amp; Digital Assets Track · Islamabad</span>
+            </div>
+          </div>
+          <div class="event-badge glass-card">
+            <i class="fas fa-robot"></i>
+            <div>
+              <strong>RAS Expo</strong>
+              <span>Robotics &amp; Automation Society</span>
+            </div>
+          </div>
+          <div class="event-badge glass-card">
+            <i class="fas fa-truck"></i>
+            <div>
+              <strong>Pakistan Logistics Summit</strong>
+              <span>Industry Conference · Islamabad</span>
+            </div>
+          </div>
+          <div class="event-badge glass-card">
+            <i class="fas fa-brain"></i>
+            <div>
+              <strong>Neurocrest AI Webinar</strong>
+              <span>Artificial Intelligence · Online</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <script src="script.js"></script>
+      <!-- ======================================================
+           STATS
+      ====================================================== -->
+      <section id="stats" class="section">
+        <div class="stats-grid" data-reveal>
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-count="5">0</div>
+            <span class="stat-label">Projects Built</span>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-count="15">0</div>
+            <span class="stat-label">Certifications</span>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-count="30">0</div>
+            <span class="stat-label">Technologies</span>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-number" data-count="4">0</div>
+            <span class="stat-label">Internships</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           CONTACT
+      ====================================================== -->
+      <section id="contact" class="section">
+        <div class="section-header" data-reveal>
+          <span class="section-tag">Get In Touch</span>
+          <h2 class="section-title">Contact Me</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="contact-grid" data-reveal>
+          <div class="contact-info">
+            <h3>Let's work together</h3>
+            <p>Have a project in mind or a security assessment to run? I'm always open to discussing new opportunities.</p>
+            <div class="contact-items">
+              <div class="contact-item glass-card">
+                <i class="fas fa-envelope"></i>
+                <div><strong>Email</strong><span>sulemansaqib34917@gmail.com</span></div>
+              </div>
+              <div class="contact-item glass-card">
+                <i class="fas fa-phone"></i>
+                <div><strong>Phone</strong><span>+92 329 3109487</span></div>
+              </div>
+              <div class="contact-item glass-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <div><strong>Location</strong><span>Islamabad, Pakistan</span></div>
+              </div>
+            </div>
+            <div class="contact-socials">
+              <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/sulemansaqib" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <form class="contact-form glass-card" id="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" rows="5" placeholder="Tell me about your project or assessment..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <span>Send Message</span><i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           FOOTER
+      ====================================================== -->
+      <footer>
+        <div class="footer-inner">
+          <a href="#hero" class="footer-logo">S<span>S</span></a>
+          <p class="footer-copy">&copy; 2026 Suleman Saqib. All rights reserved.</p>
+          <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </footer>
+
+    </main><!-- /main-content -->
+  </div><!-- /portfolio-layout -->
+
+  <!-- ===== CERTIFICATE MODAL ===== -->
+  <div id="certModal" class="cert-modal" onclick="closeCertModal()">
+    <span class="close-modal">&times;</span>
+    <iframe class="modal-content" id="modalFrame" title="Certificate viewer" style="height:80vh;border:none;"></iframe>
+    <div id="caption"></div>
+  </div>
+
+  <!-- ===== BACK TO TOP ===== -->
+  <button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <script src="script.js"></script>
 </body>
 </html>
