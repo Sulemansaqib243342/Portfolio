@@ -3,13 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toolset Dossier — Suleman Saqib</title>
+  <title>Toolset Dossier — Suleman Saqib | Cybersecurity Reference</title>
   <meta name="description" content="26 cybersecurity tools organised by attack-lifecycle phase — Recon, Scanning, Exploitation, Credential Access, C2, Detection.">
+  <link rel="canonical" href="https://sulemansaqib.vercel.app/toolset-dossier.html">
+  <meta property="og:title" content="Cybersecurity Toolset Dossier — Suleman Saqib">
+  <meta property="og:description" content="26 cybersecurity tools catalogued by attack phase: Recon, Scanning, Exploitation, C2, Detection.">
+  <meta property="og:url" content="https://sulemansaqib.vercel.app/toolset-dossier.html">
+  <meta property="og:image" content="https://sulemansaqib.vercel.app/assets/images/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230A0908'/><text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='52' font-weight='bold' fill='%23D4AF37'>SS</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
   <style>
     /* ── Reset ── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,6 +42,49 @@
       --font-d:  'Bebas Neue', sans-serif;
       --font-l:  'Montserrat', sans-serif;
       --font-b:  'Inter', sans-serif;
+    }
+    [data-theme="light"] {
+      --bg:      #F8F6F2;
+      --bg2:     #FFFFFF;
+      --bg3:     #EFECE6;
+      --text:    #1A1816;
+      --text2:   #5C5248;
+      --gold:    #A67C1E;
+      --bronze:  #785637;
+      --cream:   #3D3328;
+      --glass:   rgba(255, 255, 255, 0.78);
+      --border:  rgba(166, 124, 30, 0.20);
+    }
+    [data-theme="light"] nav {
+      background: rgba(248, 246, 242, 0.94);
+    }
+    [data-theme="light"] .dossier-hero h1 {
+      background: linear-gradient(180deg, #1A1816 0%, #785637 55%, #A67C1E 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    [data-theme="light"] .tool-card {
+      background: #FFFFFF;
+      box-shadow: 0 4px 20px rgba(140, 109, 79, 0.08);
+    }
+    [data-theme="light"] .phase-tab {
+      color: #5C5248;
+    }
+    [data-theme="light"] .phase-tab.active {
+      background: #FFFFFF;
+      color: var(--gold);
+    }
+    .theme-toggle-dossier {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      color: var(--gold);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all var(--tr);
+      margin-left: 14px;
+    }
+    .theme-toggle-dossier:hover {
+      border-color: var(--gold);
+      transform: scale(1.08);
     }
     html { scroll-behavior: smooth; }
     body {
@@ -287,7 +343,12 @@
   <!-- ── Nav ── -->
   <nav>
     <a href="index.html" class="nav-logo">S<span>S</span></a>
-    <a href="index.html#projects" class="nav-back"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+    <div style="display:flex; align-items:center;">
+      <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Portfolio</a>
+      <button class="theme-toggle-dossier" id="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-sun"></i>
+      </button>
+    </div>
   </nav>
 
   <!-- ── Hero ── -->
@@ -868,6 +929,25 @@
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+
+    // Theme toggle handler
+    const tToggle = document.getElementById('theme-toggle');
+    function updateIcon(t) {
+      if (!tToggle) return;
+      const icon = tToggle.querySelector('i');
+      if (icon) icon.className = t === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+    const curTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    updateIcon(curTheme);
+
+    if (tToggle) {
+      tToggle.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateIcon(next);
+      });
+    }
   </script>
 </body>
 </html>

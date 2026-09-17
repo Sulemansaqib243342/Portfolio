@@ -58,8 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
       follower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
     });
 
+    document.addEventListener('mousedown', () => {
+      cursor.classList.add('clicking');
+      follower.classList.add('clicking');
+    });
+    document.addEventListener('mouseup', () => {
+      cursor.classList.remove('clicking');
+      follower.classList.remove('clicking');
+    });
+
     const hoverTargets = document.querySelectorAll(
-      'a, button, .glass-card, .cert-card, .project-card, .service-card, .social-btn, .theme-toggle'
+      'a, button, .glass-card, .cert-card, .project-card, .service-card, .social-btn, .theme-toggle, .sound-toggle, .terminal-launcher, .btn-sm'
     );
     hoverTargets.forEach(el => {
       el.addEventListener('mouseenter', () => follower.classList.add('hovered'));
@@ -101,8 +110,94 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggle.addEventListener('click', () => {
       const activeTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       applyTheme(activeTheme);
+      if (soundEnabled) playUiSound('toggle');
     });
   }
+
+  // ============================================================
+  // 3.6 SOUND EFFECTS ENGINE (Web Audio API — zero network overhead)
+  // ============================================================
+  let audioCtx = null;
+  let soundEnabled = localStorage.getItem('sound_enabled') === 'true'; // Default muted
+  const soundToggle = document.getElementById('sound-toggle');
+
+  function updateSoundUI() {
+    if (!soundToggle) return;
+    const icon = soundToggle.querySelector('i');
+    if (soundEnabled) {
+      soundToggle.classList.add('active');
+      soundToggle.setAttribute('title', 'Mute UI sounds');
+      soundToggle.setAttribute('aria-label', 'Mute UI sounds');
+      if (icon) icon.className = 'fas fa-volume-up';
+    } else {
+      soundToggle.classList.remove('active');
+      soundToggle.setAttribute('title', 'Enable UI sounds');
+      soundToggle.setAttribute('aria-label', 'Enable UI sounds');
+      if (icon) icon.className = 'fas fa-volume-mute';
+    }
+  }
+  updateSoundUI();
+
+  if (soundToggle) {
+    soundToggle.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      localStorage.setItem('sound_enabled', soundEnabled);
+      updateSoundUI();
+      if (soundEnabled) playUiSound('toggle');
+    });
+  }
+
+  function playUiSound(type = 'click') {
+    if (!soundEnabled) return;
+    try {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      const now = audioCtx.currentTime;
+      if (type === 'click') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(640, now);
+        osc.frequency.exponentialRampToValueAtTime(320, now + 0.04);
+        gain.gain.setValueAtTime(0.04, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+        osc.start(now);
+        osc.stop(now + 0.04);
+      } else if (type === 'toggle') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+        gain.gain.setValueAtTime(0.05, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+        osc.start(now);
+        osc.stop(now + 0.08);
+      } else if (type === 'terminal') {
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(950, now);
+        gain.gain.setValueAtTime(0.02, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+        osc.start(now);
+        osc.stop(now + 0.025);
+      }
+    } catch (e) {
+      // Audio context might be restricted before user gesture
+    }
+  }
+
+  // Bind subtle sounds to interactive elements
+  document.addEventListener('click', e => {
+    const target = e.target.closest('button, .btn, .btn-sm, .social-btn, .nav-links a');
+    if (target && soundEnabled) {
+      playUiSound('click');
+    }
+  });
 
   // ============================================================
   // 4. NAVBAR — scroll effect + active link tracking
@@ -602,8 +697,328 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') window.closeCertModal();
+    if (e.key === 'Escape') {
+      window.closeCertModal();
+      window.closeCaseStudyModal();
+      if (typeof closeTerminal === 'function') closeTerminal();
+    }
   });
+
+  // ============================================================
+  // 11.5 CASE STUDY MODAL ENGINE
+  // ============================================================
+  const caseStudyModal = document.getElementById('caseStudyModal');
+  const caseStudyBody  = document.getElementById('caseStudyBody');
+
+  const CASE_STUDIES = {
+    'case-prompt-injection': {
+      badge: 'AI Red-Teaming & LLM Security',
+      title: 'Prompt Injection & Automated Adversarial Evaluation',
+      client: 'Morphe Labs',
+      duration: '4-Week Intensive Red-Team Sprint',
+      frameworks: 'OWASP LLM Top 10 · Promptfoo · Groq API',
+      overview: 'Conducted an automated adversarial security evaluation targeting an LLM-powered customer assistance bot. Designed multi-turn jailbreak sequences, role-play evasion attacks, and direct system prompt exfiltration probes.',
+      stats: [
+        { num: '311', lbl: 'Adversarial Test Cases' },
+        { num: '86.6%', lbl: 'Baseline Defense Rate' },
+        { num: '29', lbl: 'Confirmed Vulnerabilities' },
+        { num: '13.4%', lbl: 'Attack Success Rate (ASR)' }
+      ],
+      breakdown: [
+        { cat: 'LLM01: Prompt Injection', attempts: '110 tests', bypasses: '14 bypasses', severity: 'High' },
+        { cat: 'LLM06: Sensitive Info Disclosure', attempts: '75 tests', bypasses: '8 bypasses', severity: 'Critical' },
+        { cat: 'LLM02: Insecure Output Handling', attempts: '60 tests', bypasses: '4 bypasses', severity: 'Medium' },
+        { cat: 'LLM07: System Prompt Leakage', attempts: '40 tests', bypasses: '3 bypasses', severity: 'High' },
+        { cat: 'LLM08: Vector DB / RAG Poisoning', attempts: '26 tests', bypasses: '0 bypasses', severity: 'Informational' }
+      ],
+      takeaways: 'Delivered remediation recommendations including dual-LLM input validation pipelines, constrained output token policies, system prompt isolation delimiters, and regex guardrails for API credentials.'
+    },
+    'case-smart-analyst': {
+      badge: 'Blue Team AI · SOC Automation',
+      title: 'AI-Assisted Smart Security Analyst & NSL-KDD Triage',
+      client: 'Morphe Labs',
+      duration: 'NSL-KDD Dataset Evaluation',
+      frameworks: 'Python · Pandas · Ollama / Groq · MITRE ATT&CK',
+      overview: 'Engineered an AI-augmented SOC triage reporting pipeline converting raw NSL-KDD network flow telemetry into contextual plain-English incident summaries. Identified model hallucination failure modes and refined classification fidelity through systematic prompt tuning.',
+      stats: [
+        { num: '76.7%', lbl: 'True-Positive Classification' },
+        { num: '+10.0%', lbl: 'Accuracy Gain After Tuning' },
+        { num: '3', lbl: 'Evaluation Iterations' },
+        { num: '100%', lbl: 'Root-Caused Residual Errors' }
+      ],
+      breakdown: [
+        { cat: 'Iteration 1 (Zero-Shot Baseline)', attempts: '120 Alerts', bypasses: '66.7% TP', severity: 'Baseline' },
+        { cat: 'Iteration 2 (Feature Categorization Fix)', attempts: '120 Alerts', bypasses: '72.5% TP', severity: 'Improvement' },
+        { cat: 'Iteration 3 (Few-Shot Context Injection)', attempts: '120 Alerts', bypasses: '76.7% TP', severity: 'Optimized' }
+      ],
+      takeaways: 'Demonstrated that raw LLM alerts hallucinate protocol severity when low-level telemetry lacks normalized feature descriptions. Resolved edge-case confusion in R2L and U2R attacks by augmenting prompt context with MITRE ATT&CK mapping tables.'
+    },
+    'case-m57-dfir': {
+      badge: 'Digital Forensics & Incident Response (DFIR)',
+      title: 'M57.biz Corporate Insider Threat Forensics Investigation',
+      client: 'Cyberster Capstone',
+      duration: 'Dual Capstone Investigation',
+      frameworks: 'Autopsy · Volatility 3 · FTK Imager · NIST SP 800-61',
+      overview: 'Executed comprehensive forensic examinations across two independent corporate espionage and insider-threat incidents involving disk raw images, volatile memory snapshots, and removable USB media.',
+      stats: [
+        { num: '2', lbl: 'Forensic Cases Solved' },
+        { num: '100%', lbl: 'Cryptographic Hash Match' },
+        { num: '1', lbl: 'Exonerated Wronged Employee' },
+        { num: '0', lbl: 'Unverified Conjectures' }
+      ],
+      breakdown: [
+        { cat: 'Case 1: CEO Spoofing Investigation', attempts: 'Autopsy EML parser', bypasses: 'Display name mismatch', severity: 'Employee Exonerated' },
+        { cat: 'Case 2: Intellectual Property Theft', attempts: 'Volatility 3 + EnCase', bypasses: 'Exact MD5 hash match', severity: 'Exfiltration Proven' }
+      ],
+      takeaways: 'Strict chain of custody was maintained with SHA-256 verification throughout. Successfully isolated malicious executables from RAM unallocated space while documenting evidentiary gaps to adhere strictly to court-admissible standards.'
+    }
+  };
+
+  window.openCaseStudy = function (caseId) {
+    const data = CASE_STUDIES[caseId];
+    if (!data || !caseStudyModal || !caseStudyBody) return;
+
+    let statsHtml = data.stats.map(s => `
+      <div class="cs-stat-box">
+        <span class="cs-stat-num">${s.num}</span>
+        <span class="cs-stat-lbl">${s.lbl}</span>
+      </div>
+    `).join('');
+
+    let tableRows = data.breakdown.map(r => `
+      <tr>
+        <td><strong>${r.cat}</strong></td>
+        <td>${r.attempts}</td>
+        <td>${r.bypasses}</td>
+        <td><span class="cs-tag">${r.severity}</span></td>
+      </tr>
+    `).join('');
+
+    caseStudyBody.innerHTML = `
+      <div class="cs-header">
+        <span class="cs-badge"><i class="fas fa-shield-alt"></i> ${data.badge}</span>
+        <h3 class="cs-title">${data.title}</h3>
+        <div class="cs-meta">
+          <span><i class="fas fa-building"></i> ${data.client}</span>
+          <span><i class="fas fa-clock"></i> ${data.duration}</span>
+          <span><i class="fas fa-microchip"></i> ${data.frameworks}</span>
+        </div>
+      </div>
+      <div class="cs-section">
+        <h4 class="cs-section-title"><i class="fas fa-crosshairs"></i> Executive Summary &amp; Scope</h4>
+        <p class="cs-text">${data.overview}</p>
+      </div>
+      <div class="cs-grid">
+        ${statsHtml}
+      </div>
+      <div class="cs-section">
+        <h4 class="cs-section-title"><i class="fas fa-chart-bar"></i> Empirical Test Matrix &amp; Findings</h4>
+        <div class="cs-table-wrap">
+          <table class="cs-table">
+            <thead>
+              <tr>
+                <th>Category / Phase</th>
+                <th>Volume / Strategy</th>
+                <th>Outcome / Score</th>
+                <th>Status / Severity</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${tableRows}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="cs-section">
+        <h4 class="cs-section-title"><i class="fas fa-shield-virus"></i> Key Security Takeaways &amp; Hardening</h4>
+        <p class="cs-text">${data.takeaways}</p>
+      </div>
+    `;
+
+    caseStudyModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (cursor)   cursor.style.display   = 'none';
+    if (follower) follower.style.display = 'none';
+  };
+
+  window.closeCaseStudyModal = function (e) {
+    if (e && e.target !== caseStudyModal && !e.target.classList.contains('case-study-close')) return;
+    if (caseStudyModal) {
+      caseStudyModal.classList.remove('active');
+      document.body.style.overflow = '';
+      if (cursor)   cursor.style.display   = 'block';
+      if (follower) follower.style.display = 'block';
+    }
+  };
+
+  // ============================================================
+  // 11.6 CYBERSECURITY CLI TERMINAL WIDGET
+  // ============================================================
+  const terminalWidget   = document.getElementById('terminal-widget');
+  const terminalLauncher = document.getElementById('terminal-launcher');
+  const terminalInput    = document.getElementById('terminal-input');
+  const terminalOutput   = document.getElementById('terminal-output');
+  const terminalCloseBtn = document.getElementById('terminal-x');
+  const terminalDotClose = document.getElementById('terminal-dot-close');
+
+  function toggleTerminal() {
+    if (!terminalWidget) return;
+    const isOpen = terminalWidget.classList.toggle('open');
+    terminalWidget.setAttribute('aria-hidden', !isOpen);
+    if (isOpen && terminalInput) {
+      setTimeout(() => terminalInput.focus(), 150);
+      playUiSound('terminal');
+    }
+  }
+
+  function closeTerminal() {
+    if (terminalWidget) {
+      terminalWidget.classList.remove('open');
+      terminalWidget.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  if (terminalLauncher) terminalLauncher.addEventListener('click', toggleTerminal);
+  if (terminalCloseBtn) terminalCloseBtn.addEventListener('click', closeTerminal);
+  if (terminalDotClose) terminalDotClose.addEventListener('click', closeTerminal);
+
+  // Global hotkey: Ctrl + ` or Backquote
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === '`') {
+      e.preventDefault();
+      toggleTerminal();
+    }
+  });
+
+  const CLI_COMMANDS = {
+    help: () => `
+      <p class="t-line t-gold">&#x2699; Available Shell Commands:</p>
+      <p class="t-line"><span class="t-cmd">whoami</span> &mdash; Print operator profile & security clearances</p>
+      <p class="t-line"><span class="t-cmd">skills</span> &mdash; List offensive, defensive, and dev toolsets</p>
+      <p class="t-line"><span class="t-cmd">projects</span> &mdash; Display featured security architectures</p>
+      <p class="t-line"><span class="t-cmd">certs</span> &mdash; Enumerate certified credentials</p>
+      <p class="t-line"><span class="t-cmd">scan [target]</span> &mdash; Perform synthetic simulated reconnaissance</p>
+      <p class="t-line"><span class="t-cmd">decrypt [hash]</span> &mdash; Run simulated hash identifier & cracking</p>
+      <p class="t-line"><span class="t-cmd">matrix</span> &mdash; Toggle cyber rain console effect</p>
+      <p class="t-line"><span class="t-cmd">contact</span> &mdash; Quick contact coordinates</p>
+      <p class="t-line"><span class="t-cmd">clear</span> &mdash; Wipe current terminal scrollback</p>
+    `,
+    whoami: () => `
+      <p class="t-line t-cyan">Operator: Suleman Saqib</p>
+      <p class="t-line">Role: Penetration Tester · Blue Team SOC Analyst · Full Stack Developer</p>
+      <p class="t-line">Education: BS Cybersecurity @ Air University Islamabad (2023–2027)</p>
+      <p class="t-line">Clearance: SOC L1 Triage / Morphe Labs AI Red-Teaming Capstone</p>
+      <p class="t-line t-gold">Status: Available for Security Operations &amp; Engineering Roles</p>
+    `,
+    skills: () => `
+      <p class="t-line t-gold">[Offensive &amp; Penetration Testing]</p>
+      <p class="t-line t-dim">Burp Suite Pro, Metasploit, Nmap, Hydra, Hashcat, SQLMap, Gobuster, John the Ripper, WPScan</p>
+      <p class="t-line t-cyan">[Defensive &amp; SOC Operations]</p>
+      <p class="t-line t-dim">Wazuh SIEM, Suricata IDS/IPS, pfSense, Autopsy DFIR, Volatility 3, Wireshark, MITRE ATT&amp;CK</p>
+      <p class="t-line t-green">[Development &amp; Automation]</p>
+      <p class="t-line t-dim">Python, Next.js, Three.js, C++, Scapy, Node.js, Flask, Tailwind CSS, Lenis, GSAP</p>
+    `,
+    projects: () => `
+      <p class="t-line t-gold">[01] Nova Robotics &mdash; 3D Interactive Next.js/Three.js Experience</p>
+      <p class="t-line t-gold">[02] Toolset Dossier &mdash; Interactive 26-Tool Attack Lifecycle Matrix</p>
+      <p class="t-line t-gold">[03] Network Sniffing Tool &mdash; Python + Scapy Live TCP Analyzer</p>
+      <p class="t-line t-gold">[04] Evil Twin Simulation &mdash; Rogue AP Captive Portal Testbed</p>
+      <p class="t-line t-gold">[05] Event Management System &mdash; Full Stack Ticketing Platform</p>
+      <p class="t-line t-gold">[06] Prompt Injection Assessment &mdash; 311 LLM Red-Team Testcases</p>
+      <p class="t-line t-gold">[07] AI-Assisted Smart SOC Assistant &mdash; NSL-KDD Triage Pipeline</p>
+      <p class="t-line t-gold">[08] M57.biz DFIR Capstones &mdash; Autopsy + Volatility 3 Forensic Solves</p>
+    `,
+    certs: () => `
+      <p class="t-line t-cyan">&bull; Morphe Labs LLM Red-Teaming &amp; AI Analyst Assistant (2026)</p>
+      <p class="t-line t-cyan">&bull; Ethical Hacking Essentials (EHE) &mdash; EC-Council (2026)</p>
+      <p class="t-line">&bull; Pre Security &amp; Cyber Defense &mdash; TryHackMe (2026)</p>
+      <p class="t-line">&bull; Certified Pen Tester Intern &mdash; Security Experts Pvt. Ltd. (2026)</p>
+      <p class="t-line">&bull; Blue Team Intern &mdash; Cyberster (2026)</p>
+      <p class="t-line">&bull; Penetration Testing Intern &mdash; CodeAlpha (2026)</p>
+    `,
+    contact: () => `
+      <p class="t-line t-gold">Email: sulemansaqib243@gmail.com</p>
+      <p class="t-line">Phone: +92 300 0530752</p>
+      <p class="t-line">GitHub: https://github.com/Sulemansaqib243342</p>
+      <p class="t-line">LinkedIn: https://www.linkedin.com/in/sulemansaqib</p>
+    `,
+    clear: () => {
+      if (terminalOutput) terminalOutput.innerHTML = '';
+      return '';
+    }
+  };
+
+  if (terminalInput) {
+    terminalInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        const raw = terminalInput.value.trim();
+        if (!raw) return;
+        terminalInput.value = '';
+        playUiSound('terminal');
+
+        const parts = raw.toLowerCase().split(/\s+/);
+        const cmd   = parts[0];
+        const args  = parts.slice(1);
+
+        const echoLine = document.createElement('p');
+        echoLine.className = 't-line';
+        echoLine.innerHTML = `<span class="t-prompt">suleman@sec-ops:~$</span> <span class="t-cmd">${raw}</span>`;
+        terminalOutput.appendChild(echoLine);
+
+        if (cmd === 'clear') {
+          CLI_COMMANDS.clear();
+          return;
+        }
+
+        if (cmd === 'scan') {
+          const target = args[0] || '127.0.0.1';
+          const scanEl = document.createElement('div');
+          scanEl.innerHTML = `
+            <p class="t-line t-dim">Starting Nmap 7.94 ( https://nmap.org ) at ${new Date().toLocaleTimeString()} ...</p>
+            <p class="t-line t-green">Nmap scan report for ${target}</p>
+            <p class="t-line">Host is up (0.00042s latency).</p>
+            <p class="t-line t-gold">PORT     STATE SERVICE       VERSION</p>
+            <p class="t-line">22/tcp   open  ssh           OpenSSH 8.9p1 Ubuntu</p>
+            <p class="t-line">80/tcp   open  http          nginx 1.18.0 (Security Hardened)</p>
+            <p class="t-line">443/tcp  open  ssl/https     TLS 1.3 / Strict-Transport-Security</p>
+            <p class="t-line">1514/tcp open  wazuh-agent   Wazuh SIEM Active Monitoring</p>
+            <p class="t-line t-green">&#x2714; Scan completed: 0 vulnerabilities exploited, defense active.</p>
+          `;
+          terminalOutput.appendChild(scanEl);
+        } else if (cmd === 'decrypt') {
+          const hash = args[0] || '5f4dcc3b5aa765d61d8327deb882cf99';
+          const decEl = document.createElement('div');
+          decEl.innerHTML = `
+            <p class="t-line t-dim">Analyzing hash: ${hash}</p>
+            <p class="t-line t-gold">Algorithm: MD5 (Length: 32)</p>
+            <p class="t-line t-green">Hashcat v6.2.6 &mdash; dictionary attack [rockyou.txt]</p>
+            <p class="t-line t-gold">${hash}:password</p>
+            <p class="t-line t-green">&#x2714; Recovered plain text in 0.012s: <strong>password</strong></p>
+          `;
+          terminalOutput.appendChild(decEl);
+        } else if (cmd === 'matrix') {
+          const matEl = document.createElement('p');
+          matEl.className = 't-line t-green';
+          matEl.textContent = '01010011 01010101 01001100 01000101 01001101 01000001 01001110 [SECURE ACCESS GRANTED]';
+          terminalOutput.appendChild(matEl);
+        } else if (CLI_COMMANDS[cmd]) {
+          const res = CLI_COMMANDS[cmd]();
+          if (res) {
+            const resEl = document.createElement('div');
+            resEl.innerHTML = res;
+            terminalOutput.appendChild(resEl);
+          }
+        } else {
+          const errEl = document.createElement('p');
+          errEl.className = 't-line t-red';
+          errEl.textContent = `zsh: command not found: ${cmd}. Type 'help' for valid options.`;
+          terminalOutput.appendChild(errEl);
+        }
+
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+      }
+    });
+  }
 
   // ============================================================
   // 12. CONTACT FORM — Real backend via /api/contact
@@ -618,6 +1033,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const nameVal    = contactForm.querySelector('#name')?.value?.trim();
       const emailVal   = contactForm.querySelector('#email')?.value?.trim();
       const messageVal = contactForm.querySelector('#message')?.value?.trim();
+      const hpVal      = contactForm.querySelector('input[name="_honeypot"]')?.value || '';
 
       // ── Loading state ──
       btn.disabled  = true;
@@ -631,7 +1047,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const res  = await fetch('/api/contact', {
           method:  'POST',
           headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify({ name: nameVal, email: emailVal, message: messageVal }),
+          body:    JSON.stringify({ name: nameVal, email: emailVal, message: messageVal, _honeypot: hpVal }),
         });
         const data = await res.json();
 

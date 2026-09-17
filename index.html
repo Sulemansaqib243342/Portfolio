@@ -5,13 +5,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Suleman Saqib | Cybersecurity · Full Stack Development</title>
-  <meta name="description" content="Portfolio of Suleman Saqib — Pen Tester, Blue Teamer, Full Stack Developer, and BSIT student at Air University Islamabad.">
+  <meta name="description" content="Portfolio of Suleman Saqib — Pen Tester, Blue Teamer, Full Stack Developer, and BSIT student at Air University Islamabad. Real lab environments, Wazuh SIEM, DFIR & interactive 3D web.">
+  <meta name="author" content="Suleman Saqib">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sulemansaqib.vercel.app/">
+
+  <!-- Geo & Local SEO -->
+  <meta name="geo.region" content="PK-IS">
+  <meta name="geo.placename" content="Islamabad">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Suleman Saqib — Cybersecurity · Full Stack">
-  <meta property="og:description" content="Pen Tester, Blue Teamer & Full Stack Developer based in Islamabad, Pakistan.">
-  <meta property="og:url" content="https://Sulemansaqib243342.github.io/Portfolio/">
+  <meta property="og:site_name" content="Suleman Saqib Portfolio">
+  <meta property="og:title" content="Suleman Saqib | Cybersecurity · Full Stack Development">
+  <meta property="og:description" content="Pen Tester, Blue Teamer & Full Stack Developer based in Islamabad. Real tooling, Wazuh SIEM, DFIR investigations, and 3D interactive web apps.">
+  <meta property="og:url" content="https://sulemansaqib.vercel.app/">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://sulemansaqib.vercel.app/assets/images/og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Suleman Saqib | Cybersecurity · Full Stack Development">
+  <meta name="twitter:description" content="Pen Tester, Blue Teamer & Full Stack Developer based in Islamabad. Real tooling, Wazuh SIEM, and 3D interactive web apps.">
+  <meta name="twitter:image" content="https://sulemansaqib.vercel.app/assets/images/og-preview.png">
+
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#0A0908" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F8F6F2" media="(prefers-color-scheme: light)">
 
   <!-- Inline SVG favicon (SS monogram) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230A0908'/><text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='52' font-weight='bold' fill='%23D4AF37'>SS</text></svg>">
@@ -27,11 +48,11 @@
   <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Three.js (UMD — available as THREE global) -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.min.js"></script>
+  <!-- Three.js (UMD — deferred to optimize First Contentful Paint) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.min.js" defer></script>
 
-  <!-- Lenis smooth scroll -->
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  <!-- Lenis smooth scroll (deferred) -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
 
   <!-- Theme initialization (prevents flash of unstyled theme) -->
   <script>
@@ -40,6 +61,54 @@
       var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
       document.documentElement.setAttribute('data-theme', theme);
     })();
+  </script>
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://sulemansaqib.vercel.app/#person",
+        "name": "Suleman Saqib",
+        "url": "https://sulemansaqib.vercel.app/",
+        "image": "https://sulemansaqib.vercel.app/assets/images/Profile.jpeg",
+        "jobTitle": ["Penetration Tester", "Blue Teamer", "Full Stack Developer"],
+        "description": "BSIT student at Air University Islamabad specializing in Offensive Security, Wazuh SIEM, Digital Forensics, and 3D web applications.",
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Air University Islamabad"
+        },
+        "sameAs": [
+          "https://github.com/Sulemansaqib243342",
+          "https://www.linkedin.com/in/sulemansaqib"
+        ],
+        "knowsAbout": [
+          "Penetration Testing",
+          "Wazuh SIEM",
+          "Suricata IDS",
+          "Digital Forensics",
+          "Volatility 3",
+          "Burp Suite Pro",
+          "Python",
+          "Three.js",
+          "Next.js",
+          "MITRE ATT&CK",
+          "NIST SP 800-61"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://sulemansaqib.vercel.app/#website",
+        "url": "https://sulemansaqib.vercel.app/",
+        "name": "Suleman Saqib Portfolio",
+        "publisher": {
+          "@id": "https://sulemansaqib.vercel.app/#person"
+        }
+      }
+    ]
+  }
   </script>
 </head>
 
@@ -75,6 +144,9 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-controls">
+        <button class="sound-toggle" id="sound-toggle" aria-label="Toggle UI sound effects" title="Toggle audio feedback">
+          <i class="fas fa-volume-mute"></i>
+        </button>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle theme">
           <i class="fas fa-sun"></i>
         </button>
@@ -94,7 +166,10 @@
 
         <!-- Avatar -->
         <div class="sidebar-avatar">
-          <img src="assets/images/Profile.jpeg" alt="Suleman Saqib — Cybersecurity &amp; Full Stack Developer">
+          <picture>
+            <source srcset="assets/images/Profile.webp" type="image/webp">
+            <img src="assets/images/Profile.jpeg" alt="Suleman Saqib — Cybersecurity &amp; Full Stack Developer" width="400" height="400" fetchpriority="high">
+          </picture>
         </div>
 
         <!-- Inner padded section -->
@@ -219,7 +294,10 @@
         <div class="about-grid" data-reveal>
           <div class="about-img-wrap">
             <div class="about-img-card glass-card">
-              <img src="assets/images/Profile.jpeg" alt="Suleman Saqib" class="profile-img" loading="lazy">
+              <picture>
+                <source srcset="assets/images/Profile.webp" type="image/webp">
+                <img src="assets/images/Profile.jpeg" alt="Suleman Saqib" class="profile-img" width="400" height="400" loading="lazy">
+              </picture>
             </div>
             <div class="about-badge"><i class="fas fa-check-circle"></i> Available for work</div>
           </div>
@@ -377,6 +455,7 @@
           <!-- 1. Nova Robotics -->
           <div class="project-card glass-card">
             <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">nova-3d-scene.ts</span></div>
               <div class="project-img-placeholder" style="--hue:45">
                 <i class="fas fa-cube"></i>
               </div>
@@ -402,6 +481,7 @@
           <!-- 2. Toolset Dossier -->
           <div class="project-card glass-card">
             <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">dossier_matrix.html</span></div>
               <div class="project-img-placeholder" style="--hue:180">
                 <i class="fas fa-tools"></i>
               </div>
@@ -424,6 +504,7 @@
           <!-- 3. Network Sniffing Tool -->
           <div class="project-card glass-card">
             <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">packet_sniffer.py</span></div>
               <div class="project-img-placeholder" style="--hue:200">
                 <i class="fas fa-network-wired"></i>
               </div>
@@ -449,6 +530,7 @@
           <!-- 4. Evil Twin Simulation -->
           <div class="project-card glass-card">
             <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">captive_portal.py</span></div>
               <div class="project-img-placeholder" style="--hue:260">
                 <i class="fas fa-wifi"></i>
               </div>
@@ -471,6 +553,7 @@
           <!-- 5. Event Management System -->
           <div class="project-card glass-card">
             <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">event_manager.js</span></div>
               <div class="project-img-placeholder" style="--hue:40">
                 <i class="fas fa-calendar-alt"></i>
               </div>
@@ -493,10 +576,14 @@
           <!-- 6. Prompt Injection & LLM Red-Teaming Assessment -->
           <div class="project-card glass-card">
             <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">promptfoo-eval.yaml</span></div>
               <div class="project-img-placeholder" style="--hue:340">
                 <i class="fas fa-shield-virus"></i>
               </div>
               <div class="project-overlay">
+                <button class="btn-sm btn-cs" onclick="openCaseStudy('case-prompt-injection')">
+                  Case Study <i class="fas fa-file-shield"></i>
+                </button>
                 <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
                   GitHub <i class="fab fa-github"></i>
                 </a>
@@ -515,10 +602,14 @@
           <!-- 7. AI-Assisted Smart Security Analyst Assistant -->
           <div class="project-card glass-card">
             <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">nsl_kdd_triage.py</span></div>
               <div class="project-img-placeholder" style="--hue:160">
                 <i class="fas fa-brain"></i>
               </div>
               <div class="project-overlay">
+                <button class="btn-sm btn-cs" onclick="openCaseStudy('case-smart-analyst')">
+                  Case Study <i class="fas fa-file-shield"></i>
+                </button>
                 <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
                   GitHub <i class="fab fa-github"></i>
                 </a>
@@ -537,10 +628,14 @@
           <!-- 8. M57.biz Insider-Threat DFIR Investigations -->
           <div class="project-card glass-card">
             <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">dfir_case_m57.raw</span></div>
               <div class="project-img-placeholder" style="--hue:215">
                 <i class="fas fa-fingerprint"></i>
               </div>
               <div class="project-overlay">
+                <button class="btn-sm btn-cs" onclick="openCaseStudy('case-m57-dfir')">
+                  Case Study <i class="fas fa-file-shield"></i>
+                </button>
                 <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
                   GitHub <i class="fab fa-github"></i>
                 </a>
@@ -886,6 +981,11 @@
             </div>
           </div>
           <form class="contact-form glass-card" id="contact-form">
+            <!-- Anti-spam Honeypot -->
+            <div class="form-group" style="display:none !important;" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" placeholder="Your Name" required>
@@ -929,6 +1029,42 @@
     <iframe class="modal-content" id="modalFrame" title="Certificate viewer" style="height:80vh;border:none;"></iframe>
     <div id="caption"></div>
   </div>
+
+  <!-- ===== CASE STUDY MODAL ===== -->
+  <div id="caseStudyModal" class="case-study-modal" onclick="closeCaseStudyModal(event)">
+    <div class="case-study-dialog glass-card" onclick="event.stopPropagation()">
+      <button class="case-study-close" onclick="closeCaseStudyModal()" aria-label="Close case study">&times;</button>
+      <div id="caseStudyBody" class="case-study-body"></div>
+    </div>
+  </div>
+
+  <!-- ===== CYBERSECURITY CLI TERMINAL WIDGET ===== -->
+  <div class="terminal-widget" id="terminal-widget" aria-hidden="true">
+    <div class="terminal-header" id="terminal-header">
+      <div class="terminal-dots">
+        <span class="t-dot close" id="terminal-dot-close" title="Close"></span>
+        <span class="t-dot min" id="terminal-dot-min" title="Minimize"></span>
+        <span class="t-dot max" id="terminal-dot-max" title="Maximize"></span>
+      </div>
+      <div class="terminal-title"><i class="fas fa-shield-alt"></i> suleman@sec-ops: ~ (zsh)</div>
+      <button class="terminal-close-btn" id="terminal-x" aria-label="Close terminal">&times;</button>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <div class="terminal-output" id="terminal-output">
+        <p class="t-line t-gold">&#x26A1; Suleman Saqib Security Shell v2.4.0 [SOC Operations &amp; Pentest]</p>
+        <p class="t-line t-dim">Type <span class="t-cmd">help</span> for commands, or try <span class="t-cmd">whoami</span>, <span class="t-cmd">skills</span>, <span class="t-cmd">scan</span>, <span class="t-cmd">certs</span>.</p>
+      </div>
+      <div class="terminal-input-row">
+        <span class="t-prompt">suleman@sec-ops:~$</span>
+        <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" placeholder="type a command...">
+      </div>
+    </div>
+  </div>
+
+  <!-- Terminal Floating Launcher Badge -->
+  <button class="terminal-launcher" id="terminal-launcher" aria-label="Open Security Terminal" title="Open Security Terminal (Ctrl+` or click)">
+    <i class="fas fa-terminal"></i> <span>CLI</span>
+  </button>
 
   <!-- ===== BACK TO TOP ===== -->
   <button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>

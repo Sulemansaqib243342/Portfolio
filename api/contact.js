@@ -31,7 +31,12 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid JSON body' });
   }
 
-  const { name, email, message } = body || {};
+  const { name, email, message, website } = body || {};
+
+  // ── Honeypot bot protection (silent discard) ──
+  if (website && website.trim().length > 0) {
+    return res.status(200).json({ ok: true, message: 'Message received.' });
+  }
 
   if (!name || typeof name !== 'string' || name.trim().length < 2) {
     return res.status(400).json({ error: 'Please provide a valid name (min 2 characters).' });
