@@ -59,11 +59,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const hoverTargets = document.querySelectorAll(
-      'a, button, .glass-card, .cert-card, .project-card, .service-card, .social-btn'
+      'a, button, .glass-card, .cert-card, .project-card, .service-card, .social-btn, .theme-toggle'
     );
     hoverTargets.forEach(el => {
       el.addEventListener('mouseenter', () => follower.classList.add('hovered'));
       el.addEventListener('mouseleave', () => follower.classList.remove('hovered'));
+    });
+  }
+
+  // ============================================================
+  // 3.5 THEME TOGGLE (Luxury Dark & Luxury Light)
+  // ============================================================
+  const themeToggle = document.getElementById('theme-toggle');
+
+  function updateThemeUI(theme) {
+    if (!themeToggle) return;
+    const icon = themeToggle.querySelector('i');
+    if (!icon) return;
+    if (theme === 'light') {
+      icon.className = 'fas fa-moon';
+      themeToggle.setAttribute('aria-label', 'Switch to dark theme');
+      themeToggle.setAttribute('title', 'Switch to dark theme');
+    } else {
+      icon.className = 'fas fa-sun';
+      themeToggle.setAttribute('aria-label', 'Switch to light theme');
+      themeToggle.setAttribute('title', 'Switch to light theme');
+    }
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    updateThemeUI(theme);
+    window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+  }
+
+  const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  updateThemeUI(initialTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(activeTheme);
     });
   }
 
@@ -373,7 +410,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
       renderer.render(scene, camera);
     }
-    animate(0);
+    // ── 8. Theme synchronization for 3D hero ──
+    function updateThreeColors(theme) {
+      const isLight = theme === 'light';
+      const mainGold = isLight ? 0xA67C1E : GOLD;
+      const dimGold  = isLight ? 0x785637 : GOLD_DIM;
+      if (icoMat) {
+        icoMat.color.setHex(mainGold);
+        icoMat.opacity = isLight ? 0.65 : 0.55;
+      }
+      if (ico2 && ico2.material) {
+        ico2.material.color.setHex(dimGold);
+        ico2.material.opacity = isLight ? 0.35 : 0.25;
+      }
+      if (particleMat) {
+        particleMat.color.setHex(mainGold);
+      }
+      if (lineMat) {
+        lineMat.color.setHex(dimGold);
+        lineMat.opacity = isLight ? 0.35 : 0.22;
+      }
+    }
+
+    // Apply current theme on Three.js load
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    if (currentTheme === 'light') {
+      updateThreeColors('light');
+    }
+
+    window.addEventListener('themechange', e => {
+      updateThreeColors(e.detail.theme);
+    });
 
     // Stop rendering when hero is not visible (perf)
     const heroObserver = new IntersectionObserver(entries => {
