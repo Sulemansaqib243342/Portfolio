@@ -279,6 +279,14 @@
               <span>Wazuh SIEM</span><span>Suricata IDS/IPS</span><span>pfSense</span>
               <span>VirusTotal</span><span>Wireshark</span><span>TCPDump</span>
               <span>Active Directory</span><span>Docker</span><span>Kali Linux</span>
+              <span>FTK Imager</span><span>Arsenal Image Mounter</span><span>Autopsy</span>
+              <span>MFT Explorer</span><span>EvtxECmd</span><span>PECmd</span>
+              <span>RBCmd</span><span>LECmd</span><span>Registry Explorer</span>
+              <span>RegRipper</span><span>HxD</span><span>CyberChef</span>
+              <span>DB Browser for SQLite</span><span>Thumbcache Viewer</span><span>ChromeCacheView</span>
+              <span>Volatility 3</span><span>ANY.RUN</span><span>theZoo</span>
+              <span>Promptfoo</span><span>Groq API</span><span>NIST SP 800-61</span>
+              <span>MITRE ATT&amp;CK</span><span>OWASP LLM Top 10</span>
             </div>
           </div>
 
@@ -468,6 +476,72 @@
             </div>
           </div>
 
+          <!-- 6. Prompt Injection & LLM Red-Teaming Assessment -->
+          <div class="project-card glass-card">
+            <div class="project-img">
+              <div class="project-img-placeholder" style="--hue:340">
+                <i class="fas fa-shield-virus"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-number">06</span>
+              <h4>Prompt Injection &amp; LLM Red-Teaming Assessment</h4>
+              <p>Automated adversarial security assessment of an LLM-powered customer-support assistant (Morphe Labs). Ran 311 adversarial test cases across 5 vulnerability categories using 3 attack strategies, including a self-adapting jailbreak technique. Identified 29 confirmed vulnerabilities (13.4% attack success rate, 86.6% defense rate). Findings mapped to the OWASP LLM Top 10.</p>
+              <div class="project-tags">
+                <span>Promptfoo</span><span>Groq API</span><span>LLM Security</span><span>AI Red-Teaming</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. AI-Assisted Smart Security Analyst Assistant -->
+          <div class="project-card glass-card">
+            <div class="project-img">
+              <div class="project-img-placeholder" style="--hue:160">
+                <i class="fas fa-brain"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-number">07</span>
+              <h4>AI-Assisted Smart Security Analyst Assistant</h4>
+              <p>Built an AI-assisted security alert triage system on the NSL-KDD network intrusion dataset (Morphe Labs). Designed an LLM reporting layer that generates plain-English incident reports from structured alerts. Ran a rigorous, root-cause-driven hallucination evaluation across 3 testing iterations, improving true-positive attack classification from 66.7% to 76.7% by identifying and fixing a missing feature category &mdash; then manually root-caused every remaining error rather than reporting a raw failure count.</p>
+              <div class="project-tags">
+                <span>Python</span><span>LLM Evaluation</span><span>pandas</span><span>NSL-KDD</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. M57.biz Insider-Threat DFIR Investigations -->
+          <div class="project-card glass-card">
+            <div class="project-img">
+              <div class="project-img-placeholder" style="--hue:215">
+                <i class="fas fa-fingerprint"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-number">08</span>
+              <h4>M57.biz Insider-Threat DFIR Investigations</h4>
+              <p>Two capstone digital forensics investigations for the Cyberster internship. Case 1: used email forensics and host-artefact correlation in Autopsy to uncover a display-name email-spoofing attack, clearing a wrongly-suspected employee. Case 2: combined a disk image, two USB device images, and a RAM capture (Volatility 3) to cryptographically prove data exfiltration via an exact MD5 hash match, while transparently documenting unresolved evidentiary gaps.</p>
+              <div class="project-tags">
+                <span>Autopsy</span><span>Volatility 3</span><span>Digital Forensics</span><span>NIST SP 800-61</span>
+              </div>
+            </div>
+          </div>
+
         </div><!-- /projects-stack -->
       </section>
 
@@ -486,7 +560,7 @@
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-content glass-card">
-              <span class="timeline-date">Jul 2026 – Present</span>
+              <span class="timeline-date">Jul – Aug 2026 (Completed)</span>
               <h4>Pen Tester Intern @ Security Experts Pvt. Ltd.</h4>
               <p>Reconnaissance using WHOIS, nslookup, dig, theHarvester, Amass, and Shodan.
                 Vulnerability scanning with Nikto, Nuclei, OWASP ZAP, Skipfish, and
@@ -501,14 +575,9 @@
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-content glass-card">
-              <span class="timeline-date">Jun 2026 – Present</span>
+              <span class="timeline-date">21 June – 13 September 2026 (Completed)</span>
               <h4>Blue Team Intern @ Cyberster</h4>
-              <p>Deployed <strong>Wazuh SIEM</strong> (Manager + Indexer + Dashboard) on a 3-VM
-                VMware lab. File Integrity Monitoring and custom detection rules.
-                <strong>Suricata IDS</strong> with custom network rules and Active Response
-                (automated IDS→IPS blocking). <strong>pfSense firewall</strong> integrated with
-                VirusTotal for reputation-based blocking. MITRE ATT&amp;CK mapping across 586+
-                triaged alerts.</p>
+              <p>Completed a full 12-week Blue Team internship spanning SOC operations and digital forensics. Deployed Wazuh SIEM (Manager + Indexer + Dashboard) with File Integrity Monitoring and custom detection rules; configured Suricata IDS with custom signatures and Active Response; integrated pfSense firewall with VirusTotal and URLhaus threat intelligence; remediated CVEs via Wazuh's vulnerability-detector module. Conducted static and dynamic malware analysis on real samples (Dyre banking trojan, Raccoon Stealer v2) using the ANY.RUN sandbox and static analysis tools (exiftool, binwalk, strings), translating findings into Suricata signatures and Wazuh rules. Performed multi-week digital forensics: E01 disk imaging (FTK Imager), NTFS/MFT analysis, live Windows artefact analysis (EZ Tools: EvtxECmd, PECmd, RBCmd, LECmd), Autopsy triage, Windows Registry examination (Registry Explorer, RegRipper), and memory forensics (Volatility 3). Completed two capstone DFIR investigations on the M57.biz dataset: uncovered an email display-name-spoofing attack that cleared a wrongly-suspected employee through second-level timeline correlation, and, in a separate case combining disk, USB, and RAM evidence, cryptographically proved data exfiltration via an exact MD5 hash match. Every report followed the NIST SP 800-61 incident response framework.</p>
               <div class="timeline-badges">
                 <span class="tl-badge"><i class="fas fa-certificate"></i> Certificate of Completion</span>
                 <span class="tl-badge"><i class="fas fa-file-alt"></i> Letter of Recommendation</span>
@@ -516,12 +585,12 @@
             </div>
           </div>
 
-          <!-- Morphe Labs — AI/ML -->
+          <!-- Morphe Labs — AI/ML & Cyber Security -->
           <div class="timeline-item">
             <div class="timeline-dot timeline-dot--dev"></div>
             <div class="timeline-content glass-card timeline-content--dev">
-              <span class="timeline-date timeline-date--dev">Jul – Aug 2026</span>
-              <h4>AI/ML Intern @ Morphe Labs</h4>
+              <span class="timeline-date timeline-date--dev">13 July – 15 September 2026 (Completed)</span>
+              <h4>AI/ML &amp; Cyber Security Intern @ Morphe Labs</h4>
               <p>n8n workflow automation and <strong>ElevenLabs</strong> voice agent integration
                 for AI-powered pipeline automation.</p>
             </div>
@@ -684,6 +753,24 @@
             <div class="cert-icon"><i class="fas fa-bug"></i></div>
             <h4>VAPT Workshop</h4>
             <p>Tech Hierarchy × Cyberster (2026)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Internship Completion Letter Security Experts Private Limited.jpeg')">
+            <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4>Certificate of Internship Completion</h4>
+            <p>Security Experts Pvt. Ltd. (2026)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Suleman experience-letter- Morphe labs.pdf')">
+            <div class="cert-icon"><i class="fas fa-brain"></i></div>
+            <h4>Work Experience Certificate</h4>
+            <p>Morphe Labs (2026)</p>
+            <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
+          </div>
+          <div class="cert-card glass-card" onclick="openCertModal('Certificates and Licences/Suleman Saqib Cert batch2 Cyberster.pdf')">
+            <div class="cert-icon"><i class="fas fa-user-shield"></i></div>
+            <h4>Certificate of Completion &mdash; Defensive Security Internship</h4>
+            <p>Cyberster (2026)</p>
             <span class="view-cert">View Certificate <i class="fas fa-eye"></i></span>
           </div>
         </div>
