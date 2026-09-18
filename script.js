@@ -909,9 +909,11 @@ document.addEventListener('DOMContentLoaded', () => {
     whoami: () => `
       <p class="t-line t-cyan">Operator: Suleman Saqib</p>
       <p class="t-line">Role: Pen Tester &middot; Blue Teamer &middot; Full Stack Dev</p>
+      <p class="t-line">Degree: <span class="t-gold">Bachelor of Science in Information Technology (BSIT)</span></p>
+      <p class="t-line">Duration: <span class="t-green">2024 &ndash; 2028 (Currently in 4th Semester)</span></p>
+      <p class="t-line">Institute: <span class="t-cyan">Air University Islamabad</span></p>
       <p class="t-line">Location: Islamabad, Pakistan</p>
-      <p class="t-line">Education: BS Information Technology (BSIT, 2024&ndash;2028) @ Air University Islamabad</p>
-      <p class="t-line">Focus Areas: Offensive Security, Wazuh SIEM, Digital Forensics, 3D Web &amp; AI Security</p>
+      <p class="t-line">Focus: Dual-Track &mdash; Cybersecurity (Offensive + Defensive) &amp; Full Stack Development</p>
       <p class="t-line t-gold">&#x25CF; Status: Available for Work / Hiring</p>
     `,
     contact: () => `
