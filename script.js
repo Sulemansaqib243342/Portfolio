@@ -892,55 +892,105 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const CLI_COMMANDS = {
     help: () => `
-      <p class="t-line t-gold">&#x2699; Available Shell Commands:</p>
-      <p class="t-line"><span class="t-cmd">whoami</span> &mdash; Print operator profile & security clearances</p>
-      <p class="t-line"><span class="t-cmd">skills</span> &mdash; List offensive, defensive, and dev toolsets</p>
-      <p class="t-line"><span class="t-cmd">projects</span> &mdash; Display featured security architectures</p>
-      <p class="t-line"><span class="t-cmd">certs</span> &mdash; Enumerate certified credentials</p>
-      <p class="t-line"><span class="t-cmd">scan [target]</span> &mdash; Perform synthetic simulated reconnaissance</p>
-      <p class="t-line"><span class="t-cmd">decrypt [hash]</span> &mdash; Run simulated hash identifier & cracking</p>
-      <p class="t-line"><span class="t-cmd">matrix</span> &mdash; Toggle cyber rain console effect</p>
-      <p class="t-line"><span class="t-cmd">contact</span> &mdash; Quick contact coordinates</p>
-      <p class="t-line"><span class="t-cmd">clear</span> &mdash; Wipe current terminal scrollback</p>
+      <p class="t-line t-gold">&#x2699; Available Terminal Commands:</p>
+      <p class="t-line"><span class="t-cmd">whoami</span> &mdash; Operator profile, role, degree & status</p>
+      <p class="t-line"><span class="t-cmd">contact</span> &mdash; Real contact coordinates (email, phone, socials)</p>
+      <p class="t-line"><span class="t-cmd">skills</span> &mdash; Comprehensive offensive, defensive & dev toolsets</p>
+      <p class="t-line"><span class="t-cmd">projects</span> &mdash; 8 featured security & web development projects</p>
+      <p class="t-line"><span class="t-cmd">certs</span> &mdash; All 15 verified certificates & licenses</p>
+      <p class="t-line"><span class="t-cmd">experience</span> &mdash; Completed industry cybersecurity internships</p>
+      <p class="t-line"><span class="t-cmd">education</span> &mdash; Academic background (Air University Islamabad)</p>
+      <p class="t-line"><span class="t-cmd">events</span> &mdash; Attended security workshops & expos</p>
+      <p class="t-line"><span class="t-cmd">scan [target]</span> &mdash; Simulated security & port reconnaissance</p>
+      <p class="t-line"><span class="t-cmd">decrypt [hash]</span> &mdash; Simulated Hashcat credential recovery</p>
+      <p class="t-line"><span class="t-cmd">matrix</span> &mdash; Cyber matrix terminal stream</p>
+      <p class="t-line"><span class="t-cmd">clear</span> &mdash; Clear current terminal scrollback</p>
     `,
     whoami: () => `
       <p class="t-line t-cyan">Operator: Suleman Saqib</p>
-      <p class="t-line">Role: Penetration Tester · Blue Team SOC Analyst · Full Stack Developer</p>
-      <p class="t-line">Education: BS Cybersecurity @ Air University Islamabad (2023–2027)</p>
-      <p class="t-line">Clearance: SOC L1 Triage / Morphe Labs AI Red-Teaming Capstone</p>
-      <p class="t-line t-gold">Status: Available for Security Operations &amp; Engineering Roles</p>
-    `,
-    skills: () => `
-      <p class="t-line t-gold">[Offensive &amp; Penetration Testing]</p>
-      <p class="t-line t-dim">Burp Suite Pro, Metasploit, Nmap, Hydra, Hashcat, SQLMap, Gobuster, John the Ripper, WPScan</p>
-      <p class="t-line t-cyan">[Defensive &amp; SOC Operations]</p>
-      <p class="t-line t-dim">Wazuh SIEM, Suricata IDS/IPS, pfSense, Autopsy DFIR, Volatility 3, Wireshark, MITRE ATT&amp;CK</p>
-      <p class="t-line t-green">[Development &amp; Automation]</p>
-      <p class="t-line t-dim">Python, Next.js, Three.js, C++, Scapy, Node.js, Flask, Tailwind CSS, Lenis, GSAP</p>
-    `,
-    projects: () => `
-      <p class="t-line t-gold">[01] Nova Robotics &mdash; 3D Interactive Next.js/Three.js Experience</p>
-      <p class="t-line t-gold">[02] Toolset Dossier &mdash; Interactive 26-Tool Attack Lifecycle Matrix</p>
-      <p class="t-line t-gold">[03] Network Sniffing Tool &mdash; Python + Scapy Live TCP Analyzer</p>
-      <p class="t-line t-gold">[04] Evil Twin Simulation &mdash; Rogue AP Captive Portal Testbed</p>
-      <p class="t-line t-gold">[05] Event Management System &mdash; Full Stack Ticketing Platform</p>
-      <p class="t-line t-gold">[06] Prompt Injection Assessment &mdash; 311 LLM Red-Team Testcases</p>
-      <p class="t-line t-gold">[07] AI-Assisted Smart SOC Assistant &mdash; NSL-KDD Triage Pipeline</p>
-      <p class="t-line t-gold">[08] M57.biz DFIR Capstones &mdash; Autopsy + Volatility 3 Forensic Solves</p>
-    `,
-    certs: () => `
-      <p class="t-line t-cyan">&bull; Morphe Labs LLM Red-Teaming &amp; AI Analyst Assistant (2026)</p>
-      <p class="t-line t-cyan">&bull; Ethical Hacking Essentials (EHE) &mdash; EC-Council (2026)</p>
-      <p class="t-line">&bull; Pre Security &amp; Cyber Defense &mdash; TryHackMe (2026)</p>
-      <p class="t-line">&bull; Certified Pen Tester Intern &mdash; Security Experts Pvt. Ltd. (2026)</p>
-      <p class="t-line">&bull; Blue Team Intern &mdash; Cyberster (2026)</p>
-      <p class="t-line">&bull; Penetration Testing Intern &mdash; CodeAlpha (2026)</p>
+      <p class="t-line">Role: Pen Tester &middot; Blue Teamer &middot; Full Stack Dev</p>
+      <p class="t-line">Location: Islamabad, Pakistan</p>
+      <p class="t-line">Education: BS Information Technology (BSIT, 2024&ndash;2028) @ Air University Islamabad</p>
+      <p class="t-line">Focus Areas: Offensive Security, Wazuh SIEM, Digital Forensics, 3D Web &amp; AI Security</p>
+      <p class="t-line t-gold">&#x25CF; Status: Available for Work / Hiring</p>
     `,
     contact: () => `
-      <p class="t-line t-gold">Email: sulemansaqib243@gmail.com</p>
-      <p class="t-line">Phone: +92 300 0530752</p>
-      <p class="t-line">GitHub: https://github.com/Sulemansaqib243342</p>
-      <p class="t-line">LinkedIn: https://www.linkedin.com/in/sulemansaqib</p>
+      <p class="t-line t-gold">&#x1F4EC; Verified Contact Coordinates:</p>
+      <p class="t-line">&bull; Email: <a href="mailto:sulemansaqib34917@gmail.com" class="t-cyan" style="text-decoration:underline;">sulemansaqib34917@gmail.com</a></p>
+      <p class="t-line">&bull; Phone: <span class="t-green">+92 329 3109487</span></p>
+      <p class="t-line">&bull; Location: Islamabad, Pakistan</p>
+      <p class="t-line">&bull; GitHub: <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="t-cyan" style="text-decoration:underline;">github.com/Sulemansaqib243342</a></p>
+      <p class="t-line">&bull; LinkedIn: <a href="https://www.linkedin.com/in/sulemansaqib" target="_blank" rel="noopener" class="t-cyan" style="text-decoration:underline;">linkedin.com/in/sulemansaqib</a></p>
+      <p class="t-line">&bull; Live Portfolio: <a href="https://sulemansaqib.vercel.app/" target="_blank" rel="noopener" class="t-cyan" style="text-decoration:underline;">sulemansaqib.vercel.app</a></p>
+    `,
+    skills: () => `
+      <p class="t-line t-gold">[Cybersecurity &mdash; Offensive &amp; Reconnaissance]</p>
+      <p class="t-line t-dim">Burp Suite Pro, SQL Injection, Hashcat, John the Ripper, Nikto, Nuclei, OWASP ZAP, Skipfish, Sliver C2, Mythic C2, Alfa-Shell, theHarvester, Amass, Shodan, WHOIS, nslookup, dig, Waybackurls</p>
+      <p class="t-line t-cyan">[Cybersecurity &mdash; Defensive, SOC &amp; DFIR]</p>
+      <p class="t-line t-dim">Wazuh SIEM, Suricata IDS/IPS, pfSense, Wireshark, TCPDump, Active Directory, Kali Linux, Docker, FTK Imager, Arsenal Image Mounter, Autopsy, Volatility 3, MFT Explorer, EvtxECmd, PECmd, Registry Explorer, RegRipper, HxD, CyberChef, DB Browser for SQLite, ANY.RUN, theZoo</p>
+      <p class="t-line t-green">[AI Security &amp; Standards]</p>
+      <p class="t-line t-dim">Promptfoo, Groq API, NIST SP 800-61, MITRE ATT&amp;CK, OWASP LLM Top 10</p>
+      <p class="t-line t-gold">[Full Stack Development &amp; Libraries]</p>
+      <p class="t-line t-dim">Python, C++, HTML / CSS, JavaScript, Next.js, Three.js, React Three Fiber, GSAP, Lenis, Node.js, Flask, Scapy, SQL &amp; DBMS, MongoDB, WordPress</p>
+    `,
+    projects: () => `
+      <p class="t-line t-gold">&#x1F4C2; Featured Projects (8 Completed):</p>
+      <p class="t-line"><span class="t-cyan">[01] Nova Robotics</span> &mdash; 3D Interactive Site (Next.js, Three.js, React Three Fiber, GSAP, Lenis)</p>
+      <p class="t-line"><span class="t-cyan">[02] Toolset Dossier</span> &mdash; 26-Tool Attack Lifecycle Matrix Dashboard (HTML, CSS, JS)</p>
+      <p class="t-line"><span class="t-cyan">[03] Network Sniffing Tool</span> &mdash; Python + Scapy Live TCP Analyzer (CodeAlpha)</p>
+      <p class="t-line"><span class="t-cyan">[04] Evil Twin Simulation</span> &mdash; Rogue AP Captive Portal Testbed (Python, Flask)</p>
+      <p class="t-line"><span class="t-cyan">[05] Event Management System</span> &mdash; Full Stack Ticketing Platform (Node.js, Qwetrum)</p>
+      <p class="t-line"><span class="t-cyan">[06] Prompt Injection Assessment</span> &mdash; 311 LLM Red-Team Testcases (Morphe Labs · OWASP LLM Top 10)</p>
+      <p class="t-line"><span class="t-cyan">[07] AI-Assisted Smart SOC Assistant</span> &mdash; NSL-KDD Triage Pipeline (Morphe Labs)</p>
+      <p class="t-line"><span class="t-cyan">[08] M57.biz DFIR Capstones</span> &mdash; Autopsy &amp; Volatility 3 Dual Forensic Solves (Cyberster)</p>
+    `,
+    certs: () => `
+      <p class="t-line t-gold">&#x1F3C5; All 15 Verified Certificates &amp; Licenses:</p>
+      <p class="t-line t-cyan">1. Website Development &mdash; Digifacility (2025)</p>
+      <p class="t-line t-cyan">2. WordPress &mdash; Digiskills (2025)</p>
+      <p class="t-line t-cyan">3. SEO Specialist &mdash; Digiskills (2025)</p>
+      <p class="t-line t-cyan">4. Freelancing &mdash; Digiskills (2025)</p>
+      <p class="t-line t-cyan">5. Gemini for Google Workspace &mdash; Simplilearn (2025)</p>
+      <p class="t-line t-cyan">6. Canva Creative &mdash; LWE (2025)</p>
+      <p class="t-line t-cyan">7. ChatGPT (AI) &mdash; LWE (2025)</p>
+      <p class="t-line t-cyan">8. Microsoft Office &mdash; LWE (2024)</p>
+      <p class="t-line t-green">9. Penetration Testing Internship Certificate &mdash; CodeAlpha (2026)</p>
+      <p class="t-line t-green">10. Letter of Recommendation (LOR) &mdash; CodeAlpha (2026)</p>
+      <p class="t-line t-green">11. Web Development Internship Certificate &mdash; Qwetrum Technologies (2026)</p>
+      <p class="t-line t-green">12. VAPT Workshop Certificate &mdash; Tech Hierarchy &times; Cyberster (2026)</p>
+      <p class="t-line t-green">13. Certificate of Internship Completion &mdash; Security Experts Pvt. Ltd. (2026)</p>
+      <p class="t-line t-green">14. Work Experience Certificate (AI/ML &amp; Cyber Security) &mdash; Morphe Labs (2026)</p>
+      <p class="t-line t-green">15. Defensive Security Internship Certificate of Completion &mdash; Cyberster (2026)</p>
+    `,
+    experience: () => `
+      <p class="t-line t-gold">&#x1F4BC; Work Experience &amp; Internships (All Completed):</p>
+      <p class="t-line t-cyan">&bull; Pen Tester Intern @ Security Experts Pvt. Ltd. (Jul &ndash; Aug 2026 &middot; Completed)</p>
+      <p class="t-line t-dim">&nbsp; Web application penetration testing, SQL injection, Burp Suite Pro, vulnerability assessment &amp; reporting.</p>
+      <p class="t-line t-cyan">&bull; Blue Team Intern @ Cyberster (21 Jun &ndash; 13 Sep 2026 &middot; Completed)</p>
+      <p class="t-line t-dim">&nbsp; 12-week defensive security internship: Wazuh SIEM deployment, Suricata IDS/IPS, pfSense firewall, packet analysis (Wireshark/TCPDump), DFIR investigations (Autopsy/Volatility 3) on M57.biz.</p>
+      <p class="t-line t-cyan">&bull; AI/ML &amp; Cyber Security Intern @ Morphe Labs (15 Jul &ndash; 15 Aug 2026 &middot; Completed)</p>
+      <p class="t-line t-dim">&nbsp; Conducted 311 adversarial tests (OWASP LLM Top 10) on customer assistant via Promptfoo/Groq API; built AI-assisted SOC alert triage pipeline on NSL-KDD dataset.</p>
+      <p class="t-line t-cyan">&bull; Web Development Intern @ Qwetrum Technologies (Jul &ndash; Aug 2026 &middot; Completed)</p>
+      <p class="t-line t-dim">&nbsp; Built dynamic event management platform with ticketing and attendee workflows.</p>
+      <p class="t-line t-cyan">&bull; Cybersecurity Intern @ CodeAlpha (Jun &ndash; Jul 2026 &middot; Completed)</p>
+      <p class="t-line t-dim">&nbsp; Developed Python-based network sniffer using Scapy for live packet capture and inspection.</p>
+    `,
+    education: () => `
+      <p class="t-line t-gold">&#x1F393; Academic Background:</p>
+      <p class="t-line t-cyan">&bull; BS Information Technology (BSIT) &mdash; Air University Islamabad (2024&ndash;2028)</p>
+      <p class="t-line t-dim">&nbsp; Undergraduate studies with core focus on Information Technology, Networking, Cybersecurity, and Software Systems.</p>
+      <p class="t-line t-cyan">&bull; FSc (Pre-Engineering) &mdash; FIC Shahbaz, Jacobabad (2023&ndash;2024)</p>
+      <p class="t-line t-dim">&nbsp; Intermediate education with pre-engineering focus, building a strong foundation in science and mathematics.</p>
+      <p class="t-line t-cyan">&bull; Matric (Science) &mdash; FIC Mushaf, Sargodha (2021&ndash;2022)</p>
+      <p class="t-line t-dim">&nbsp; Secondary school education with high honours.</p>
+    `,
+    events: () => `
+      <p class="t-line t-gold">&#x1F39F; Events &amp; Workshops:</p>
+      <p class="t-line">&bull; <span class="t-cyan">Intro to Network Analysis</span> &mdash; Centri &middot; Wireshark, TCPDump, PCAP &middot; Aug 2026</p>
+      <p class="t-line">&bull; <span class="t-cyan">Elevate 2026</span> &mdash; Cyber Security &amp; Digital Assets Track &middot; Islamabad</p>
+      <p class="t-line">&bull; <span class="t-cyan">RAS Expo</span> &mdash; Robotics &amp; Automation Society</p>
+      <p class="t-line">&bull; <span class="t-cyan">Pakistan Logistics Summit</span> &mdash; Industry Conference &middot; Islamabad</p>
+      <p class="t-line">&bull; <span class="t-cyan">Neurocrest AI Webinar</span> &mdash; Next-Gen AI &amp; LLM Architectures</p>
     `,
     clear: () => {
       if (terminalOutput) terminalOutput.innerHTML = '';
@@ -957,8 +1007,33 @@ document.addEventListener('DOMContentLoaded', () => {
         playUiSound('terminal');
 
         const parts = raw.toLowerCase().split(/\s+/);
-        const cmd   = parts[0];
+        let cmd     = parts[0];
         const args  = parts.slice(1);
+
+        // Command Aliases
+        const ALIASES = {
+          'certifications': 'certs',
+          'certificate': 'certs',
+          'licenses': 'certs',
+          'internships': 'experience',
+          'internship': 'experience',
+          'work': 'experience',
+          'jobs': 'experience',
+          'edu': 'education',
+          'degree': 'education',
+          'university': 'education',
+          'email': 'contact',
+          'phone': 'contact',
+          'socials': 'contact',
+          'hire': 'contact',
+          'about': 'whoami',
+          'profile': 'whoami',
+          'info': 'whoami',
+          'tools': 'skills',
+          'toolset': 'skills',
+          'portfolio': 'projects'
+        };
+        if (ALIASES[cmd]) cmd = ALIASES[cmd];
 
         const echoLine = document.createElement('p');
         echoLine.className = 't-line';
@@ -971,18 +1046,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (cmd === 'scan') {
-          const target = args[0] || '127.0.0.1';
+          const target = args[0] || 'sulemansaqib.vercel.app';
           const scanEl = document.createElement('div');
           scanEl.innerHTML = `
-            <p class="t-line t-dim">Starting Nmap 7.94 ( https://nmap.org ) at ${new Date().toLocaleTimeString()} ...</p>
-            <p class="t-line t-green">Nmap scan report for ${target}</p>
-            <p class="t-line">Host is up (0.00042s latency).</p>
-            <p class="t-line t-gold">PORT     STATE SERVICE       VERSION</p>
-            <p class="t-line">22/tcp   open  ssh           OpenSSH 8.9p1 Ubuntu</p>
-            <p class="t-line">80/tcp   open  http          nginx 1.18.0 (Security Hardened)</p>
-            <p class="t-line">443/tcp  open  ssl/https     TLS 1.3 / Strict-Transport-Security</p>
-            <p class="t-line">1514/tcp open  wazuh-agent   Wazuh SIEM Active Monitoring</p>
-            <p class="t-line t-green">&#x2714; Scan completed: 0 vulnerabilities exploited, defense active.</p>
+            <p class="t-line t-dim">Starting simulated Nmap scan for target: <strong>${target}</strong> ...</p>
+            <p class="t-line t-green">&#x2714; Target resolved: ${target} (Air University SOC Lab / Vercel Edge)</p>
+            <p class="t-line">Host status: <strong>UP</strong> (0.00038s latency).</p>
+            <p class="t-line t-gold">PORT     STATE SERVICE       DEFENSE STACK</p>
+            <p class="t-line">80/tcp   open  http          HTTPS Redirection (Strict-Transport-Security)</p>
+            <p class="t-line">443/tcp  open  ssl/https     TLS 1.3 / OWASP Hardened</p>
+            <p class="t-line">1514/tcp open  wazuh-agent   Wazuh SIEM Active Log &amp; FIM Monitoring</p>
+            <p class="t-line t-green">&#x2714; Scan completed: Target secured. No vulnerable ports exposed.</p>
           `;
           terminalOutput.appendChild(scanEl);
         } else if (cmd === 'decrypt') {
@@ -999,7 +1073,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (cmd === 'matrix') {
           const matEl = document.createElement('p');
           matEl.className = 't-line t-green';
-          matEl.textContent = '01010011 01010101 01001100 01000101 01001101 01000001 01001110 [SECURE ACCESS GRANTED]';
+          matEl.textContent = '01010011 01010101 01001100 01000101 01001101 01000001 01001110 [ACCESS GRANTED - SULEMAN SAQIB]';
           terminalOutput.appendChild(matEl);
         } else if (CLI_COMMANDS[cmd]) {
           const res = CLI_COMMANDS[cmd]();
@@ -1011,7 +1085,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           const errEl = document.createElement('p');
           errEl.className = 't-line t-red';
-          errEl.textContent = `zsh: command not found: ${cmd}. Type 'help' for valid options.`;
+          errEl.textContent = `zsh: command not found: ${cmd}. Type 'help' for available commands.`;
           terminalOutput.appendChild(errEl);
         }
 
