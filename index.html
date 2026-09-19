@@ -686,10 +686,15 @@
             <div class="timeline-content glass-card">
               <span class="timeline-date">21 June – 13 September 2026 (Completed)</span>
               <h4>Blue Team Intern @ Cyberster</h4>
-              <p>Completed a full 12-week Blue Team internship spanning SOC operations and digital forensics. Deployed Wazuh SIEM (Manager + Indexer + Dashboard) with File Integrity Monitoring and custom detection rules; configured Suricata IDS with custom signatures and Active Response; integrated pfSense firewall with VirusTotal and URLhaus threat intelligence; remediated CVEs via Wazuh's vulnerability-detector module. Conducted static and dynamic malware analysis on real samples (Dyre banking trojan, Raccoon Stealer v2) using the ANY.RUN sandbox and static analysis tools (exiftool, binwalk, strings), translating findings into Suricata signatures and Wazuh rules. Performed multi-week digital forensics: E01 disk imaging (FTK Imager), NTFS/MFT analysis, live Windows artefact analysis (EZ Tools: EvtxECmd, PECmd, RBCmd, LECmd), Autopsy triage, Windows Registry examination (Registry Explorer, RegRipper), and memory forensics (Volatility 3). Completed two capstone DFIR investigations on the M57.biz dataset: uncovered an email display-name-spoofing attack that cleared a wrongly-suspected employee through second-level timeline correlation, and, in a separate case combining disk, USB, and RAM evidence, cryptographically proved data exfiltration via an exact MD5 hash match. Every report followed the NIST SP 800-61 incident response framework.</p>
+              <p>Completed an intensive 12-week Blue Team internship spanning SOC operations and digital forensics under supervisor Abdullah Zia. Deployed Wazuh SIEM (Manager + Indexer + Dashboard) with File Integrity Monitoring and custom XML detection rules; configured Suricata IDS with custom signatures and active response firewalls; conducted static and dynamic malware analysis on real samples (Dyre banking trojan, Raccoon Stealer v2) using ANY.RUN sandbox; performed multi-week digital forensics using FTK Imager, Arsenal Image Mounter, Autopsy, EZ Tools (EvtxECmd, PECmd, RBCmd, LECmd), Registry Explorer, and Volatility 3; completed two capstone DFIR investigations (Phase 1 SOC &amp; Phase 2 M57.biz Insider Threat DFIR Case) following NIST SP 800-61 standards.</p>
               <div class="timeline-badges">
                 <span class="tl-badge"><i class="fas fa-certificate"></i> Certificate of Completion</span>
                 <span class="tl-badge"><i class="fas fa-file-alt"></i> Letter of Recommendation</span>
+                <span class="tl-badge tl-badge--highlight"><i class="fab fa-linkedin"></i> 12 Verified Weekly Reports</span>
+              </div>
+              <div class="timeline-actions" style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap;">
+                <a href="cyberster-dossier.html" class="btn-sm"><i class="fas fa-journal-whills"></i> Explore 12-Week Cyberster Dossier ↗</a>
+                <button class="btn-sm btn-outline" id="open-cyberster-modal"><i class="fas fa-layer-group"></i> Quick Preview Reports (12 Weeks)</button>
               </div>
             </div>
           </div>
@@ -1035,6 +1040,127 @@
     <div class="case-study-dialog glass-card" onclick="event.stopPropagation()">
       <button class="case-study-close" onclick="closeCaseStudyModal()" aria-label="Close case study">&times;</button>
       <div id="caseStudyBody" class="case-study-body"></div>
+    </div>
+  </div>
+
+  <!-- ===== CYBERSTER 12-WEEK REPORTS MODAL ===== -->
+  <div id="cybersterModal" class="cyberster-modal-overlay" aria-hidden="true">
+    <div class="cyberster-modal-dialog glass-card">
+      <div class="cyberster-modal-header">
+        <div class="modal-header-title">
+          <span class="badge-gold"><i class="fas fa-shield-alt"></i> Cyberster Internship</span>
+          <h3>12-Week Weekly Reports &amp; Field Logs</h3>
+        </div>
+        <button class="cyberster-modal-close" id="close-cyberster-modal" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="cyberster-modal-body">
+        <p class="modal-subtext">Direct links to all 12 verified LinkedIn submission reports covering SOC operations, malware analysis, and DFIR capstones.</p>
+        
+        <div class="modal-reports-list">
+          <div class="m-report-item">
+            <span class="m-week">W01</span>
+            <div class="m-info">
+              <h4>SOC Networking &amp; Wazuh SIEM Deployment</h4>
+              <p>VMware 3-node lab, Wazuh Manager/Indexer/Dashboard setup, agent onboarding, SSH alert triage.</p>
+            </div>
+            <a href="https://www.linkedin.com/posts/sulemansaqib_cyberster-blue-team-internship-week-1-report-activity-7476876641592315904-hRp6" target="_blank" rel="noopener" class="m-link"><i class="fab fa-linkedin"></i> Report ↗</a>
+          </div>
+
+          <div class="m-report-item">
+            <span class="m-week">W02</span>
+            <div class="m-info">
+              <h4>Detection Engineering &amp; Active Response (IPS)</h4>
+              <p>File Integrity Monitoring (FIM), custom XML rules (100001–100003), automated firewall drop blocking.</p>
+            </div>
+            <a href="https://www.linkedin.com/posts/sulemansaqib_blueteamweek02sulemansaqib-activity-7490433884589977600-4lpx" target="_blank" rel="noopener" class="m-link"><i class="fab fa-linkedin"></i> Report ↗</a>
+          </div>
+
+          <div class="m-report-item">
+            <span class="m-week">W03</span>
+            <div class="m-info">
+              <h4>Suricata Network IDS &amp; Dual-Layer Defense</h4>
+              <p>Suricata 8.0.6 custom rules (SYN/ICMP/URI traversal), Wazuh integration, GeoIP ipset/iptables (8.8k ranges).</p>
+            </div>
+            <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek3report-activity-7504509713015861248-3Qkm" target="_blank" rel="noopener" class="m-link"><i class="fab fa-linkedin"></i> Report ↗</a>
+          </div>
+
+          <div class="m-report-item">
+            <span class="m-week">W04-05</span>
+            <div class="m-info">
+              <h4>Malware Reverse Engineering &amp; NIST IR Plan</h4>
+              <p>Static analysis on Dyre Trojan &amp; Raccoon Stealer v2, ANY.RUN detonation, PCAP replay, NIST SP 800-61 plan.</p>
+            </div>
+            <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek5report-activity-7504511550888591360-rmXZ" target="_blank" rel="noopener" class="m-link"><i class="fab fa-linkedin"></i> Report ↗</a>
+          </div>
+
+          <div class="m-report-item capstone">
+            <span class="m-week capstone">W06</span>
+            <div class="m-info">
+              <h4>Phase 1 Capstone — Adversary &amp; SOC Simulation</h4>
+              <p>Base64 certutil exfiltration attack, Wazuh FIM retention proof, CyberChef decoding, Wazuh rule 10027.</p>
+            </div>
+            <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek6report-activity-7504511948286234625-mT9c" target="_blank" rel="noopener" class="m-link"><i class="fab fa-linkedin"></i> Report ↗</a>
+          </div>
+
+          <div class="m-report-item">
+            <span class="m-week">W07</span>
+            <div class="m-info">
+              <h4>Digital Forensics — E01 Imaging &amp; $MFT MACB</h4>
+              <p>FTK Imager physical E01 image, Chain of Custody, Arsenal Mounter, NTFS $MFT analysis, ADS data hiding.</p>
+            </div>
+            <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek7report-activity-7504512843271135232-5AnU" target="_blank" rel="noopener" class="m-link"><i class="fab fa-linkedin"></i> Report ↗</a>
+          </div>
+
+          <div class="m-report-item">
+            <span class="m-week">W08</span>
+            <div class="m-info">
+              <h4>Workstation Forensics with EZ Tools Suite</h4>
+              <p>EvtxECmd (12.8k security events, Event ID 4672), PECmd Prefetch analysis, RBCmd Recycle Bin, Thumbcache.</p>
+            </div>
+            <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek8report-activity-7504513279235457025-Kz9p" target="_blank" rel="noopener" class="m-link"><i class="fab fa-linkedin"></i> Report ↗</a>
+          </div>
+
+          <div class="m-report-item">
+            <span class="m-week">W09</span>
+            <div class="m-info">
+              <h4>User-Level Forensics &amp; UTC Timeline Correlation</h4>
+              <p>Chrome/Edge history, LECmd LNK parsing, USB volume serial matching, 5-source UTC unified timeline.</p>
+            </div>
+            <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek9report-activity-7504513757788880896-GsQF" target="_blank" rel="noopener" class="m-link"><i class="fab fa-linkedin"></i> Report ↗</a>
+          </div>
+
+          <div class="m-report-item">
+            <span class="m-week">W10</span>
+            <div class="m-info">
+              <h4>Disk &amp; Registry Investigation (Mantooth.E01)</h4>
+              <p>48 investigative solves across Autopsy triage &amp; SYSTEM/SOFTWARE/SAM/NTUSER.DAT Registry hives.</p>
+            </div>
+            <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek10report-activity-7504519781979635712-mLtN" target="_blank" rel="noopener" class="m-link"><i class="fab fa-linkedin"></i> Report ↗</a>
+          </div>
+
+          <div class="m-report-item">
+            <span class="m-week">W11</span>
+            <div class="m-info">
+              <h4>Insider Threat Email Forensics (CFO Exoneration)</h4>
+              <p>Outlook PST mailbox extraction, display-name spoofing discovery, 24s Prefetch/LNK window correlation.</p>
+            </div>
+            <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek11report-activity-7504521394479841280-goB5" target="_blank" rel="noopener" class="m-link"><i class="fab fa-linkedin"></i> Report ↗</a>
+          </div>
+
+          <div class="m-report-item capstone">
+            <span class="m-week capstone">W12</span>
+            <div class="m-info">
+              <h4>Phase 2 Capstone — Full M57.biz DFIR Investigation</h4>
+              <p>Disk (Autopsy) + RAM Memory (Volatility 3) + USB Hash matching, Master Event Sequence timeline.</p>
+            </div>
+            <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek12report-activity-7504525463713636352-QZpH" target="_blank" rel="noopener" class="m-link"><i class="fab fa-linkedin"></i> Report ↗</a>
+          </div>
+        </div>
+
+        <div class="modal-footer-actions">
+          <a href="cyberster-dossier.html" class="btn-sm"><i class="fas fa-external-link-alt"></i> Open Full 12-Week Interactive Field Journal</a>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -700,6 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') {
       window.closeCertModal();
       window.closeCaseStudyModal();
+      if (typeof window.closeCybersterModal === 'function') window.closeCybersterModal();
       if (typeof closeTerminal === 'function') closeTerminal();
     }
   });
@@ -852,6 +853,45 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // ============================================================
+  // 11.55 CYBERSTER MODAL ENGINE
+  // ============================================================
+  const cybersterModal    = document.getElementById('cybersterModal');
+  const openCybersterBtn  = document.getElementById('open-cyberster-modal');
+  const closeCybersterBtn = document.getElementById('close-cyberster-modal');
+
+  window.openCybersterModal = function() {
+    if (cybersterModal) {
+      cybersterModal.classList.add('active');
+      cybersterModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (cursor)   cursor.style.display   = 'none';
+      if (follower) follower.style.display = 'none';
+    }
+  };
+
+  window.closeCybersterModal = function() {
+    if (cybersterModal) {
+      cybersterModal.classList.remove('active');
+      cybersterModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (cursor)   cursor.style.display   = 'block';
+      if (follower) follower.style.display = 'block';
+    }
+  };
+
+  if (openCybersterBtn) {
+    openCybersterBtn.addEventListener('click', window.openCybersterModal);
+  }
+  if (closeCybersterBtn) {
+    closeCybersterBtn.addEventListener('click', window.closeCybersterModal);
+  }
+  if (cybersterModal) {
+    cybersterModal.addEventListener('click', e => {
+      if (e.target === cybersterModal) window.closeCybersterModal();
+    });
+  }
+
+  // ============================================================
   // 11.6 CYBERSECURITY CLI TERMINAL WIDGET
   // ============================================================
   const terminalWidget   = document.getElementById('terminal-widget');
@@ -897,14 +937,37 @@ document.addEventListener('DOMContentLoaded', () => {
       <p class="t-line"><span class="t-cmd">contact</span> &mdash; Real contact coordinates (email, phone, socials)</p>
       <p class="t-line"><span class="t-cmd">skills</span> &mdash; Comprehensive offensive, defensive & dev toolsets</p>
       <p class="t-line"><span class="t-cmd">projects</span> &mdash; 8 featured security & web development projects</p>
-      <p class="t-line"><span class="t-cmd">certs</span> &mdash; All 15 verified certificates & licenses</p>
+      <p class="t-line"><span class="t-cmd">cyberster</span> &mdash; 12-Week Cyberster Blue Team &amp; DFIR Field Journal</p>
+      <p class="t-line"><span class="t-cmd">reports</span> &mdash; All 12 verified LinkedIn weekly internship reports</p>
+      <p class="t-line"><span class="t-cmd">certs</span> &mdash; All 15 verified certificates &amp; licenses</p>
       <p class="t-line"><span class="t-cmd">experience</span> &mdash; Completed industry cybersecurity internships</p>
       <p class="t-line"><span class="t-cmd">education</span> &mdash; Academic background (Air University Islamabad)</p>
-      <p class="t-line"><span class="t-cmd">events</span> &mdash; Attended security workshops & expos</p>
-      <p class="t-line"><span class="t-cmd">scan [target]</span> &mdash; Simulated security & port reconnaissance</p>
+      <p class="t-line"><span class="t-cmd">events</span> &mdash; Attended security workshops &amp; expos</p>
+      <p class="t-line"><span class="t-cmd">scan [target]</span> &mdash; Simulated security &amp; port reconnaissance</p>
       <p class="t-line"><span class="t-cmd">decrypt [hash]</span> &mdash; Simulated Hashcat credential recovery</p>
       <p class="t-line"><span class="t-cmd">matrix</span> &mdash; Cyber matrix terminal stream</p>
       <p class="t-line"><span class="t-cmd">clear</span> &mdash; Clear current terminal scrollback</p>
+    `,
+    cyberster: () => `
+      <p class="t-line t-gold">&#x1F6E1;&#xFE0F; Cyberster Blue Team Internship &mdash; 12 Weekly Reports Logged:</p>
+      <p class="t-line t-cyan">Phase 1: SOC Operations &amp; Detection Engineering (W1 &ndash; W6)</p>
+      <p class="t-line t-dim">&bull; W01: SOC Networking &amp; Wazuh SIEM Deployment</p>
+      <p class="t-line t-dim">&bull; W02: Detection Engineering &amp; Active Response IPS</p>
+      <p class="t-line t-dim">&bull; W03: Suricata Network IDS &amp; Dual-Layer Defense</p>
+      <p class="t-line t-dim">&bull; W04-05: Malware Analysis &amp; NIST SP 800-61 IR Plan</p>
+      <p class="t-line t-dim">&bull; W06: Phase 1 Capstone (Certutil Exfiltration &amp; Wazuh Rule 10027)</p>
+      <p class="t-line t-cyan">Phase 2: Digital Forensics &amp; Incident Response (W7 &ndash; W12)</p>
+      <p class="t-line t-dim">&bull; W07: Digital Forensics Foundation (FTK Imager E01 &amp; $MFT MACB)</p>
+      <p class="t-line t-dim">&bull; W08: Workstation Forensics with EZ Tools (12.8k Security Logs)</p>
+      <p class="t-line t-dim">&bull; W09: User Forensics &amp; UTC Timeline Correlation</p>
+      <p class="t-line t-dim">&bull; W10: Mantooth.E01 Disk &amp; Registry Analysis (48 Solves)</p>
+      <p class="t-line t-dim">&bull; W11: Insider Threat Email Forensics (CFO Exoneration)</p>
+      <p class="t-line t-dim">&bull; W12: Phase 2 Capstone (M57.biz DFIR Investigation &amp; Volatility 3)</p>
+      <p class="t-line t-gold">&#x1F517; Explore full interactive dossier: <a href="cyberster-dossier.html" target="_blank" class="t-cyan" style="text-decoration:underline;">cyberster-dossier.html</a></p>
+    `,
+    reports: () => `
+      <p class="t-line t-gold">&#x1F4DC; 12 Verified LinkedIn Weekly Reports Available!</p>
+      <p class="t-line">Type <span class="t-cmd">cyberster</span> or open <a href="cyberster-dossier.html" target="_blank" class="t-cyan" style="text-decoration:underline;">cyberster-dossier.html</a> to read all reports.</p>
     `,
     whoami: () => `
       <p class="t-line t-cyan">Operator: Suleman Saqib</p>

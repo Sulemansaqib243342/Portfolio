@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyberster Blue Team Field Journal — Suleman Saqib | 12-Week DFIR & SOC Dossier</title>
+  <meta name="description" content="12-Week Cyberster Blue Team Internship Field Journal by Suleman Saqib — SOC Operations, Wazuh SIEM, Suricata IDS, Malware Analysis, and DFIR Capstone Investigations.">
+  <meta name="author" content="Suleman Saqib">
+  <link rel="canonical" href="https://sulemansaqib.vercel.app/cyberster-dossier.html">
+  
+  <meta property="og:title" content="Cyberster Blue Team Field Journal — Suleman Saqib">
+  <meta property="og:description" content="Detailed 12-Week Field Journal covering SOC Operations, Detection Engineering, Suricata IDS, Malware Analysis, and Digital Forensics Capstones.">
+  <meta property="og:url" content="https://sulemansaqib.vercel.app/cyberster-dossier.html">
+  <meta property="og:image" content="https://sulemansaqib.vercel.app/assets/images/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230A0908'/><text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='52' font-weight='bold' fill='%23D4AF37'>SS</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <style>
+    /* ── Reset & Theme Variables ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg:      #0A0908;
+      --bg2:     #100F0D;
+      --bg3:     #181614;
+      --text:    #E8DFD8;
+      --text2:   #9A8A7A;
+      --gold:    #D4AF37;
+      --bronze:  #8C6D4F;
+      --cream:   #EAD8C7;
+      --glass:   rgba(255,255,255,0.035);
+      --border:  rgba(212,175,55,0.12);
+      --radius:  14px;
+      --tr:      0.3s cubic-bezier(0.4,0,0.2,1);
+      --font-d:  'Bebas Neue', sans-serif;
+      --font-l:  'Montserrat', sans-serif;
+      --font-b:  'Inter', sans-serif;
+      --soc-color: #38bdf8;
+      --dfir-color: #f43f5e;
+    }
+    [data-theme="light"] {
+      --bg:      #F8F6F2;
+      --bg2:     #FFFFFF;
+      --bg3:     #EFECE6;
+      --text:    #1A1816;
+      --text2:   #5C5248;
+      --gold:    #A67C1E;
+      --bronze:  #785637;
+      --cream:   #3D3328;
+      --glass:   rgba(255, 255, 255, 0.85);
+      --border:  rgba(166, 124, 30, 0.20);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-b);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    ::selection { background: var(--gold); color: var(--bg); }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--bronze); border-radius: 4px; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,9,8,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    [data-theme="light"] nav { background: rgba(248, 246, 242, 0.94); }
+    .nav-logo {
+      font-family: var(--font-d);
+      font-size: 22px; letter-spacing: 2px;
+      color: var(--text); text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-back {
+      font-family: var(--font-l);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text2); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      transition: color var(--tr);
+    }
+    .nav-back:hover { color: var(--gold); }
+    .theme-toggle-dossier {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      color: var(--gold);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all var(--tr);
+    }
+    .theme-toggle-dossier:hover {
+      border-color: var(--gold);
+      transform: scale(1.08);
+    }
+
+    /* ── Hero Banner ── */
+    .dossier-hero {
+      padding: 60px 40px 44px;
+      border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(ellipse 60% 70% at 85% 40%, rgba(212,175,55,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 15% 70%, rgba(140,109,79,0.07) 0%, transparent 70%);
+    }
+    .hero-container { max-width: 1200px; margin: 0 auto; }
+    .dossier-hero .tag {
+      font-family: var(--font-l);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold);
+      padding: 5px 16px; border-radius: 50px;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.2);
+      display: inline-block; margin-bottom: 18px;
+    }
+    .dossier-hero h1 {
+      font-family: var(--font-d);
+      font-size: clamp(38px, 5.5vw, 76px);
+      letter-spacing: 3px; line-height: 0.98;
+      background: linear-gradient(180deg, #FFF 0%, #D4AF37 55%, #8C6D4F 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+    [data-theme="light"] .dossier-hero h1 {
+      background: linear-gradient(180deg, #1A1816 0%, #785637 55%, #A67C1E 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .dossier-hero p {
+      font-size: 15px; color: var(--text2);
+      max-width: 760px; line-height: 1.8;
+    }
+    .stats-row {
+      display: flex; gap: 40px; margin-top: 30px; flex-wrap: wrap;
+    }
+    .stat-n {
+      font-family: var(--font-d);
+      font-size: 38px; letter-spacing: 2px; line-height: 1;
+      color: var(--gold);
+    }
+    .stat-l {
+      font-family: var(--font-l);
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text2); margin-top: 4px;
+    }
+
+    /* ── Controls Bar: Tabs & Search ── */
+    .controls-bar {
+      position: sticky; top: 65px; z-index: 90;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .controls-container {
+      max-width: 1200px; width: 100%; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .phase-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .tab-btn {
+      font-family: var(--font-l);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text2);
+      background: var(--glass);
+      border: 1px solid var(--border);
+      padding: 8px 18px; border-radius: 30px;
+      cursor: pointer; transition: all var(--tr);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: rgba(212,175,55,0.1);
+    }
+    .search-wrapper {
+      position: relative; width: 280px;
+    }
+    .search-wrapper input {
+      width: 100%;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 8px 16px 8px 36px;
+      color: var(--text);
+      font-family: var(--font-b);
+      font-size: 13px; outline: none;
+      transition: border-color var(--tr);
+    }
+    .search-wrapper input:focus { border-color: var(--gold); }
+    .search-wrapper i {
+      position: absolute; left: 14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--text2); font-size: 12px;
+    }
+
+    /* ── Grid Content ── */
+    .dossier-main {
+      max-width: 1200px; margin: 40px auto 80px;
+      padding: 0 40px;
+    }
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 28px;
+    }
+
+    /* ── Weekly Report Card ── */
+    .report-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      transition: transform var(--tr), border-color var(--tr), box-shadow var(--tr);
+      position: relative; overflow: hidden;
+    }
+    .report-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.08);
+    }
+    .report-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--bronze));
+      opacity: 0.6;
+    }
+    .report-card.capstone::before {
+      height: 4px;
+      background: linear-gradient(90deg, #f43f5e, #d4af37, #38bdf8);
+      opacity: 1;
+    }
+    .card-header { margin-bottom: 16px; }
+    .card-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .week-badge {
+      font-family: var(--font-l);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(212,175,55,0.12);
+      border: 1px solid rgba(212,175,55,0.25);
+      padding: 3px 10px; border-radius: 4px;
+    }
+    .phase-badge {
+      font-family: var(--font-l);
+      font-size: 9px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 20px;
+    }
+    .phase-badge.phase-soc {
+      color: var(--soc-color); background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+    .phase-badge.phase-dfir {
+      color: var(--dfir-color); background: rgba(244, 63, 94, 0.1);
+      border: 1px solid rgba(244, 63, 94, 0.25);
+    }
+    .phase-badge.phase-capstone {
+      color: #F59E0B; background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .report-card h3 {
+      font-family: var(--font-l);
+      font-size: 17px; font-weight: 600;
+      color: var(--text); line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .report-card .date-sub {
+      font-size: 12px; color: var(--text2); margin-bottom: 14px;
+    }
+
+    .highlights-list {
+      list-style: none; margin-bottom: 20px;
+    }
+    .highlights-list li {
+      font-size: 13px; color: var(--text);
+      line-height: 1.6; margin-bottom: 8px;
+      padding-left: 18px; position: relative;
+    }
+    .highlights-list li::before {
+      content: '▹'; position: absolute; left: 0;
+      color: var(--gold); font-size: 12px;
+    }
+
+    .card-footer {
+      margin-top: auto; padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .tags-container {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;
+    }
+    .tool-pill {
+      font-family: var(--font-l);
+      font-size: 9.5px; font-weight: 500;
+      color: var(--text2); background: var(--bg3);
+      padding: 3px 8px; border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    [data-theme="light"] .tool-pill {
+      border-color: rgba(0,0,0,0.08);
+    }
+
+    .btn-linkedin {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; width: 100%;
+      font-family: var(--font-l);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: #0A66C2; background: rgba(10, 102, 194, 0.08);
+      border: 1px solid rgba(10, 102, 194, 0.3);
+      padding: 10px 16px; border-radius: 8px;
+      text-decoration: none; transition: all var(--tr);
+    }
+    .btn-linkedin:hover {
+      background: #0A66C2; color: #FFFFFF;
+      border-color: #0A66C2;
+      box-shadow: 0 4px 16px rgba(10, 102, 194, 0.3);
+    }
+
+    /* ── Empty State ── */
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center; padding: 60px 20px;
+      color: var(--text2);
+    }
+    .no-results i { font-size: 40px; color: var(--gold); margin-bottom: 16px; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 40px; text-align: center;
+      font-family: var(--font-l);
+      font-size: 11px; color: var(--text2); letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .dossier-hero { padding: 40px 20px 30px; }
+      .controls-bar { padding: 14px 20px; position: static; }
+      .dossier-main { padding: 0 20px; margin-top: 24px; }
+      .reports-grid { grid-template-columns: 1fr; }
+      .search-wrapper { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="index.html" class="nav-logo">SULEMAN <span>SAQIB</span></a>
+    <div class="nav-right">
+      <a href="index.html#experience" class="nav-back"><i class="fas fa-arrow-left"></i> Main Portfolio</a>
+      <button class="theme-toggle-dossier" id="theme-toggle-dossier" title="Toggle theme">
+        <i class="fas fa-sun"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <header class="dossier-hero">
+    <div class="hero-container">
+      <span class="tag"><i class="fas fa-shield-alt"></i> Cyberster Internship Field Journal</span>
+      <h1>12-WEEK BLUE TEAM &amp; DFIR DOSSIER</h1>
+      <p>Comprehensive weekly forensic reports, SOC operation logs, malware analysis notes, and Capstone investigation write-ups submitted during the Cyberster Blue Team Internship (June – September 2026 under Supervisor Abdullah Zia).</p>
+      
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-n">12</div>
+          <div class="stat-l">Weekly Reports</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">2</div>
+          <div class="stat-l">Capstones Completed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">48</div>
+          <div class="stat-l">Forensic Solves</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n">100%</div>
+          <div class="stat-l">Chain of Custody</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── CONTROLS: TABS & SEARCH ── -->
+  <div class="controls-bar">
+    <div class="controls-container">
+      <div class="phase-tabs">
+        <button class="tab-btn active" data-filter="all"><i class="fas fa-layer-group"></i> All Reports (12)</button>
+        <button class="tab-btn" data-filter="phase1"><i class="fas fa-terminal"></i> Phase 1: SOC &amp; Detection (W1–W6)</button>
+        <button class="tab-btn" data-filter="phase2"><i class="fas fa-microscope"></i> Phase 2: Digital Forensics (W7–W12)</button>
+      </div>
+      <div class="search-wrapper">
+        <i class="fas fa-search"></i>
+        <input type="text" id="dossier-search" placeholder="Search tools, tags, or topics...">
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MAIN REPORTS GRID ── -->
+  <main class="dossier-main">
+    <div class="reports-grid" id="reports-grid">
+
+      <!-- WEEK 01 -->
+      <article class="report-card" data-phase="phase1" data-keywords="wazuh siem vm setup networking soc brute force mitre triage">
+        <div class="card-header">
+          <div class="card-top">
+            <span class="week-badge">Week 01</span>
+            <span class="phase-badge phase-soc">Phase 1: SOC</span>
+          </div>
+          <h3>SOC Networking, VM Lab &amp; Wazuh SIEM Onboarding</h3>
+          <div class="date-sub">21 – 27 June 2026 · Supervisor: Abdullah Zia</div>
+        </div>
+        <ul class="highlights-list">
+          <li>Architected a 3-VM VMware lab environment (Kali Linux, Ubuntu, Windows 10) with NAT + Host-Only network adapters.</li>
+          <li>Deployed Wazuh SIEM (Manager, Indexer, Dashboard) on Ubuntu with dual active agent deployment.</li>
+          <li>Triaged 586 real SSH brute-force alerts and mapped detections to MITRE ATT&amp;CK framework.</li>
+        </ul>
+        <div class="card-footer">
+          <div class="tags-container">
+            <span class="tool-pill">Wazuh SIEM</span>
+            <span class="tool-pill">VMware</span>
+            <span class="tool-pill">Kali Linux</span>
+            <span class="tool-pill">MITRE ATT&amp;CK</span>
+            <span class="tool-pill">Alert Triage</span>
+          </div>
+          <a href="https://www.linkedin.com/posts/sulemansaqib_cyberster-blue-team-internship-week-1-report-activity-7476876641592315904-hRp6" target="_blank" rel="noopener" class="btn-linkedin">
+            <i class="fab fa-linkedin"></i> View Verified LinkedIn Report
+          </a>
+        </div>
+      </article>
+
+      <!-- WEEK 02 -->
+      <article class="report-card" data-phase="phase1" data-keywords="fim file integrity monitoring detection engineering active response ips wazuh xml">
+        <div class="card-header">
+          <div class="card-top">
+            <span class="week-badge">Week 02</span>
+            <span class="phase-badge phase-soc">Phase 1: SOC</span>
+          </div>
+          <h3>Detection Engineering &amp; Active Response (FIM &amp; IPS)</h3>
+          <div class="date-sub">28 June – 04 August 2026 · Supervisor: Abdullah Zia</div>
+        </div>
+        <ul class="highlights-list">
+          <li>Configured real-time File Integrity Monitoring (FIM) across Linux (/etc, /var/log) and Windows (System32) with cryptographic hash tracking.</li>
+          <li>Authored XML custom detection rules (100001: new user, 100002: SSH brute force, 100003: USB insertion).</li>
+          <li>Configured Active Response IPS to automatically execute firewall drops on attacker IPs for 300 seconds.</li>
+        </ul>
+        <div class="card-footer">
+          <div class="tags-container">
+            <span class="tool-pill">Wazuh FIM</span>
+            <span class="tool-pill">Active Response</span>
+            <span class="tool-pill">XML Rules</span>
+            <span class="tool-pill">IPS Firewall</span>
+            <span class="tool-pill">DQL Filtering</span>
+          </div>
+          <a href="https://www.linkedin.com/posts/sulemansaqib_blueteamweek02sulemansaqib-activity-7490433884589977600-4lpx" target="_blank" rel="noopener" class="btn-linkedin">
+            <i class="fab fa-linkedin"></i> View Verified LinkedIn Report
+          </a>
+        </div>
+      </article>
+
+      <!-- WEEK 03 -->
+      <article class="report-card" data-phase="phase1" data-keywords="suricata ids network security ipset iptables geoip uri traversal wazuh">
+        <div class="card-header">
+          <div class="card-top">
+            <span class="week-badge">Week 03</span>
+            <span class="phase-badge phase-soc">Phase 1: SOC</span>
+          </div>
+          <h3>Suricata Network IDS &amp; Dual-Layer Mitigation</h3>
+          <div class="date-sub">12 September 2026 · Supervisor: Abdullah Zia</div>
+        </div>
+        <ul class="highlights-list">
+          <li>Deployed &amp; bound Suricata 8.0.6 to physical/virtual interfaces on Kali Linux.</li>
+          <li>Authored custom signatures for SYN scans, ICMP floods, and HTTP directory traversal (`http.uri.raw` bypass for unnormalized URI evasion).</li>
+          <li>Engineered dual mitigation: GeoIP blocking via `ipset` + `iptables` (8,808 ranges) and domain filtering via UFW.</li>
+        </ul>
+        <div class="card-footer">
+          <div class="tags-container">
+            <span class="tool-pill">Suricata 8</span>
+            <span class="tool-pill">NIDS</span>
+            <span class="tool-pill">GeoIP ipset</span>
+            <span class="tool-pill">iptables</span>
+            <span class="tool-pill">Wazuh Integration</span>
+          </div>
+          <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek3report-activity-7504509713015861248-3Qkm" target="_blank" rel="noopener" class="btn-linkedin">
+            <i class="fab fa-linkedin"></i> View Verified LinkedIn Report
+          </a>
+        </div>
+      </article>
+
+      <!-- WEEK 04 & 05 -->
+      <article class="report-card" data-phase="phase1" data-keywords="malware analysis dyre raccoon stealer any.run sandbox binwalk exiftool nist ir plan">
+        <div class="card-header">
+          <div class="card-top">
+            <span class="week-badge">Week 04–05</span>
+            <span class="phase-badge phase-soc">Phase 1: SOC</span>
+          </div>
+          <h3>Malware Reverse Engineering &amp; NIST SP 800-61 IR</h3>
+          <div class="date-sub">12 September 2026 · Supervisor: Abdullah Zia</div>
+        </div>
+        <ul class="highlights-list">
+          <li>Acquired Dyre Trojan &amp; Raccoon Stealer v2 from theZoo under airgapped hypervisor isolation.</li>
+          <li>Static analysis with `exiftool`, `binwalk`, and `strings` (ASCII &amp; UTF-16LE) identifying dynamic API resolution &amp; credential stealing.</li>
+          <li>Detonated in ANY.RUN sandbox, captured PCAP, and authored formal NIST SP 800-61 Incident Response Plan.</li>
+        </ul>
+        <div class="card-footer">
+          <div class="tags-container">
+            <span class="tool-pill">ANY.RUN</span>
+            <span class="tool-pill">theZoo</span>
+            <span class="tool-pill">Static Analysis</span>
+            <span class="tool-pill">PCAP Replay</span>
+            <span class="tool-pill">NIST SP 800-61</span>
+          </div>
+          <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek5report-activity-7504511550888591360-rmXZ" target="_blank" rel="noopener" class="btn-linkedin">
+            <i class="fab fa-linkedin"></i> View Verified LinkedIn Report
+          </a>
+        </div>
+      </article>
+
+      <!-- WEEK 06 (CAPSTONE 1) -->
+      <article class="report-card capstone" data-phase="phase1" data-keywords="phase 1 capstone certutil obfuscation base64 cyberchef insider threat wazuh rule 10027">
+        <div class="card-header">
+          <div class="card-top">
+            <span class="week-badge">Week 06</span>
+            <span class="phase-badge phase-capstone">Phase 1 Capstone</span>
+          </div>
+          <h3>Phase 1 Capstone — Adversary &amp; Defender Simulation</h3>
+          <div class="date-sub">12 September 2026 · Supervisor: Abdullah Zia</div>
+        </div>
+        <ul class="highlights-list">
+          <li>Executed full attack chain: confidential data staging → `certutil` Base64 obfuscation → HTTP exfiltration → file deletion.</li>
+          <li>Proved anti-forensics failed: Wazuh FIM retained pre-deletion hashes and file paths.</li>
+          <li>Decoded HTTP payload in CyberChef to byte-for-byte recover stolen data &amp; built custom Wazuh Level 10 Rule (10027).</li>
+        </ul>
+        <div class="card-footer">
+          <div class="tags-container">
+            <span class="tool-pill">Certutil Obfuscation</span>
+            <span class="tool-pill">CyberChef</span>
+            <span class="tool-pill">Base64 Decode</span>
+            <span class="tool-pill">Wazuh Rule 10027</span>
+            <span class="tool-pill">NIST Report</span>
+          </div>
+          <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek6report-activity-7504511948286234625-mT9c" target="_blank" rel="noopener" class="btn-linkedin">
+            <i class="fab fa-linkedin"></i> View Verified LinkedIn Report
+          </a>
+        </div>
+      </article>
+
+      <!-- WEEK 07 -->
+      <article class="report-card" data-phase="phase2" data-keywords="digital forensics ftk imager e01 image chain of custody mft macb timestamps autopsy">
+        <div class="card-header">
+          <div class="card-top">
+            <span class="week-badge">Week 07</span>
+            <span class="phase-badge phase-dfir">Phase 2: DFIR</span>
+          </div>
+          <h3>Digital Forensics Foundation — E01 Imaging &amp; $MFT</h3>
+          <div class="date-sub">12 September 2026 · Supervisor: Abdullah Zia</div>
+        </div>
+        <ul class="highlights-list">
+          <li>Acquired forensically sound physical E01 image with FTK Imager; maintained verified MD5/SHA1/SHA256 Chain of Custody.</li>
+          <li>Mounted read-only via Arsenal Image Mounter &amp; parsed NTFS `$MFT` MACB timestamps in MFT Explorer.</li>
+          <li>Demonstrated NTFS Alternate Data Streams (ADS) hiding and recovered deleted files via raw `$MFT` flags &amp; Autopsy.</li>
+        </ul>
+        <div class="card-footer">
+          <div class="tags-container">
+            <span class="tool-pill">FTK Imager</span>
+            <span class="tool-pill">E01 Acquisition</span>
+            <span class="tool-pill">NTFS $MFT</span>
+            <span class="tool-pill">Arsenal Mounter</span>
+            <span class="tool-pill">Autopsy Triage</span>
+          </div>
+          <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek7report-activity-7504512843271135232-5AnU" target="_blank" rel="noopener" class="btn-linkedin">
+            <i class="fab fa-linkedin"></i> View Verified LinkedIn Report
+          </a>
+        </div>
+      </article>
+
+      <!-- WEEK 08 -->
+      <article class="report-card" data-phase="phase2" data-keywords="workstation forensics ez tools evtxecmd pecmd prefetch rbcmd recycle bin event logs">
+        <div class="card-header">
+          <div class="card-top">
+            <span class="week-badge">Week 08</span>
+            <span class="phase-badge phase-dfir">Phase 2: DFIR</span>
+          </div>
+          <h3>Workstation Forensics with Eric Zimmerman's EZ Tools</h3>
+          <div class="date-sub">12 September 2026 · Supervisor: Abdullah Zia</div>
+        </div>
+        <ul class="highlights-list">
+          <li>Parsed 12,871 Security Event Logs (`EvtxECmd`) tracking Event ID 4672 privilege escalations &amp; logon baselines.</li>
+          <li>Analyzed 245 Prefetch records (`PECmd`) discovering unlicensed software extraction in pirated installer package.</li>
+          <li>Parsed Recycle Bin (`RBCmd`), Thumbcache (39 thumbnails), and correlated Prefetch + download history into timeline evidence.</li>
+        </ul>
+        <div class="card-footer">
+          <div class="tags-container">
+            <span class="tool-pill">EvtxECmd</span>
+            <span class="tool-pill">PECmd Prefetch</span>
+            <span class="tool-pill">RBCmd</span>
+            <span class="tool-pill">EZ Tools</span>
+            <span class="tool-pill">Event ID 4672</span>
+          </div>
+          <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek8report-activity-7504513279235457025-Kz9p" target="_blank" rel="noopener" class="btn-linkedin">
+            <i class="fab fa-linkedin"></i> View Verified LinkedIn Report
+          </a>
+        </div>
+      </article>
+
+      <!-- WEEK 09 -->
+      <article class="report-card" data-phase="phase2" data-keywords="user forensics browser forensics lnk files lecmd serial number utc timeline correlation">
+        <div class="card-header">
+          <div class="card-top">
+            <span class="week-badge">Week 09</span>
+            <span class="phase-badge phase-dfir">Phase 2: DFIR</span>
+          </div>
+          <h3>User-Level Forensics &amp; UTC Timeline Correlation</h3>
+          <div class="date-sub">12 September 2026 · Supervisor: Abdullah Zia</div>
+        </div>
+        <ul class="highlights-list">
+          <li>Extracted Chrome &amp; Edge browser forensics (history, cookies, downloads, extensions) with SHA256 pre-analysis hashing.</li>
+          <li>Parsed 71 LNK shortcut files (`LECmd`) identifying unique USB volume serial numbers &amp; unlinked targets.</li>
+          <li>Constructed 5-source UTC unified timeline (Security logs, Prefetch, browser, downloads, LNKs) proving 4-step execution chain.</li>
+        </ul>
+        <div class="card-footer">
+          <div class="tags-container">
+            <span class="tool-pill">Browser Forensics</span>
+            <span class="tool-pill">LECmd LNK</span>
+            <span class="tool-pill">USB Serial Matching</span>
+            <span class="tool-pill">UTC Super Timeline</span>
+          </div>
+          <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek9report-activity-7504513757788880896-GsQF" target="_blank" rel="noopener" class="btn-linkedin">
+            <i class="fab fa-linkedin"></i> View Verified LinkedIn Report
+          </a>
+        </div>
+      </article>
+
+      <!-- WEEK 10 -->
+      <article class="report-card" data-phase="phase2" data-keywords="disk forensics mantooth registry analysis autopsy truecrypt steganography sam ntuser">
+        <div class="card-header">
+          <div class="card-top">
+            <span class="week-badge">Week 10</span>
+            <span class="phase-badge phase-dfir">Phase 2: DFIR</span>
+          </div>
+          <h3>Disk &amp; Registry Investigation (Mantooth.E01 — 48 Solves)</h3>
+          <div class="date-sub">12 September 2026 · Supervisor: Abdullah Zia</div>
+        </div>
+        <ul class="highlights-list">
+          <li>Analyzed forensic disk image `Mantooth.E01` solving 48 investigative questions across 2 comprehensive labs.</li>
+          <li>Hive-by-hive Registry analysis (SYSTEM, SOFTWARE, SAM, NTUSER.DAT) pulling USB history &amp; MRU document trails.</li>
+          <li>Discovered steganography tool in Recycle Bin, TrueCrypt mounted container, disk wiping history, and secondary suspect account.</li>
+        </ul>
+        <div class="card-footer">
+          <div class="tags-container">
+            <span class="tool-pill">Mantooth.E01</span>
+            <span class="tool-pill">Autopsy Triage</span>
+            <span class="tool-pill">Registry Explorer</span>
+            <span class="tool-pill">TrueCrypt</span>
+            <span class="tool-pill">Steganography</span>
+          </div>
+          <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek10report-activity-7504519781979635712-mLtN" target="_blank" rel="noopener" class="btn-linkedin">
+            <i class="fab fa-linkedin"></i> View Verified LinkedIn Report
+          </a>
+        </div>
+      </article>
+
+      <!-- WEEK 11 -->
+      <article class="report-card" data-phase="phase2" data-keywords="email forensics display name spoofing pst outlook recentdocs exoneration super timeline">
+        <div class="card-header">
+          <div class="card-top">
+            <span class="week-badge">Week 11</span>
+            <span class="phase-badge phase-dfir">Phase 2: DFIR</span>
+          </div>
+          <h3>Insider Threat Email &amp; Disk Forensics (CFO Exoneration)</h3>
+          <div class="date-sub">12 September 2026 · Supervisor: Abdullah Zia</div>
+        </div>
+        <ul class="highlights-list">
+          <li>Investigated confidential spreadsheet leak from CFO machine; extracted Outlook PST mailbox &amp; raw headers.</li>
+          <li>Uncovered display-name email spoofing attack: President's visible email address routed to an external spoofed Gmail.</li>
+          <li>Corroborated story via LNK, Prefetch, and RecentDocs registry entries in 24s window, exonerating employee of IP theft.</li>
+        </ul>
+        <div class="card-footer">
+          <div class="tags-container">
+            <span class="tool-pill">PST Mailbox Extraction</span>
+            <span class="tool-pill">Email Spoofing Analysis</span>
+            <span class="tool-pill">RecentDocs</span>
+            <span class="tool-pill">Timeline Filtering</span>
+          </div>
+          <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek11report-activity-7504521394479841280-goB5" target="_blank" rel="noopener" class="btn-linkedin">
+            <i class="fab fa-linkedin"></i> View Verified LinkedIn Report
+          </a>
+        </div>
+      </article>
+
+      <!-- WEEK 12 (CAPSTONE 2) -->
+      <article class="report-card capstone" data-phase="phase2" data-keywords="phase 2 capstone dfir capstone volatility 3 memory forensics m57.biz autopsy usb hash match master event sequence">
+        <div class="card-header">
+          <div class="card-top">
+            <span class="week-badge">Week 12</span>
+            <span class="phase-badge phase-capstone">Phase 2 DFIR Capstone</span>
+          </div>
+          <h3>Phase 2 Capstone — Full M57.biz Insider Threat DFIR Case</h3>
+          <div class="date-sub">12 September 2026 · Supervisor: Abdullah Zia</div>
+        </div>
+        <ul class="highlights-list">
+          <li>Triangulated 3 evidence pillars: Disk Forensics (Autopsy), Memory Forensics (Volatility 3 RAM capture), and USB External Media.</li>
+          <li>Cryptographically proved data exfiltration to specific USB drives using hash matching and recovered deleted files.</li>
+          <li>Normalized timestamps across disparate sources to compile a Master Event Sequence &amp; dual-audience executive/technical report.</li>
+        </ul>
+        <div class="card-footer">
+          <div class="tags-container">
+            <span class="tool-pill">Volatility 3</span>
+            <span class="tool-pill">Memory Forensics</span>
+            <span class="tool-pill">Autopsy</span>
+            <span class="tool-pill">Cryptographic Hashing</span>
+            <span class="tool-pill">Master Event Sequence</span>
+          </div>
+          <a href="https://www.linkedin.com/posts/sulemansaqib_cybersterweek12report-activity-7504525463713636352-QZpH" target="_blank" rel="noopener" class="btn-linkedin">
+            <i class="fab fa-linkedin"></i> View Verified LinkedIn Report
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="no-results" id="no-results" style="display: none;">
+      <i class="fas fa-search"></i>
+      <h3>No matching reports found</h3>
+      <p>Try searching for tools like "Wazuh", "Suricata", "Autopsy", "Volatility", "EZ Tools", or "Capstone".</p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 Suleman Saqib · Cyberster Blue Team Internship Field Journal · All Reports Verified
+  </footer>
+
+  <script>
+    // Theme Toggle
+    const themeBtn = document.getElementById('theme-toggle-dossier');
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeBtn.querySelector('i').className = next === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+    });
+
+    // Filtering & Search
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const searchInput = document.getElementById('dossier-search');
+    const cards = document.querySelectorAll('.report-card');
+    const noResults = document.getElementById('no-results');
+
+    let activeFilter = 'all';
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.getAttribute('data-filter');
+        filterReports();
+      });
+    });
+
+    searchInput.addEventListener('input', filterReports);
+
+    function filterReports() {
+      const query = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const phase = card.getAttribute('data-phase');
+        const keywords = card.getAttribute('data-keywords').toLowerCase();
+        const textContent = card.textContent.toLowerCase();
+
+        const matchesFilter = activeFilter === 'all' || phase === activeFilter;
+        const matchesSearch = !query || keywords.includes(query) || textContent.includes(query);
+
+        if (matchesFilter && matchesSearch) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>
