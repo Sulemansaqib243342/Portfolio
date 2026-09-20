@@ -331,15 +331,14 @@
             <p class="coursework-title">Relevant Coursework</p>
             <div class="tag-cloud">
               <span>Programming Fundamentals</span>
-              <span>OOPs</span>
-              <span>Data Structures</span>
+              <span>Object-Oriented Programming (OOP)</span>
+              <span>Data Structures &amp; Algorithms</span>
               <span>Information Security</span>
               <span>Web Technologies</span>
-              <span>DLD</span>
               <span>Computer Networks</span>
               <span>Software Engineering</span>
               <span>Operating Systems</span>
-              <span>Database Management</span>
+              <span>Database Management Systems</span>
             </div>
             <a href="#contact" class="btn btn-primary"><span>Let's Talk</span><i class="fas fa-arrow-right"></i></a>
           </div>
@@ -442,7 +441,7 @@
       </section>
 
       <!-- ======================================================
-           PROJECTS — Scroll-Stack Cards
+           PROJECTS — Categorized (Cyber & Web)
       ====================================================== -->
       <section id="projects" class="section">
         <div class="section-header" data-reveal>
@@ -450,131 +449,36 @@
           <h2 class="section-title">Featured Projects</h2>
           <div class="section-line"></div>
         </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="projects-filter-bar" data-reveal>
+          <button class="pf-btn active" data-filter="all" type="button">
+            <i class="fas fa-layer-group"></i> All Projects <span class="pf-count">8</span>
+          </button>
+          <button class="pf-btn" data-filter="cyber" type="button">
+            <i class="fas fa-shield-alt"></i> Cybersecurity &amp; AI Defense <span class="pf-count">6</span>
+          </button>
+          <button class="pf-btn" data-filter="web" type="button">
+            <i class="fas fa-laptop-code"></i> Web &amp; 3D Development <span class="pf-count">2</span>
+          </button>
+        </div>
+
         <div class="projects-stack" id="projects-stack">
 
-          <!-- 1. Nova Robotics -->
-          <div class="project-card glass-card">
-            <div class="project-img">
-              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">nova-3d-scene.ts</span></div>
-              <div class="project-img-placeholder" style="--hue:45">
-                <i class="fas fa-cube"></i>
-              </div>
-              <div class="project-overlay">
-                <a href="https://3dtechnicalgrowth.netlify.app/" target="_blank" rel="noopener" class="btn-sm">
-                  Live Demo <i class="fas fa-external-link-alt"></i>
-                </a>
-                <a href="https://github.com/Sulemansaqib243342/3D-Practice-Site" target="_blank" rel="noopener" class="btn-sm">
-                  GitHub <i class="fab fa-github"></i>
-                </a>
+          <!-- ===== CYBERSECURITY & AI DEFENSE CATEGORY ===== -->
+          <div class="project-category-header" data-category-group="cyber">
+            <div class="pch-left">
+              <span class="pch-icon"><i class="fas fa-shield-alt"></i></span>
+              <div class="pch-text">
+                <h3 class="pch-title">Cybersecurity &amp; AI Red-Teaming</h3>
+                <p class="pch-sub">Adversarial LLM evaluation, digital forensics, live telemetry &amp; security tooling</p>
               </div>
             </div>
-            <div class="project-info">
-              <span class="project-number">01</span>
-              <h4>Nova Robotics — 3D Interactive Site</h4>
-              <p>Interactive 3D robot scene with scroll-driven animation and immersive UI. Built with Next.js, Three.js, React Three Fiber, GSAP, and Lenis for a cinematic web experience.</p>
-              <div class="project-tags">
-                <span>Next.js</span><span>Three.js</span><span>React Three Fiber</span><span>GSAP</span><span>Lenis</span>
-              </div>
-            </div>
+            <span class="pch-badge">6 Projects</span>
           </div>
 
-          <!-- 2. Toolset Dossier -->
-          <div class="project-card glass-card">
-            <div class="project-img">
-              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">dossier_matrix.html</span></div>
-              <div class="project-img-placeholder" style="--hue:180">
-                <i class="fas fa-tools"></i>
-              </div>
-              <div class="project-overlay">
-                <a href="toolset-dossier.html" class="btn-sm">
-                  View Dossier <i class="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-            <div class="project-info">
-              <span class="project-number">02</span>
-              <h4>Toolset Dossier</h4>
-              <p>Self-built HTML dashboard cataloguing 26 cybersecurity tools organised by attack-lifecycle phase — recon → scanning → exploitation → credential access → C2 → detection.</p>
-              <div class="project-tags">
-                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Cybersecurity</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3. Network Sniffing Tool -->
-          <div class="project-card glass-card">
-            <div class="project-img">
-              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">packet_sniffer.py</span></div>
-              <div class="project-img-placeholder" style="--hue:200">
-                <i class="fas fa-network-wired"></i>
-              </div>
-              <div class="project-overlay">
-                <a href="https://github.com/Sulemansaqib243342/Network_Sniffing" target="_blank" rel="noopener" class="btn-sm">
-                  GitHub <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/posts/sulemansaqib_network-sniffing-project-packet-analysis-activity-7453478729537810432--mQn" target="_blank" rel="noopener" class="btn-sm">
-                  LinkedIn <i class="fab fa-linkedin"></i>
-                </a>
-              </div>
-            </div>
-            <div class="project-info">
-              <span class="project-number">03</span>
-              <h4>Network Sniffing Tool</h4>
-              <p>Python + Scapy packet capture and live TCP traffic analysis tool built during the CodeAlpha internship for security monitoring and protocol inspection.</p>
-              <div class="project-tags">
-                <span>Python</span><span>Scapy</span><span>Networking</span><span>Security</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 4. Evil Twin Simulation -->
-          <div class="project-card glass-card">
-            <div class="project-img">
-              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">captive_portal.py</span></div>
-              <div class="project-img-placeholder" style="--hue:260">
-                <i class="fas fa-wifi"></i>
-              </div>
-              <div class="project-overlay">
-                <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
-                  GitHub <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-            <div class="project-info">
-              <span class="project-number">04</span>
-              <h4>Evil Twin Simulation</h4>
-              <p>Rogue access point with captive portal simulation for security awareness training, demonstrating Evil Twin attack vectors using Python and Flask.</p>
-              <div class="project-tags">
-                <span>Python</span><span>Flask</span><span>Networking</span><span>Security Research</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 5. Event Management System -->
-          <div class="project-card glass-card">
-            <div class="project-img">
-              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">event_manager.js</span></div>
-              <div class="project-img-placeholder" style="--hue:40">
-                <i class="fas fa-calendar-alt"></i>
-              </div>
-              <div class="project-overlay">
-                <a href="https://github.com/Sulemansaqib243342/Event-Management-System" target="_blank" rel="noopener" class="btn-sm">
-                  GitHub <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-            <div class="project-info">
-              <span class="project-number">05</span>
-              <h4>Event Management System</h4>
-              <p>Full web application built during Qwetrum Technologies internship, featuring ticketing, real-time updates, and attendee management.</p>
-              <div class="project-tags">
-                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 6. Prompt Injection & LLM Red-Teaming Assessment -->
-          <div class="project-card glass-card">
+          <!-- 1. Prompt Injection & LLM Red-Teaming Assessment -->
+          <div class="project-card glass-card" data-category="cyber">
             <div class="project-img">
               <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">promptfoo-eval.yaml</span></div>
               <div class="project-img-placeholder" style="--hue:340">
@@ -584,49 +488,29 @@
                 <button class="btn-sm btn-cs" onclick="openCaseStudy('case-prompt-injection')">
                   Case Study <i class="fas fa-file-shield"></i>
                 </button>
+                <a href="https://www.linkedin.com/posts/sulemansaqib_prompt-injection-llm-red-team-report-activity-7498107638354952192-MwWs?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF-GF88BHt-_L8IOOLpHUkbnJCN3bHWNmB4" target="_blank" rel="noopener" class="btn-sm">
+                  LinkedIn Report <i class="fab fa-linkedin"></i>
+                </a>
                 <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
                   GitHub <i class="fab fa-github"></i>
                 </a>
               </div>
             </div>
             <div class="project-info">
-              <span class="project-number">06</span>
+              <div class="project-header-meta">
+                <span class="project-number">01</span>
+                <span class="project-cat-badge cyber"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+              </div>
               <h4>Prompt Injection &amp; LLM Red-Teaming Assessment</h4>
               <p>Automated adversarial security assessment of an LLM-powered customer-support assistant (Morphe Labs). Ran 311 adversarial test cases across 5 vulnerability categories using 3 attack strategies, including a self-adapting jailbreak technique. Identified 29 confirmed vulnerabilities (13.4% attack success rate, 86.6% defense rate). Findings mapped to the OWASP LLM Top 10.</p>
               <div class="project-tags">
-                <span>Promptfoo</span><span>Groq API</span><span>LLM Security</span><span>AI Red-Teaming</span>
+                <span>Promptfoo</span><span>Groq API</span><span>LLM Security</span><span>AI Red-Teaming</span><span>OWASP LLM Top 10</span>
               </div>
             </div>
           </div>
 
-          <!-- 7. AI-Assisted Smart Security Analyst Assistant -->
-          <div class="project-card glass-card">
-            <div class="project-img">
-              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">nsl_kdd_triage.py</span></div>
-              <div class="project-img-placeholder" style="--hue:160">
-                <i class="fas fa-brain"></i>
-              </div>
-              <div class="project-overlay">
-                <button class="btn-sm btn-cs" onclick="openCaseStudy('case-smart-analyst')">
-                  Case Study <i class="fas fa-file-shield"></i>
-                </button>
-                <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
-                  GitHub <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-            <div class="project-info">
-              <span class="project-number">07</span>
-              <h4>AI-Assisted Smart Security Analyst Assistant</h4>
-              <p>Built an AI-assisted security alert triage system on the NSL-KDD network intrusion dataset (Morphe Labs). Designed an LLM reporting layer that generates plain-English incident reports from structured alerts. Ran a rigorous, root-cause-driven hallucination evaluation across 3 testing iterations, improving true-positive attack classification from 66.7% to 76.7% by identifying and fixing a missing feature category &mdash; then manually root-caused every remaining error rather than reporting a raw failure count.</p>
-              <div class="project-tags">
-                <span>Python</span><span>LLM Evaluation</span><span>pandas</span><span>NSL-KDD</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 8. M57.biz Insider-Threat DFIR Investigations -->
-          <div class="project-card glass-card">
+          <!-- 2. M57.biz Insider-Threat DFIR Investigations -->
+          <div class="project-card glass-card" data-category="cyber">
             <div class="project-img">
               <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">dfir_case_m57.raw</span></div>
               <div class="project-img-placeholder" style="--hue:215">
@@ -642,11 +526,194 @@
               </div>
             </div>
             <div class="project-info">
-              <span class="project-number">08</span>
+              <div class="project-header-meta">
+                <span class="project-number">02</span>
+                <span class="project-cat-badge cyber"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+              </div>
               <h4>M57.biz Insider-Threat DFIR Investigations</h4>
               <p>Two capstone digital forensics investigations for the Cyberster internship. Case 1: used email forensics and host-artefact correlation in Autopsy to uncover a display-name email-spoofing attack, clearing a wrongly-suspected employee. Case 2: combined a disk image, two USB device images, and a RAM capture (Volatility 3) to cryptographically prove data exfiltration via an exact MD5 hash match, while transparently documenting unresolved evidentiary gaps.</p>
               <div class="project-tags">
                 <span>Autopsy</span><span>Volatility 3</span><span>Digital Forensics</span><span>NIST SP 800-61</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. AI-Assisted Smart Security Analyst Assistant -->
+          <div class="project-card glass-card" data-category="cyber">
+            <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">nsl_kdd_triage.py</span></div>
+              <div class="project-img-placeholder" style="--hue:160">
+                <i class="fas fa-brain"></i>
+              </div>
+              <div class="project-overlay">
+                <button class="btn-sm btn-cs" onclick="openCaseStudy('case-smart-analyst')">
+                  Case Study <i class="fas fa-file-shield"></i>
+                </button>
+                <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-header-meta">
+                <span class="project-number">03</span>
+                <span class="project-cat-badge cyber"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+              </div>
+              <h4>AI-Assisted Smart Security Analyst Assistant</h4>
+              <p>Built an AI-assisted security alert triage system on the NSL-KDD network intrusion dataset (Morphe Labs). Designed an LLM reporting layer that generates plain-English incident reports from structured alerts. Ran a rigorous, root-cause-driven hallucination evaluation across 3 testing iterations, improving true-positive attack classification from 66.7% to 76.7% by identifying and fixing a missing feature category &mdash; then manually root-caused every remaining error rather than reporting a raw failure count.</p>
+              <div class="project-tags">
+                <span>Python</span><span>LLM Evaluation</span><span>pandas</span><span>NSL-KDD</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Toolset Dossier -->
+          <div class="project-card glass-card" data-category="cyber">
+            <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">dossier_matrix.html</span></div>
+              <div class="project-img-placeholder" style="--hue:180">
+                <i class="fas fa-tools"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="toolset-dossier.html" class="btn-sm">
+                  View Dossier <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-header-meta">
+                <span class="project-number">04</span>
+                <span class="project-cat-badge cyber"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+              </div>
+              <h4>Toolset Dossier</h4>
+              <p>Self-built HTML dashboard cataloguing 26 cybersecurity tools organised by attack-lifecycle phase — recon → scanning → exploitation → credential access → C2 → detection.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Cybersecurity</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Network Sniffing Tool -->
+          <div class="project-card glass-card" data-category="cyber">
+            <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">packet_sniffer.py</span></div>
+              <div class="project-img-placeholder" style="--hue:200">
+                <i class="fas fa-network-wired"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/Sulemansaqib243342/Network_Sniffing" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/posts/sulemansaqib_network-sniffing-project-packet-analysis-activity-7453478729537810432--mQn" target="_blank" rel="noopener" class="btn-sm">
+                  LinkedIn <i class="fab fa-linkedin"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-header-meta">
+                <span class="project-number">05</span>
+                <span class="project-cat-badge cyber"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+              </div>
+              <h4>Network Sniffing Tool</h4>
+              <p>Python + Scapy packet capture and live TCP traffic analysis tool built during the CodeAlpha internship for security monitoring and protocol inspection.</p>
+              <div class="project-tags">
+                <span>Python</span><span>Scapy</span><span>Networking</span><span>Security</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Evil Twin Simulation -->
+          <div class="project-card glass-card" data-category="cyber">
+            <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">captive_portal.py</span></div>
+              <div class="project-img-placeholder" style="--hue:260">
+                <i class="fas fa-wifi"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/Sulemansaqib243342" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-header-meta">
+                <span class="project-number">06</span>
+                <span class="project-cat-badge cyber"><i class="fas fa-shield-alt"></i> Cybersecurity</span>
+              </div>
+              <h4>Evil Twin Simulation</h4>
+              <p>Rogue access point with captive portal simulation for security awareness training, demonstrating Evil Twin attack vectors using Python and Flask.</p>
+              <div class="project-tags">
+                <span>Python</span><span>Flask</span><span>Networking</span><span>Security Research</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== WEB & 3D DEVELOPMENT CATEGORY ===== -->
+          <div class="project-category-header" data-category-group="web">
+            <div class="pch-left">
+              <span class="pch-icon"><i class="fas fa-laptop-code"></i></span>
+              <div class="pch-text">
+                <h3 class="pch-title">Web &amp; 3D Interactive Development</h3>
+                <p class="pch-sub">Modern 3D graphics, reactive interfaces, full-stack architectures &amp; databases</p>
+              </div>
+            </div>
+            <span class="pch-badge">2 Projects</span>
+          </div>
+
+          <!-- 7. Nova Robotics -->
+          <div class="project-card glass-card" data-category="web">
+            <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">nova-3d-scene.ts</span></div>
+              <div class="project-img-placeholder" style="--hue:45">
+                <i class="fas fa-cube"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://3dtechnicalgrowth.netlify.app/" target="_blank" rel="noopener" class="btn-sm">
+                  Live Demo <i class="fas fa-external-link-alt"></i>
+                </a>
+                <a href="https://github.com/Sulemansaqib243342/3D-Practice-Site" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-header-meta">
+                <span class="project-number">01</span>
+                <span class="project-cat-badge web"><i class="fas fa-laptop-code"></i> Web Dev</span>
+              </div>
+              <h4>Nova Robotics — 3D Interactive Site</h4>
+              <p>Interactive 3D robot scene with scroll-driven animation and immersive UI. Built with Next.js, Three.js, React Three Fiber, GSAP, and Lenis for a cinematic web experience.</p>
+              <div class="project-tags">
+                <span>Next.js</span><span>Three.js</span><span>React Three Fiber</span><span>GSAP</span><span>Lenis</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. Event Management System -->
+          <div class="project-card glass-card" data-category="web">
+            <div class="project-img">
+              <div class="mockup-bar"><span class="m-dot m-red"></span><span class="m-dot m-yellow"></span><span class="m-dot m-green"></span><span class="m-title">event_manager.js</span></div>
+              <div class="project-img-placeholder" style="--hue:40">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <div class="project-overlay">
+                <a href="https://github.com/Sulemansaqib243342/Event-Management-System" target="_blank" rel="noopener" class="btn-sm">
+                  GitHub <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/posts/sulemansaqib_webdevelopment-nodejs-oracledb-activity-7479997405329936384-QDNi?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF-GF88BHt-_L8IOOLpHUkbnJCN3bHWNmB4" target="_blank" rel="noopener" class="btn-sm">
+                  LinkedIn <i class="fab fa-linkedin"></i>
+                </a>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-header-meta">
+                <span class="project-number">02</span>
+                <span class="project-cat-badge web"><i class="fas fa-laptop-code"></i> Web Dev</span>
+              </div>
+              <h4>Event Management System</h4>
+              <p>Full-stack web application built during Qwetrum Technologies internship featuring ticketing, attendee management workflows, Node.js backend services, and Oracle Database integration.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span><span>Oracle Database</span><span>Express</span>
               </div>
             </div>
           </div>

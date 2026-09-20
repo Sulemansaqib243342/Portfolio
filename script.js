@@ -625,8 +625,54 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ============================================================
-  // 10. PROJECT CARDS — Scroll-Stack Effect
+  // 10. PROJECT CARDS — Scroll-Stack & Category Filtering
   // ============================================================
+  function initProjectFilters() {
+    const filterBtns = document.querySelectorAll('.pf-btn');
+    const stack = document.getElementById('projects-stack');
+    if (!filterBtns.length || !stack) return;
+
+    const cards = Array.from(stack.querySelectorAll('.project-card'));
+    const headers = Array.from(stack.querySelectorAll('.project-category-header'));
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Toggle category headers
+        headers.forEach(header => {
+          const group = header.dataset.categoryGroup;
+          if (filter === 'all' || filter === group) {
+            header.style.display = 'flex';
+          } else {
+            header.style.display = 'none';
+          }
+        });
+
+        // Toggle project cards
+        cards.forEach(card => {
+          const cat = card.dataset.category;
+          if (filter === 'all' || filter === cat) {
+            card.style.display = 'grid';
+            card.style.animation = 'fadeInUp 0.35s ease forwards';
+          } else {
+            card.style.display = 'none';
+            card.style.transform = '';
+            card.style.opacity = '';
+          }
+        });
+
+        // Recalculate scroll stack layout immediately
+        if (window._recalcScrollStack) {
+          window._recalcScrollStack();
+        }
+      });
+    });
+  }
+  initProjectFilters();
+
   function initScrollStack() {
     const stack = document.getElementById('projects-stack');
     if (!stack || prefersReducedMotion) return;
@@ -637,10 +683,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollEl = isMobile() ? window : mainContent;
 
     function onStackScroll() {
-      const stackRect  = stack.getBoundingClientRect();
-      const viewH      = isMobile() ? window.innerHeight : mainContent.clientHeight;
+      const viewH = isMobile() ? window.innerHeight : mainContent.clientHeight;
+      const visibleCards = cards.filter(card => card.style.display !== 'none');
 
-      cards.forEach((card, i) => {
+      visibleCards.forEach((card, i) => {
         const cardRect = card.getBoundingClientRect();
         const cardTop  = isMobile()
           ? cardRect.top
@@ -668,6 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     scrollEl.addEventListener('scroll', onStackScroll, { passive: true });
+    window._recalcScrollStack = onStackScroll;
     onStackScroll(); // run once on init
   }
   initScrollStack();
@@ -718,6 +765,7 @@ document.addEventListener('DOMContentLoaded', () => {
       client: 'Morphe Labs',
       duration: '4-Week Intensive Red-Team Sprint',
       frameworks: 'OWASP LLM Top 10 · Promptfoo · Groq API',
+      linkedInUrl: 'https://www.linkedin.com/posts/sulemansaqib_prompt-injection-llm-red-team-report-activity-7498107638354952192-MwWs?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF-GF88BHt-_L8IOOLpHUkbnJCN3bHWNmB4',
       overview: 'Conducted an automated adversarial security evaluation targeting an LLM-powered customer assistance bot. Designed multi-turn jailbreak sequences, role-play evasion attacks, and direct system prompt exfiltration probes.',
       stats: [
         { num: '311', lbl: 'Adversarial Test Cases' },
@@ -834,6 +882,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <h4 class="cs-section-title"><i class="fas fa-shield-virus"></i> Key Security Takeaways &amp; Hardening</h4>
         <p class="cs-text">${data.takeaways}</p>
       </div>
+      ${data.linkedInUrl ? `
+      <div class="cs-section" style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--glass-border); display: flex; justify-content: flex-end;">
+        <a href="${data.linkedInUrl}" target="_blank" rel="noopener" class="btn-sm btn-cs" style="font-size: 11px; padding: 10px 20px;">
+          <i class="fab fa-linkedin"></i> View Original Report on LinkedIn <i class="fas fa-external-link-alt" style="font-size: 10px; margin-left: 3px;"></i>
+        </a>
+      </div>
+      ` : ''}
     `;
 
     caseStudyModal.classList.add('active');
@@ -999,15 +1054,17 @@ document.addEventListener('DOMContentLoaded', () => {
       <p class="t-line t-dim">Python, C++, HTML / CSS, JavaScript, Next.js, Three.js, React Three Fiber, GSAP, Lenis, Node.js, Flask, Scapy, SQL &amp; DBMS, MongoDB, WordPress</p>
     `,
     projects: () => `
-      <p class="t-line t-gold">&#x1F4C2; Featured Projects (8 Completed):</p>
+      <p class="t-line t-gold">&#x1F4C2; Featured Projects (8 Completed across 2 Categories):</p>
+      <p class="t-line t-green">&#x1F6E1;&#xFE0F; [Cybersecurity &amp; AI Red-Teaming]</p>
+      <p class="t-line"><span class="t-cyan">[01] Prompt Injection Assessment</span> &mdash; 311 LLM Red-Team Testcases (Morphe Labs · OWASP LLM Top 10)</p>
+      <p class="t-line"><span class="t-cyan">[02] M57.biz DFIR Capstones</span> &mdash; Autopsy &amp; Volatility 3 Dual Forensic Solves (Cyberster)</p>
+      <p class="t-line"><span class="t-cyan">[03] AI-Assisted Smart SOC Assistant</span> &mdash; NSL-KDD Triage Pipeline (Morphe Labs)</p>
+      <p class="t-line"><span class="t-cyan">[04] Toolset Dossier</span> &mdash; 26-Tool Attack Lifecycle Matrix Dashboard (HTML, CSS, JS)</p>
+      <p class="t-line"><span class="t-cyan">[05] Network Sniffing Tool</span> &mdash; Python + Scapy Live TCP Analyzer (CodeAlpha)</p>
+      <p class="t-line"><span class="t-cyan">[06] Evil Twin Simulation</span> &mdash; Rogue AP Captive Portal Testbed (Python, Flask)</p>
+      <p class="t-line t-gold">&#x1F4BB; [Web &amp; 3D Interactive Development]</p>
       <p class="t-line"><span class="t-cyan">[01] Nova Robotics</span> &mdash; 3D Interactive Site (Next.js, Three.js, React Three Fiber, GSAP, Lenis)</p>
-      <p class="t-line"><span class="t-cyan">[02] Toolset Dossier</span> &mdash; 26-Tool Attack Lifecycle Matrix Dashboard (HTML, CSS, JS)</p>
-      <p class="t-line"><span class="t-cyan">[03] Network Sniffing Tool</span> &mdash; Python + Scapy Live TCP Analyzer (CodeAlpha)</p>
-      <p class="t-line"><span class="t-cyan">[04] Evil Twin Simulation</span> &mdash; Rogue AP Captive Portal Testbed (Python, Flask)</p>
-      <p class="t-line"><span class="t-cyan">[05] Event Management System</span> &mdash; Full Stack Ticketing Platform (Node.js, Qwetrum)</p>
-      <p class="t-line"><span class="t-cyan">[06] Prompt Injection Assessment</span> &mdash; 311 LLM Red-Team Testcases (Morphe Labs · OWASP LLM Top 10)</p>
-      <p class="t-line"><span class="t-cyan">[07] AI-Assisted Smart SOC Assistant</span> &mdash; NSL-KDD Triage Pipeline (Morphe Labs)</p>
-      <p class="t-line"><span class="t-cyan">[08] M57.biz DFIR Capstones</span> &mdash; Autopsy &amp; Volatility 3 Dual Forensic Solves (Cyberster)</p>
+      <p class="t-line"><span class="t-cyan">[02] Event Management System</span> &mdash; Full Stack Platform with Node.js &amp; OracleDB (Qwetrum)</p>
     `,
     certs: () => `
       <p class="t-line t-gold">&#x1F3C5; All 15 Verified Certificates &amp; Licenses:</p>
